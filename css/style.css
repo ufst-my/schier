@@ -86,7 +86,7 @@ body {
    Hero-sektion
 ───────────────────────────────────────────────────────────────────────── */
 .hero {
-  background: url("../images/hero-baggrund.jpg") no-repeat center/cover;
+  background: url("../images/hero-baggrund.png") no-repeat center/cover;
   color: #fff;
   text-align: center;
   padding: 4rem 0;
