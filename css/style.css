@@ -1,3 +1,5 @@
+/* css/style.css */
+
 /* ─────────────────────────────────────────────────────────────────────────
    Grundlæggende reset og typografi
 ───────────────────────────────────────────────────────────────────────── */
@@ -54,15 +56,25 @@ body {
   background: none;
   border: none;
   cursor: pointer;
-  display: block; /* synlig på mobil som default */
+  display: block;
 }
 
 .site-nav {
-  display: none; /* skjult på mobil først */
+  display: none;
 }
 
 .site-nav ul {
   list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.site-nav li {
+  margin-left: 1rem;
+}
+
+.site-nav li:first-child {
+  margin-left: 0;
 }
 
 .site-nav a {
@@ -77,9 +89,34 @@ body {
   color: #0073e6;
 }
 
-/* Når .site-nav får klassen .open (via JS), vis menuen på mobil */
 .site-nav.open {
   display: block;
+}
+
+/* Styling af telefon-ikonet i navigationen */
+.nav-phone {
+  margin-left: auto;
+}
+
+.nav-phone .phone-link {
+  display: flex;
+  align-items: center;
+  background-color: #28a745;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-phone .phone-link:hover {
+  background-color: #218838;
+}
+
+.nav-phone .phone-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -114,7 +151,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* Bryd linjen i overskriften på meget small skærm */
 .mobile-break {
   display: inline;
 }
@@ -164,7 +200,6 @@ body {
   gap: 2rem;
 }
 
-/* Hvert service-kort */
 .service-card {
   background-color: #fff;
   border-radius: 8px;
@@ -228,7 +263,6 @@ body {
    Responsive til større skærme (tablet+desktop)
 ───────────────────────────────────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
-  /* Gør menu synlig i horisontal linje */
   .nav-toggle {
     display: none;
   }
@@ -242,18 +276,25 @@ body {
   .site-nav a {
     padding: 0.5rem;
   }
-
-  /* Hero: større tekst */
   .hero h1 {
     font-size: 3rem;
   }
   .hero p {
     font-size: 1.4rem;
   }
-
-  /* Services i 3-kolonne grid */
   .service-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobil-visning af dropdown-menu inkl. telefon-link */
+@media screen and (max-width: 767px) {
+  .nav-phone {
+    margin: 0.5rem 0;
+  }
+  .nav-phone .phone-link {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -261,17 +302,13 @@ body {
    Større desktop (1200px+): ekstra tilpasning
 ───────────────────────────────────────────────────────────────────────── */
 @media screen and (min-width: 1200px) {
-  /* Footer med fixed-position for altid synlig på desktop */
   .site-footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
   }
-
-  /* For at sikre at sidernes indhold ikke “forsvinder” bag footeren,
-     kan du eventuelt sætte en ekstra;padding-bottom på body/hele wrapperen: */
   body {
-    padding-bottom: 60px; /* tilpasset footerhøjde (~40–60px) */
+    padding-bottom: 60px;
   }
 }
