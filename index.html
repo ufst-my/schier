@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schier Professionel rengøring</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">Schier</div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">Om os</a></li>
+        <li><a href="#contact">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main>
+    <section class="hero">
+      <h1>Velkommen til Schier Professionel Rengøring</h1>
+      <p>Vi tilbyder kvalitetsrengøring til virksomheder og private.</p>
+    </section>
+
+    <section id="services" class="content-section">
+      <h2>Vores Services</h2>
+      <p>Kontor-, erhvervs- og privatrengøring skræddersyet til dine behov.</p>
+    </section>
+
+    <section id="about" class="content-section">
+      <h2>Om os</h2>
+      <p>Schier er et erfarent rengøringsfirma med fokus på pålidelighed og kvalitet.</p>
+    </section>
+
+    <section id="contact" class="content-section">
+      <h2>Kontakt</h2>
+      <p>Email: <a href="mailto:info@schier.dk">info@schier.dk</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Schier Professionel Rengøring. Alle rettigheder forbeholdes.</p>
+  </footer>
+
+  <script>
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
