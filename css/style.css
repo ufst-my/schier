@@ -1,5 +1,3 @@
-/* css/style.css */
-
 /* ─────────────────────────────────────────────────────────────────────────
    Grundlæggende reset og typografi
 ───────────────────────────────────────────────────────────────────────── */
@@ -8,11 +6,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-html {
-  scroll-behavior: smooth;
-}
-
+html { scroll-behavior: smooth; }
 body {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.6;
@@ -21,7 +15,7 @@ body {
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   Container: centraliserer indhold med maksimum bredde
+   Container
 ───────────────────────────────────────────────────────────────────────── */
 .container {
   width: 90%;
@@ -33,24 +27,19 @@ body {
    Header + Navigation
 ───────────────────────────────────────────────────────────────────────── */
 .site-header {
-  background-color: #ffffff;
+  background-color: #fff;
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-
 .site-header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
 }
-
-.logo {
-  max-height: 50px;
-}
-
+.logo { max-height: 50px; }
 .nav-toggle {
   font-size: 1.5rem;
   background: none;
@@ -59,24 +48,23 @@ body {
   display: block;
 }
 
+/* Gør site-nav til hidden på mobil – vi positionerer den senere */
 .site-nav {
   display: none;
 }
 
+/* Fælles styling for menupunkter */
 .site-nav ul {
   list-style: none;
   display: flex;
   align-items: center;
 }
-
 .site-nav li {
   margin-left: 1rem;
 }
-
 .site-nav li:first-child {
   margin-left: 0;
 }
-
 .site-nav a {
   text-decoration: none;
   color: #333;
@@ -84,20 +72,14 @@ body {
   display: block;
   transition: color 0.2s;
 }
-
 .site-nav a:hover {
   color: #0073e6;
 }
 
-.site-nav.open {
-  display: block;
-}
-
-/* Styling af telefon-ikonet i navigationen */
+/* Telefon-knap styling */
 .nav-phone {
   margin-left: auto;
 }
-
 .nav-phone .phone-link {
   display: flex;
   align-items: center;
@@ -108,19 +90,22 @@ body {
   text-decoration: none;
   font-weight: 500;
 }
-
 .nav-phone .phone-link:hover {
   background-color: #218838;
 }
-
 .nav-phone .phone-icon {
   width: 20px;
   height: 20px;
   margin-right: 0.5rem;
 }
 
+/* Når menuen åbnes (kun på mobil) */
+.site-nav.open {
+  display: block;
+}
+
 /* ─────────────────────────────────────────────────────────────────────────
-   Hero-sektion
+   Hero-, services-, contact- og footer-sektioner (uændret)
 ───────────────────────────────────────────────────────────────────────── */
 .hero {
   background: url("../images/hero-baggrund.jpg") no-repeat center/cover;
@@ -129,177 +114,89 @@ body {
   padding: 4rem 0;
   position: relative;
 }
-
 .hero::after {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
 }
+.hero .container { position: relative; z-index: 1; }
+.hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+.hero p { font-size: 1.2rem; }
+.mobile-break { display: inline; }
 
-.hero .container {
-  position: relative;
-  z-index: 1;
-}
+.why-choose { background: #fff; padding: 3rem 0; }
+.why-choose h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+.features-list { list-style: none; max-width: 800px; margin: 0 auto; }
+.features-list li { margin-bottom: 1.5rem; font-size: 1rem; }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
+.services { background: #f1f1f1; padding: 3rem 0; }
+.services h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; }
+.service-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.service-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform 0.2s; }
+.service-card:hover { transform: translateY(-5px); }
+.service-card img { width: 100%; height: 200px; object-fit: cover; }
+.service-card h3 { font-size: 1.25rem; margin: 1rem; }
+.service-card p { font-size: 0.95rem; margin: 0 1rem 1rem; color: #555; }
 
-.hero p {
-  font-size: 1.2rem;
-}
+.cta-contact { background: #fff; padding: 3rem 0; text-align: center; }
+.cta-contact h2 { font-size: 2rem; margin-bottom: 1rem; }
+.cta-contact p { font-size: 1rem; margin-bottom: 0.75rem; }
 
-.mobile-break {
-  display: inline;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   Sektion: Hvorfor vælge os?
-───────────────────────────────────────────────────────────────────────── */
-.why-choose {
-  background-color: #ffffff;
-  padding: 3rem 0;
-}
-
-.why-choose h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.features-list {
-  list-style: none;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.features-list li {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
+.site-footer { background: #333; color: #fff; text-align: center; padding: 1rem 0; font-size: 0.9rem; }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   Sektion: Services
-───────────────────────────────────────────────────────────────────────── */
-.services {
-  background-color: #f1f1f1;
-  padding: 3rem 0;
-}
-
-.services h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.service-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-.service-card {
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-}
-
-.service-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.service-card h3 {
-  font-size: 1.25rem;
-  margin: 1rem;
-}
-
-.service-card p {
-  font-size: 0.95rem;
-  margin: 0 1rem 1rem;
-  color: #555;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   Sektion: Kontakt/Call-to-Action
-───────────────────────────────────────────────────────────────────────── */
-.cta-contact {
-  background-color: #ffffff;
-  padding: 3rem 0;
-  text-align: center;
-}
-
-.cta-contact h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.cta-contact p {
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   Footer (sticky på desktop)
-───────────────────────────────────────────────────────────────────────── */
-.site-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
-  font-size: 0.9rem;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────
-   Responsive til større skærme (tablet+desktop)
+   Tablet+Desktop (uændret internt layout)
 ───────────────────────────────────────────────────────────────────────── */
 @media screen and (min-width: 768px) {
-  .nav-toggle {
-    display: none;
-  }
-  .site-nav {
-    display: block !important;
-  }
-  .site-nav ul {
-    display: flex;
-    gap: 1.5rem;
-  }
-  .site-nav a {
-    padding: 0.5rem;
-  }
-  .hero h1 {
-    font-size: 3rem;
-  }
-  .hero p {
-    font-size: 1.4rem;
-  }
-  .service-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .nav-toggle { display: none; }
+  .site-nav { display: block !important; }
+  .site-nav ul { gap: 1.5rem; }
+  .hero h1 { font-size: 3rem; }
+  .hero p { font-size: 1.4rem; }
+  .service-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Mobil-visning af dropdown-menu inkl. telefon-link */
+/* ─────────────────────────────────────────────────────────────────────────
+   Mobil: vertikal dropdown fra top-right
+───────────────────────────────────────────────────────────────────────── */
 @media screen and (max-width: 767px) {
-  .nav-phone {
-    margin: 0.5rem 0;
+  .site-header {
+    position: relative;
+  }
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    display: none;
+  }
+  .site-nav.open {
+    display: block;
+  }
+  .site-nav ul {
+    flex-direction: column;
+  }
+  .site-nav li {
+    margin: 0;
+    border-bottom: 1px solid #eee;
+  }
+  .site-nav li:last-child {
+    border-bottom: none;
+  }
+  .site-nav a {
+    padding: 1rem;
   }
   .nav-phone .phone-link {
+    justify-content: flex-start;
     width: 100%;
-    justify-content: center;
   }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   Større desktop (1200px+): ekstra tilpasning
+   Større desktop: sticky footer
 ───────────────────────────────────────────────────────────────────────── */
 @media screen and (min-width: 1200px) {
   .site-footer {
