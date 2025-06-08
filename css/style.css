@@ -191,7 +191,7 @@ body a:hover {
 }
 
 .service-image-wrapper {
-  border: 4px solid #0E3195;   /* dobbelt kant */
+  border: 4px solid #04AD5C;   /* dobbelt kant */
   padding: 1rem;               /* luft rundt om billedet */
   display: flex;
   justify-content: center;
