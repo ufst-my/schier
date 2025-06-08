@@ -190,21 +190,22 @@ body a:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* Wrapper med dobbelt tykkelse kant kun om billedet */
 .service-image-wrapper {
-  border: 4px solid #0E3195; /* dobbelt så fed som tidligere */
-  padding: 1rem;             /* luft rundt om dit kvadratiske billede */
+  border: 4px solid #0E3195;   /* dobbelt kant */
+  padding: 1rem;               /* luft rundt om billedet */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;            /* centrerer i kassen */
+  margin: 0 auto;
+  border-radius: 12px;         /* afrundede hjørner på boksen */
+  overflow: hidden;            /* sørger for, at billedet følger hjørnerne */
 }
 
-/* Sørg for billedet fylder inden for wrapperen */
 .service-image-wrapper img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 8px;          /* let afrunding på selve billedet */
 }
 
 /* Overskriften under billedet */
