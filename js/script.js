@@ -41,24 +41,88 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", () => {
   // =========================
-  // 1) UDFYLD DINE ANMELDELSER HER
+  // 1) UDFYLD ANMELDELSER HER
   // =========================
   const REVIEWS = [
     {
-      name: "Navn 1",
-      avatar: "images/reviews/navn1.jpg",     // dit billede (læg i /images eller hvor du vil)
+      name: "Laura Aagaard",
+      avatar: "images/reviews/laura.avif",     // dit billede (læg i /images eller hvor du vil)
       stars: 5,                                // 1-5
-      text: "Kort uddrag af anmeldelsen her…", // kan være tom: ""
-      source: "Trustpilot",
-      url: "https://dk.trustpilot.com/review/www.schier.dk"
+      text: "Vi er virkelig glade for Schier rengøring…", // kan være tom: ""
+      source: "Google",
+      url: "https://share.google/TOX8MqLccJ88ZGPAW"    // vælg del under anmeldelser
+
     },
     {
-      name: "Navn 2",
-      avatar: "images/reviews/navn2.jpg",
-      stars: 5,
-      text: "Endnu et kort uddrag…",
+      name: "zoob77",    
+      avatar: "images/reviews/zoob.avif",     // brugers billede
+      stars: 5,                                // 1-5
+      text: "Intet at udsætte…", // kan være tom: ""
       source: "Google",
-      url: "INDSÆT-LINK-TIL-DEN-KONKRETE-ANMELDELSE-ELLER-PROFIL"
+      url: "https://share.google/8fw9UN9i1ZvmhguR7"    // vælg del under anmeldelser
+    },
+    {
+      name: "Joachim Rehder",
+      avatar: "images/reviews/joachim.avif",     // brugers billede
+      stars: 5,                                // 1-5
+      text: "", // kan være tom: ""
+      source: "Google",
+      url: "https://share.google/SJxXz1nYu3l2ArTK2"    // vælg del under anmeldelser
+
+    },
+    {
+      name: "Hanne Bruhn",
+      avatar: "images/reviews/hanneb.avif",     // brugers billede
+      stars: 5,                                // 1-5
+      text: "rengøring i top, altid sød og venlig betjening…", // kan være tom: ""
+      source: "Google",
+      url: "https://share.google/EyA3NZ7IDHXbZSpTA"    // vælg del under anmeldelser
+
+    },
+    {
+      name: "Rene Dissing",
+      avatar: "images/reviews/rene.avif",     // brugers billede
+      stars: 5,                                // 1-5
+      text: "Bestilte en "total" rengøring af mit hus (3 etager)…", // kan være tom: ""
+      source: "Google",
+      url: "https://share.google/Bn9jRVgWNd77TIrpz"    // vælg del under anmeldelser
+
+    },
+    {
+      name: "Hanne Jørgensen",
+      avatar: "images/reviews/hanne.avif",     // brugers billede
+      stars: 4,                                // 1-5
+      text: "", // kan være tom: ""
+      source: "Google",
+      url: "https://www.google.com/search?sa=X&sca_esv=21a016e0095234e7&sxsrf=AE3TifOEgnrjS0W1IVIML42CZn4LbGVAwQ:1767396192285&q=Schier+Reng%C3%B8ring+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDQ3MDY0Mzc0NzW1tDA3sDAystjAyPiKUTY4OSMztUghKDUv_fCOosy8dAXHvNzUnJTUnOLUokWs-OUBjmeNplsAAAA&rldimm=11703167175598708228&tbm=lcl&hl=da-DK&ved=2ahUKEwiPxt_x_-2RAxWGRPEDHVu6Gx8Q9fQKegQIRxAG&biw=1680&bih=881&dpr=1#lkt=LocalPoiReviews"
+
+    },
+    {
+      name: "Jonas Schnack Krog",
+      avatar: "images/reviews/jonas.avif",     // brugers billede
+      stars: 5,                                // 1-5
+      text: "God og solid rengøring med god kommunikation…", // kan være tom: ""
+      source: "Google",
+      url: "https://share.google/2zHZMIzgZwcFuGmT6"    // vælg del under anmeldelser
+
+    },
+    {
+      name: "Tina Katja Lund Andersen",
+      avatar: "images/reviews/tina.avif",     // brugers billede
+      stars: 5,                                // 1-5
+      text: "Super god oplevelse, både før, under og efter…", // kan være tom: ""
+      source: "Trust Pilot",
+      url: "https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec"    // vælg del under anmeldelser
+
+    },
+    {
+      name: "Lotte Nielsen",
+      avatar: "images/reviews/laura.avif",     // brugers billede
+      stars: 5,                                // 1-5
+      text: "Bestilte en fllytteflytterengøring…", // kan være tom: ""
+      source: "Trust Pilot",
+      url: "https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75"    // vælg del under anmeldelser
+
     }
   ];
 
@@ -135,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // kilde (valgfri)
-    srcEl.textContent = r.source ? `Kilde: ${r.source}` : "";
+    srcEl.textContent = r.source ? `Anmeldelse fra: ${r.source}` : "";
 
     // dots
     renderDots();
