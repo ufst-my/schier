@@ -51,7 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "Vi er virkelig glade for Schier rengøring…", // kan være tom: ""
       source: "Google",
       url: "https://share.google/TOX8MqLccJ88ZGPAW"    // vælg del under anmeldelser
-
     },
     {
       name: "zoob77",    
@@ -77,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "rengøring i top, altid sød og venlig betjening…", // kan være tom: ""
       source: "Google",
       url: "https://share.google/EyA3NZ7IDHXbZSpTA"    // vælg del under anmeldelser
-
     },
     {
       name: "Rene Dissing",
@@ -86,7 +84,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "Bestilte en "total" rengøring af mit hus (3 etager)…", // kan være tom: ""
       source: "Google",
       url: "https://share.google/Bn9jRVgWNd77TIrpz"    // vælg del under anmeldelser
-
     },
     {
       name: "Hanne Jørgensen",
@@ -95,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "", // kan være tom: ""
       source: "Google",
       url: "https://www.google.com/search?sa=X&sca_esv=21a016e0095234e7&sxsrf=AE3TifOEgnrjS0W1IVIML42CZn4LbGVAwQ:1767396192285&q=Schier+Reng%C3%B8ring+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDQ3MDY0Mzc0NzW1tDA3sDAystjAyPiKUTY4OSMztUghKDUv_fCOosy8dAXHvNzUnJTUnOLUokWs-OUBjmeNplsAAAA&rldimm=11703167175598708228&tbm=lcl&hl=da-DK&ved=2ahUKEwiPxt_x_-2RAxWGRPEDHVu6Gx8Q9fQKegQIRxAG&biw=1680&bih=881&dpr=1#lkt=LocalPoiReviews"
-
     },
     {
       name: "Jonas Schnack Krog",
@@ -104,7 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "God og solid rengøring med god kommunikation…", // kan være tom: ""
       source: "Google",
       url: "https://share.google/2zHZMIzgZwcFuGmT6"    // vælg del under anmeldelser
-
     },
     {
       name: "Tina Katja Lund Andersen",
@@ -113,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "Super god oplevelse, både før, under og efter…", // kan være tom: ""
       source: "Trust Pilot",
       url: "https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec"    // vælg del under anmeldelser
-
     },
     {
       name: "Lotte Nielsen",
@@ -122,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text: "Bestilte en fllytteflytterengøring…", // kan være tom: ""
       source: "Trust Pilot",
       url: "https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75"    // vælg del under anmeldelser
-
     }
   ];
 
