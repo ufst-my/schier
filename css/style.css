@@ -381,17 +381,19 @@ body a:hover {
 .reviews__header{
   display:flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* centrer header-indhold */
   gap: 1rem;
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
+  text-align: center;
 }
+
 
 /* Matcher dine H2’er (centeret), men stadig med controls ved siden af */
 .reviews__header h2{
   margin: 0;
   font-size: 2rem;
-  text-align: left;
+  text-align: center;
 }
 
 /* Knapper */
