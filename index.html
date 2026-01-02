@@ -4,30 +4,103 @@
   <!-- Grundlæggende SEO og mobilvenlighed -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Schier Professionel Rengøring – Erhvervsrengøring på Lolland og Falster</title>
-  <meta name="description" content="Schier Professionel Rengøring tilbyder skræddersyet erhvervsrengøring: kontorer, feriehuse, klinikker, institutioner, sportshaller m.m. – altid med fokus på kvalitet og miljø." />
-  <meta name="keywords" content="Erhvervsrengøring, Kontorrengøring, Klinikrengøring, Slutrengøring, Falster, Lolland" />
 
-  <!-- Google Font -->
+  <title>Schier Professionel Rengøring – Erhvervsrengøring på Lolland og Falster</title>
+  <meta
+    name="description"
+    content="Schier Professionel Rengøring tilbyder skræddersyet erhvervsrengøring: kontorer, klinikker, institutioner, sportshaller m.m. – altid med fokus på kvalitet og miljø."
+  />
+
+  <!-- Canonical (ret URL hvis du skifter domæne senere) -->
+  <link rel="canonical" href="https://ufst-my.github.io/schier/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <!-- Open Graph (deling på Facebook/LinkedIn) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="da_DK" />
+  <meta property="og:site_name" content="Schier Professionel Rengøring" />
+  <meta property="og:title" content="Schier Professionel Rengøring – Erhvervsrengøring på Lolland og Falster" />
+  <meta
+    property="og:description"
+    content="Skab et rent og sundt arbejdsmiljø med førsteklasses rengøring på Lolland og Falster. Få et tilbud."
+  />
+  <meta property="og:url" content="https://ufst-my.github.io/schier/" />
+  <!-- Hvis du har logoet på sitet (du har allerede images/logo.jpg), kan det bruges som preview -->
+  <meta property="og:image" content="https://ufst-my.github.io/schier/images/logo.jpg" />
+  <meta property="og:image:alt" content="Schier Rengøring logo" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Schier Professionel Rengøring – Erhvervsrengøring på Lolland og Falster" />
+  <meta
+    name="twitter:description"
+    content="Professionel erhvervsrengøring på Lolland og Falster – få et tilbud."
+  />
+
+  <!-- Google Font (performance) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Structured data (LocalBusiness/CleaningService) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CleaningService",
+      "@id": "https://ufst-my.github.io/schier/#company",
+      "name": "Schier Professionel Rengøring",
+      "url": "https://ufst-my.github.io/schier/",
+      "telephone": "+4550507665",
+      "email": "my@schier.dk",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Folemarken 59",
+        "postalCode": "4800",
+        "addressLocality": "Nykøbing F",
+        "addressCountry": "DK"
+      },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Lolland" },
+        { "@type": "AdministrativeArea", "name": "Falster" }
+      ],
+      "vatID": "DK38199633"
+    }
+  </script>
 </head>
+
 <body>
+  <!-- Skip link (tilgængelighed) -->
+  <a class="skip-link" href="#main">Spring til indhold</a>
+
   <!-- Header + Navigation -->
   <header class="site-header">
     <div class="container">
-      <a href="index.html" class="logo-link">
+      <a href="index.html" class="logo-link" aria-label="Gå til forsiden">
         <img src="images/logo.jpg" alt="Schier Rengøring Logo" class="logo" />
       </a>
-      <button class="nav-toggle" aria-label="Åbn menu">☰</button>
-      <nav class="site-nav">
+
+      <button
+        class="nav-toggle"
+        aria-label="Åbn menu"
+        aria-controls="siteNav"
+        aria-expanded="false"
+        type="button"
+      >☰</button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Hovedmenu">
         <ul>
+          <!-- Beholder dine ankre, så din one-pager stadig virker -->
           <li><a href="#services">Vores Ydelser</a></li>
           <li><a href="#about">Om Os</a></li>
           <li><a href="#contact">Kontakt</a></li>
+
           <li class="nav-phone">
-            <a href="tel:50507665" class="phone-link">
-              <img src="images/phone-icon.png" alt="Ring os" class="phone-icon" />
+            <a href="tel:+4550507665" class="phone-link">
+              <!-- Ikon er dekorativt, fordi der allerede står telefonnummer -->
+              <img src="images/phone-icon.png" alt="" class="phone-icon" />
               50 50 76 65
             </a>
           </li>
@@ -36,132 +109,160 @@
     </div>
   </header>
 
-  <!-- Hero-sektion -->
-  <section class="hero">
-    <div class="container">
-      <h1>Professionel rengøring <br class="mobile-break" /> til erhverv</h1>
-      <p>Skab et rent og sundt arbejdsmiljø med førsteklasses rengøring på Lolland og Falster.</p>
-    </div>
-  </section>
+  <main id="main" class="site-content">
+    <!-- Hero-sektion -->
+    <section class="hero">
+      <div class="container">
+        <h1>Professionel rengøring <br class="mobile-break" /> til erhverv</h1>
+        <p>Skab et rent og sundt arbejdsmiljø med førsteklasses rengøring på Lolland og Falster.</p>
 
-  <!-- Hvorfor vælge os? -->
-  <section id="about" class="why-choose">
-    <div class="container">
-      <h2>Hvorfor vælge Schier Rengøring?</h2>
-      <ul class="features-list">
-        <li><strong>Professionel ekspertise:</strong> Vores erfarne team tilbyder daglig rengøring, specialrengøring, gulvpleje, vinduespudsning m.m. skræddersyet til dit behov.</li>
-        <li><strong>Kvalitet og effektivitet:</strong> Vi leverer resultater i topkvalitet og bruger miljøvenlige midler for et sundt arbejdsmiljø uden kompromis.</li>
-        <li><strong>Loyalitet og samarbejde:</strong> Vores dedikerede medarbejdere er pålidelige og altid klar til at rådgive om vedligeholdelse af et rent arbejdsområde.</li>
-      </ul>
-    </div>
-  </section>
+        <!-- Diskret CTA (samme design-udtryk) -->
+        <div class="hero-buttons" aria-label="Handlinger">
+          <a class="btn btn-primary" href="#contact">Få et tilbud</a>
+          <!-- Klar til din nye struktur, men fungerer også selvom siden ikke findes endnu -->
+          <a class="btn btn-outline" href="ydelser/">Se ydelser</a>
+        </div>
 
-  <!-- Vores ydelser -->
-  <section id="services" class="services">
-    <div class="container">
-      <h2>Vores ydelser</h2>
-      <div class="service-grid">
-        <!-- START SERVICEKORT -->
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/kontor.png" alt="Kontorrengøring">
-          </div>
-          <h3>Kontorrengøring</h3>
-          <p>Effektiv daglig rengøring af kontorer med fokus på detaljen og et sundt arbejdsmiljø.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/institution.png" alt="Rengøring på institutioner">
-          </div>
-          <h3>Institutioner</h3>
-          <p>Grundig rengøring for daginstitutioner og skoler, så børn og personale trives i rene rammer.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/butik.png" alt="Butiksrengøring">
-          </div>
-          <h3>Butiksrengøring</h3>
-          <p>Skinnende rene butikker med pletfri diske og gulve, klar til at byde kunderne velkomne.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/klinik.png" alt="Klinikrengøring">
-          </div>
-          <h3>Klinikrengøring</h3>
-          <p>Steril og sikker rengøring af klinikker og behandlingsrum i henhold til hygiejnestandarder.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/restaurant.png" alt="Rengøring af restauranter">
-          </div>
-          <h3>Restauranter</h3>
-          <p>Hyggelige spiseområder og rene køkkener – din restaurant lever op til de højeste krav.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/fabrik.png" alt="Fabriksrengøring">
-          </div>
-          <h3>Fabriksrengøring</h3>
-          <p>Tilpasset rengøring af produktionshaller og maskiner, så drift og sikkerhed optimeres.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/sportshal.png" alt="Rengøring af sportshaller">
-          </div>
-          <h3>Sportshaller</h3>
-          <p>Professionel rengøring af omklædningsrum og baner, så dine faciliteter fremstår indbydende.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/trappe.png" alt="Trappevask">
-          </div>
-          <h3>Trappevask</h3>
-          <p>Rene og sikre opgange med pletfri trapper og gelændere i ejendomme og boligforeninger.</p>
-        </a>
-        
-        <a href="#" class="service-card">
-          <div class="service-image-wrapper">
-            <img src="images/skurvogn.png" alt="Rengøring af skurvogne">
-          </div>
-          <h3>Skurvognsrengøring</h3>
-          <p>Komfortable og hygiejniske skurvogne med frisk luft og rene overflader for medarbejdere.</p>
-        </a>
-        <!-- SLUT SERVICEKORT -->
+        <!-- Lille “trust line” -->
+        <p class="hero-meta">
+          Folemarken 59, 4800 Nykøbing F · CVR 38199633
+        </p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Kontakt og Call-to-Action -->
-  <section id="contact" class="cta-contact">
-    <div class="container">
-      <h2>Kontakt Schier Rengøring i dag</h2>
-      <p>Skab et præsentabelt, indbydende og rengjort arbejdsmiljø med vores pålidelige medarbejdere.</p>
-      <p>
-        <strong>Telefon:</strong> <a href="tel:50507665">50 50 76 65</a> | 
-        <strong>E-mail:</strong> <a href="mailto:my@schier.dk">my@schier.dk</a>
-      </p>
-      <p>Folemarken 59, 4800 Nykøbing F | CVR-nr. 38199633</p>
-    </div>
-  </section>
+    <!-- Hvorfor vælge os? -->
+    <section id="about" class="why-choose">
+      <div class="container">
+        <h2>Hvorfor vælge Schier Rengøring?</h2>
+        <ul class="features-list">
+          <li><strong>Professionel ekspertise:</strong> Vores erfarne team tilbyder daglig rengøring, specialrengøring, gulvpleje, vinduespudsning m.m. skræddersyet til dit behov.</li>
+          <li><strong>Kvalitet og effektivitet:</strong> Vi leverer resultater i topkvalitet og bruger miljøvenlige midler for et sundt arbejdsmiljø uden kompromis.</li>
+          <li><strong>Loyalitet og samarbejde:</strong> Vores dedikerede medarbejdere er pålidelige og altid klar til at rådgive om vedligeholdelse af et rent arbejdsområde.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Vores ydelser -->
+    <section id="services" class="services">
+      <div class="container">
+        <div class="services-top">
+          <h2>Vores ydelser</h2>
+          <a class="services-all" href="ydelser/">Se alle ydelser →</a>
+        </div>
+
+        <div class="service-grid">
+          <!-- START SERVICEKORT -->
+          <a href="ydelser/kontorrengoring/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/kontor.png" alt="Kontorrengøring" loading="lazy">
+            </div>
+            <h3>Kontorrengøring</h3>
+            <p>Effektiv daglig rengøring af kontorer med fokus på detaljen og et sundt arbejdsmiljø.</p>
+          </a>
+
+          <a href="ydelser/institutionsrengoring/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/institution.png" alt="Rengøring på institutioner" loading="lazy">
+            </div>
+            <h3>Institutioner</h3>
+            <p>Grundig rengøring for daginstitutioner og skoler, så børn og personale trives i rene rammer.</p>
+          </a>
+
+          <a href="ydelser/butiksrengoring/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/butik.png" alt="Butiksrengøring" loading="lazy">
+            </div>
+            <h3>Butiksrengøring</h3>
+            <p>Skinnende rene butikker med pletfri diske og gulve, klar til at byde kunderne velkomne.</p>
+          </a>
+
+          <a href="ydelser/klinikrengoring/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/klinik.png" alt="Klinikrengøring" loading="lazy">
+            </div>
+            <h3>Klinikrengøring</h3>
+            <p>Steril og sikker rengøring af klinikker og behandlingsrum i henhold til hygiejnestandarder.</p>
+          </a>
+
+          <a href="ydelser/restaurantrengoring/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/restaurant.png" alt="Rengøring af restauranter" loading="lazy">
+            </div>
+            <h3>Restauranter</h3>
+            <p>Hyggelige spiseområder og rene køkkener – din restaurant lever op til de højeste krav.</p>
+          </a>
+
+          <a href="ydelser/fabriksrengoring/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/fabrik.png" alt="Fabriksrengøring" loading="lazy">
+            </div>
+            <h3>Fabriksrengøring</h3>
+            <p>Tilpasset rengøring af produktionshaller og maskiner, så drift og sikkerhed optimeres.</p>
+          </a>
+
+          <a href="ydelser/rengoring-af-sportshaller/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/sportshal.png" alt="Rengøring af sportshaller" loading="lazy">
+            </div>
+            <h3>Sportshaller</h3>
+            <p>Professionel rengøring af omklædningsrum og baner, så dine faciliteter fremstår indbydende.</p>
+          </a>
+
+          <a href="ydelser/trappevask/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/trappe.png" alt="Trappevask" loading="lazy">
+            </div>
+            <h3>Trappevask</h3>
+            <p>Rene og sikre opgange med pletfri trapper og gelændere i ejendomme og boligforeninger.</p>
+          </a>
+
+          <a href="ydelser/skurvognsrengoring/" class="service-card">
+            <div class="service-image-wrapper">
+              <img src="images/skurvogn.png" alt="Rengøring af skurvogne" loading="lazy">
+            </div>
+            <h3>Skurvognsrengøring</h3>
+            <p>Komfortable og hygiejniske skurvogne med frisk luft og rene overflader for medarbejdere.</p>
+          </a>
+          <!-- SLUT SERVICEKORT -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Kontakt og Call-to-Action -->
+    <section id="contact" class="cta-contact">
+      <div class="container">
+        <h2>Kontakt Schier Rengøring i dag</h2>
+        <p>Skab et præsentabelt, indbydende og rengjort arbejdsmiljø med vores pålidelige medarbejdere.</p>
+        <p>
+          <strong>Telefon:</strong> <a href="tel:+4550507665">50 50 76 65</a> |
+          <strong>E-mail:</strong> <a href="mailto:my@schier.dk">my@schier.dk</a>
+        </p>
+        <p>Folemarken 59, 4800 Nykøbing F | CVR-nr. 38199633</p>
+
+        <div class="contact-buttons" aria-label="Kontakt handlinger">
+          <a class="btn btn-primary" href="mailto:my@schier.dk">Skriv en mail</a>
+          <a class="btn btn-outline" href="tel:+4550507665">Ring nu</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <p>
-        Schier Rengøring · Folemarken 59, 4800 Nykøbing F | 
-        <a href="tel:50507665">50 50 76 65</a> | 
+        Schier Rengøring · Folemarken 59, 4800 Nykøbing F |
+        <a href="tel:+4550507665">50 50 76 65</a> |
         <a href="mailto:my@schier.dk">my@schier.dk</a> | CVR-nr. 38199633
+      </p>
+
+      <!-- Klar til når du tilføjer siden -->
+      <p class="footer-links">
+        <a href="privatlivspolitik/">Privatlivspolitik</a>
       </p>
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
