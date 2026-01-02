@@ -116,6 +116,39 @@
         <p>Skab et rent og sundt arbejdsmiljø med førsteklasses rengøring på Lolland og Falster.</p>
       </div>
     </section>
+  
+    <!-- Anmeldelser (banner/slider) -->
+    <section class="reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <div class="reviews__header">
+          <h2 id="reviews-title">Anmeldelser</h2>
+    
+          <div class="reviews__controls" aria-label="Skift anmeldelse">
+            <button class="reviews__btn" type="button" data-reviews-prev aria-label="Forrige anmeldelse">‹</button>
+            <button class="reviews__btn" type="button" data-reviews-next aria-label="Næste anmeldelse">›</button>
+          </div>
+        </div>
+    
+        <!-- Selve “kortet” opdateres af JS og er et link til kilden -->
+        <div class="reviews__viewport">
+          <a class="reviews__card" data-reviews-card href="#" target="_blank" rel="noopener">
+            <div class="reviews__top">
+              <img class="reviews__avatar" data-reviews-avatar src="" alt="" width="44" height="44" />
+    
+              <div class="reviews__who">
+                <div class="reviews__name" data-reviews-name></div>
+                <div class="reviews__stars" data-reviews-stars aria-label=""></div>
+              </div>
+            </div>
+    
+            <p class="reviews__text" data-reviews-text></p>
+            <div class="reviews__source" data-reviews-source></div>
+          </a>
+        </div>
+    
+        <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
+      </div>
+    </section>
 
     <!-- Om / hvorfor vælge os -->
     <section id="about" class="why-choose">
