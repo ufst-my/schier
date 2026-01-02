@@ -366,3 +366,182 @@ body a:hover {
     padding-bottom: 60px;
   }
 }
+
+/* =========================
+   Reviews banner / slider
+   ========================= */
+
+.reviews{
+  background:#fff;
+  padding: 2.25rem 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.reviews__header{
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Matcher dine H2’er (centeret), men stadig med controls ved siden af */
+.reviews__header h2{
+  margin: 0;
+  font-size: 2rem;
+  text-align: left;
+}
+
+/* Knapper */
+.reviews__controls{
+  display:flex;
+  gap: .5rem;
+}
+
+.reviews__btn{
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #333;
+}
+
+.reviews__btn:hover{
+  color:#0E3195;
+}
+
+.reviews__btn:focus-visible{
+  outline: 3px solid rgba(14,49,149,0.35);
+  outline-offset: 2px;
+}
+
+/* Viewport */
+.reviews__viewport{
+  display:flex;
+  justify-content:center;
+}
+
+/* Kortet er et link -> ingen underline + blå hover (som du ønsker) */
+.reviews__card{
+  display:block;
+  width: min(900px, 100%);
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1.1rem 1.1rem;
+  text-decoration: none;   /* <-- vigtig */
+  color: #333;
+  background:#fff;
+  transition: transform .2s, box-shadow .2s, color .2s;
+}
+
+.reviews__card:hover,
+.reviews__card:focus-visible{
+  color:#0E3195; /* blå hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+/* Øverste række: avatar + navn/stjerner */
+.reviews__top{
+  display:flex;
+  align-items:center;
+  gap:.85rem;
+  margin-bottom: .65rem;
+}
+
+.reviews__avatar{
+  width:44px;
+  height:44px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid #129253; /* matcher din grønne accent */
+  flex: 0 0 auto;
+}
+
+.reviews__who{
+  display:flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.reviews__name{
+  font-weight: 600;
+}
+
+/* Stjerner (grønne som dit design) */
+.reviews__stars{
+  color:#129253;
+  font-size: 1rem;
+  letter-spacing: .06em;
+}
+
+/* Tekst */
+.reviews__text{
+  margin: 0;
+  margin-top: .25rem;
+  color:#555;
+}
+
+/* Når kortet hoveres/fokuseres: også blå tekst (så det føles ensartet) */
+.reviews__card:hover .reviews__text,
+.reviews__card:focus-visible .reviews__text{
+  color:#0E3195;
+}
+
+/* Kilde-linje */
+.reviews__source{
+  margin-top: .6rem;
+  font-size: .95rem;
+  color:#555;
+}
+
+.reviews__card:hover .reviews__source,
+.reviews__card:focus-visible .reviews__source{
+  color:#0E3195;
+}
+
+/* Dots */
+.reviews__dots{
+  display:flex;
+  justify-content:center;
+  gap: .4rem;
+  margin-top: .9rem;
+  flex-wrap: wrap;
+}
+
+.reviews__dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid #cfcfcf;
+  background:#fff;
+  cursor:pointer;
+  padding: 0;
+}
+
+.reviews__dot.is-active{
+  background:#129253;
+  border-color:#129253;
+}
+
+.reviews__dot:focus-visible{
+  outline: 3px solid rgba(14,49,149,0.35);
+  outline-offset: 2px;
+}
+
+/* Mobil: overskrift + knapper pænere */
+@media (max-width: 767px){
+  .reviews__header{
+    justify-content: center;
+    text-align:center;
+  }
+  .reviews__header h2{
+    text-align:center;
+  }
+}
