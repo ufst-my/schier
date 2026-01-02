@@ -7,11 +7,34 @@
 html {
   scroll-behavior: smooth;
 }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 body {
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   color: #333;
   background: #f9f9f9;
+}
+
+/* Skip link (tilgængelighed) */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  transform: translateY(-200%);
+  background: #fff;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  z-index: 2000;
+  text-decoration: none;
+}
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 /* Container */
@@ -102,14 +125,14 @@ body {
   margin-right: 0.5rem;
 }
 
-/* Globale links (sidens indhold): samme farve som tekst + understregning */
-body a {
+/* Globale links (kun inde i main indhold) */
+.site-content a {
   color: inherit;
   text-decoration: underline;
   transition: color 0.2s;
 }
-/* Blå hover overalt */
-body a:hover {
+/* Blå hover overalt i indhold */
+.site-content a:hover {
   color: #0E3195;
 }
 
@@ -142,6 +165,47 @@ body a:hover {
   font-size: 1.2rem;
 }
 
+/* Nye, diskrete CTA-knapper i hero (matcher farverne du allerede bruger) */
+.hero-buttons {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none; /* må ikke understreges */
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: #28a745;
+  color: #fff;
+}
+.btn-primary:hover {
+  background: #218838;
+  color: #fff;
+}
+.btn-outline {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.75);
+}
+.btn-outline:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Lille meta-linje i hero */
+.hero-meta {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  opacity: 0.95;
+}
+
 /* Sektioner */
 .why-choose,
 .cta-contact {
@@ -170,17 +234,36 @@ body a:hover {
   padding: 3rem 0;
 }
 
+/* “Se alle ydelser” link ved siden af overskriften */
+.services-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.services-all {
+  text-decoration: none;
+  font-weight: 600;
+  color: #0E3195;
+}
+.services-all:hover {
+  color: #0E3195;
+  text-decoration: underline;
+}
+
 .service-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
   margin-bottom: 1rem;
+  margin-top: 1.5rem;
 }
 
 /* Hver service-kort som link */
 .service-card {
   display: block;
-  text-decoration: none;
+  text-decoration: none; /* må ikke understreges */
   color: inherit;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -232,6 +315,15 @@ body a:hover {
   margin-bottom: 0.75rem;
 }
 
+/* Små CTA knapper i kontakt */
+.contact-buttons {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* Footer */
 .site-footer {
   background: #333;
@@ -239,9 +331,14 @@ body a:hover {
   text-align: center;
   padding: 1rem 0;
 }
-/* Footer-links underlined via body a */
+/* Footer-links */
 .site-footer a {
   color: inherit;
+  text-decoration: underline;
+}
+.footer-links {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
 }
 
 /* Tablet+Desktop */
