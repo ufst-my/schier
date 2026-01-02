@@ -89,7 +89,7 @@ body {
 .site-nav li:first-child {
   margin-left: 0;
 }
-/* Ingen understregning i menu – farve uændret */
+/* Ingen understregning i menu */
 .site-nav a {
   color: #333;
   text-decoration: none;
@@ -125,21 +125,20 @@ body {
   margin-right: 0.5rem;
 }
 
-/* Globale links (kun inde i main indhold) */
-.site-content a {
+/* Globale links: INGEN underline + blå hover */
+body a {
   color: inherit;
-  text-decoration: underline;
+  text-decoration: none;
   transition: color 0.2s;
 }
-/* Blå hover overalt i indhold */
-.site-content a:hover {
+body a:hover {
   color: #0E3195;
 }
 
 /* Hero */
 .hero {
   background: url("../images/hero-baggrund.jpg") no-repeat center/cover;
-  height: 75vh; /* 3/4 af skærmens højde */
+  height: 75vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,45 +164,13 @@ body {
   font-size: 1.2rem;
 }
 
-/* Nye, diskrete CTA-knapper i hero (matcher farverne du allerede bruger) */
-.hero-buttons {
-  margin-top: 1.25rem;
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  flex-wrap: wrap;
+/* Link-styling for overskrift (Vores ydelser) */
+.services-title-link{
+  color: inherit;
+  text-decoration: none;
 }
-.btn {
-  display: inline-block;
-  padding: 0.7rem 1.1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  text-decoration: none; /* må ikke understreges */
-  border: 1px solid transparent;
-}
-.btn-primary {
-  background: #28a745;
-  color: #fff;
-}
-.btn-primary:hover {
-  background: #218838;
-  color: #fff;
-}
-.btn-outline {
-  background: transparent;
-  color: #fff;
-  border-color: rgba(255,255,255,0.75);
-}
-.btn-outline:hover {
-  border-color: #fff;
-  color: #fff;
-}
-
-/* Lille meta-linje i hero */
-.hero-meta {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  opacity: 0.95;
+.services-title-link:hover{
+  color: #0E3195;
 }
 
 /* Sektioner */
@@ -234,65 +201,46 @@ body {
   padding: 3rem 0;
 }
 
-/* “Se alle ydelser” link ved siden af overskriften */
-.services-top {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.services-all {
-  text-decoration: none;
-  font-weight: 600;
-  color: #0E3195;
-}
-.services-all:hover {
-  color: #0E3195;
-  text-decoration: underline;
-}
-
 .service-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
   margin-bottom: 1rem;
-  margin-top: 1.5rem;
 }
 
-/* Hver service-kort som link */
+/* Service-kort som link */
 .service-card {
   display: block;
-  text-decoration: none; /* må ikke understreges */
+  text-decoration: none;
   color: inherit;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Hover-effekt på hele kortet */
+/* Hover-effekt på hele kortet (beholder design; ingen “blå tekst” på hele kortet) */
 .service-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  color: inherit;
 }
 
 .service-image-wrapper {
-  border: 4px solid #129253;   /* dobbelt kant */
-  padding: 1rem;               /* luft rundt om billedet */
+  border: 4px solid #129253;
+  padding: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  border-radius: 12px;         /* afrundede hjørner på boksen */
-  overflow: hidden;            /* sørger for, at billedet følger hjørnerne */
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .service-image-wrapper img {
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 8px;          /* let afrunding på selve billedet */
+  border-radius: 8px;
 }
 
-/* Overskriften under billedet */
 .service-card h3 {
   margin-top: 1rem;
   text-align: center;
@@ -300,7 +248,6 @@ body {
   font-size: 1.25rem;
 }
 
-/* Brødteksten venstrestillet under overskriften */
 .service-card p {
   margin-top: 0.5rem;
   text-align: left;
@@ -315,13 +262,10 @@ body {
   margin-bottom: 0.75rem;
 }
 
-/* Små CTA knapper i kontakt */
-.contact-buttons {
-  margin-top: 1.25rem;
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  flex-wrap: wrap;
+/* Kun telefon + e-mail i kontaktsektionen skal understreges */
+.cta-contact .contact-links a{
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Footer */
@@ -331,14 +275,12 @@ body {
   text-align: center;
   padding: 1rem 0;
 }
-/* Footer-links */
+/* Footer-links (ingen understregning; blå hover) */
 .site-footer a {
   color: inherit;
-  text-decoration: underline;
 }
-.footer-links {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
+.site-footer a:hover{
+  color: #0E3195;
 }
 
 /* Tablet+Desktop */
