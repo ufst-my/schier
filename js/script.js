@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: "Rene Dissing",
       avatar: "images/reviews/rene.avif",     // brugers billede
       stars: 5,                                // 1-5
-      text: "Bestilte en "total" rengøring af mit hus (3 etager)…", // kan være tom: ""
+      text: "Bestilte en \"total\" rengøring af mit hus (3 etager)…", // kan være tom: ""
       source: "Google",
       url: "https://share.google/Bn9jRVgWNd77TIrpz"    // vælg del under anmeldelser
     },
@@ -106,15 +106,15 @@ document.addEventListener("DOMContentLoaded", () => {
       avatar: "images/reviews/tina.avif",     // brugers billede
       stars: 5,                                // 1-5
       text: "Super god oplevelse, både før, under og efter…", // kan være tom: ""
-      source: "Trust Pilot",
+      source: "Trustpilot",
       url: "https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec"    // vælg del under anmeldelser
     },
     {
       name: "Lotte Nielsen",
-      avatar: "images/reviews/laura.avif",     // brugers billede
+      avatar: "images/reviews/lotte.avif",     // brugers billede
       stars: 5,                                // 1-5
       text: "Bestilte en fllytteflytterengøring…", // kan være tom: ""
-      source: "Trust Pilot",
+      source: "Trustpilot",
       url: "https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75"    // vælg del under anmeldelser
     }
   ];
