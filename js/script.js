@@ -181,15 +181,10 @@ document.addEventListener("DOMContentLoaded", () => {
     starsEl.textContent = s;
     starsEl.setAttribute("aria-label", `${Math.max(0, Math.min(5, Number(r.stars) || 0))} ud af 5 stjerner`);
 
-    // tekst (valgfri)
+    // tekst (valgfri) — behold altid linjen
     const txt = (r.text || "").trim();
-    if (txt.length === 0){
-      textEl.style.display = "none";
-      textEl.textContent = "";
-    } else {
-      textEl.style.display = "";
-      textEl.textContent = txt;
-    }
+    textEl.style.display = "";                 // vis altid
+    textEl.textContent = txt.length ? txt : "\u00A0"; // blank linje hvis tom
 
     // kilde (valgfri)
     srcEl.textContent = r.source ? `Anmeldelse fra: ${r.source}` : "";
