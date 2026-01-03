@@ -440,6 +440,7 @@ body a:hover {
   color: #333;
   background:#fff;
   transition: transform .2s, box-shadow .2s, color .2s;
+  touch-action: pan-y;
 }
 
 .reviews__card:hover,
