@@ -201,39 +201,80 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // 4) NAVIGATION
   // =========================
-  function next(){
+  
+  .reviews__card{
+    touch-action: pan-y;
+  }
+    
+  function next() {
     index = (index + 1) % REVIEWS.length;
     render();
   }
-
-  function prev(){
+  
+  function prev() {
     index = (index - 1 + REVIEWS.length) % REVIEWS.length;
     render();
   }
-
+  
   nextBtn.addEventListener("click", () => { next(); restartAuto(); });
   prevBtn.addEventListener("click", () => { prev(); restartAuto(); });
-
-  // Tastatur: pil venstre/højre når kortet/sektionen er i fokus
-  card.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") { next(); restartAuto(); }
-    if (e.key === "ArrowLeft")  { prev(); restartAuto(); }
+  
+  // --- Keyboard support ---
+  // Løsning: lyt på document, men kun når fokus er inde i reviews-området
+  // (så du ikke “stjæler” piletaster når man fx scroller andre steder).
+  const reviewsSection = card.closest(".reviews");
+  
+  document.addEventListener("keydown", (e) => {
+    const active = document.activeElement;
+  
+    // Kør kun hvis fokus er på kortet eller inde i reviews-sektionen
+    const focusInsideReviews =
+      (active && (active === card || (reviewsSection && reviewsSection.contains(active))));
+  
+    if (!focusInsideReviews) return;
+  
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      next();
+      restartAuto();
+    }
+  
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      prev();
+      restartAuto();
+    }
   });
-
-  // Swipe på touch (simpelt)
+  
+  // --- Touch swipe (iOS/Android) ---
   let startX = null;
-  card.addEventListener("pointerdown", (e) => {
-    startX = e.clientX;
-  });
-  card.addEventListener("pointerup", (e) => {
+  
+  card.addEventListener("touchstart", (e) => {
+    if (!e.touches || e.touches.length === 0) return;
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  
+  card.addEventListener("touchend", (e) => {
     if (startX === null) return;
-    const dx = e.clientX - startX;
+  
+    const endX =
+      (e.changedTouches && e.changedTouches.length)
+        ? e.changedTouches[0].clientX
+        : startX;
+  
+    const dx = endX - startX;
     startX = null;
-
-    if (Math.abs(dx) < 40) return; // lille bevægelse -> ignorer
-    if (dx < 0) { next(); restartAuto(); } // swipe venstre -> næste
-    else { prev(); restartAuto(); }        // swipe højre -> forrige
-  });
+  
+    if (Math.abs(dx) < 40) return; // ignorer små bevægelser
+  
+    if (dx < 0) { // swipe venstre -> næste
+      next();
+      restartAuto();
+    } else {      // swipe højre -> forrige
+      prev();
+      restartAuto();
+    }
+  }, { passive: true });
 
   // =========================
   // 5) AUTO-SKIFT
