@@ -201,10 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // =========================
   // 4) NAVIGATION
   // =========================
-  
-  .reviews__card{
-    touch-action: pan-y;
-  }
     
   function next() {
     index = (index + 1) % REVIEWS.length;
