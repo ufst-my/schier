@@ -1,26 +1,17 @@
 /* Reset & fonte */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-body {
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body{
   font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   color: #333;
   background: #f9f9f9;
 }
 
-/* Skip link (tilgængelighed) */
-.skip-link {
+/* Skip link */
+.skip-link{
   position: absolute;
   left: 1rem;
   top: 1rem;
@@ -33,35 +24,40 @@ body {
   z-index: 2000;
   text-decoration: none;
 }
-.skip-link:focus {
-  transform: translateY(0);
-}
+.skip-link:focus{ transform: translateY(0); }
 
 /* Container */
-.container {
+.container{
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Header & Nav */
-.site-header {
+/* Global links: ingen underline + blå hover */
+body a{
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+body a:hover{ color: #0E3195; }
+
+/* Header */
+.site-header{
   background: #fff;
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
   top: 0;
   z-index: 1000;
 }
-.site-header .container {
+.site-header .container{
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
 }
-.logo {
-  max-height: 50px;
-}
-.nav-toggle {
+.logo{ max-height: 50px; }
+
+.nav-toggle{
   font-size: 1.5rem;
   background: none;
   border: none;
@@ -69,171 +65,155 @@ body {
   display: block;
 }
 
-/* Menu (desktop skjult på mobil) */
-.site-nav {
-  display: none;
-}
-.site-nav.open {
-  display: block;
-}
+/* Nav */
+.site-nav{ display: none; }
+.site-nav.open{ display: block; }
 
-/* Menu-items */
-.site-nav ul {
+.site-nav ul{
   list-style: none;
   display: flex;
   align-items: center;
 }
-.site-nav li {
-  margin-left: 1rem;
-}
-.site-nav li:first-child {
-  margin-left: 0;
-}
-/* Ingen understregning i menu */
-.site-nav a {
+.site-nav li{ margin-left: 1rem; }
+.site-nav li:first-child{ margin-left: 0; }
+
+.site-nav a{
   color: #333;
-  text-decoration: none;
   padding: 0.5rem 1rem;
   display: block;
   transition: color 0.2s;
 }
-/* Blå hover i menu */
-.site-nav a:hover {
-  color: #0E3195;
-}
+.site-nav a:hover{ color: #0E3195; }
 
-/* Telefon-knap i nav */
-.nav-phone {
-  margin-left: auto;
-}
-.nav-phone .phone-link {
+/* Telefonknap */
+.nav-phone{ margin-left: auto; }
+.nav-phone .phone-link{
   display: flex;
   align-items: center;
   background: #28a745;
   color: #fff;
   padding: 0.5rem 0.75rem;
   border-radius: 4px;
-  text-decoration: none;
   font-weight: 600;
 }
-.nav-phone .phone-link:hover {
-  background: #218838;
-}
-.nav-phone .phone-icon {
+.nav-phone .phone-link:hover{ background: #218838; color: #fff; }
+.nav-phone .phone-icon{
   width: 20px;
   height: 20px;
   margin-right: 0.5rem;
 }
 
-/* Globale links: INGEN underline + blå hover */
-body a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-body a:hover {
-  color: #0E3195;
-}
-
-/* Hero */
-.hero {
-  background: url("../images/hero-baggrund.jpg") no-repeat center/cover;
+/* HERO (med rigtig <img> i stedet for CSS background) */
+.hero{
   height: 75vh;
+  min-height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
   color: #fff;
+  overflow: hidden;
 }
-.hero::after {
+.hero__media{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero::after{
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  inset: 0;
   background: rgba(0,0,0,0.4);
-}
-.hero .container {
-  position: relative;
   z-index: 1;
 }
-.hero h1 {
+.hero .container{
+  position: relative;
+  z-index: 2;
+}
+.hero h1{
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
-.hero p {
+.hero p{
   font-size: 1.2rem;
+  max-width: 70ch;
+  margin: 0 auto;
 }
 
-/* Link-styling for overskrift (Vores ydelser) */
+/* Sektioner */
+.why-choose,
+.services,
+.cta-contact{
+  background: #fff;
+  padding: 3rem 0;
+}
+
+.why-choose h2,
+.services h2,
+.cta-contact h2{
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.features-list{
+  list-style: none;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.features-list li{
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* “Vores ydelser” som link (ingen underline) */
 .services-title-link{
   color: inherit;
   text-decoration: none;
 }
-
 .services-title-link:hover,
 .services-title-link:focus-visible{
   color: #0E3195;
   text-decoration: none;
 }
 
-/* Sektioner */
-.why-choose,
-.cta-contact {
-  background: #fff;
-  padding: 3rem 0;
-}
-.why-choose h2,
-.services h2,
-.cta-contact h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-.features-list {
-  list-style: none;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.features-list li {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
-
-.services {
-  background: #fff;
-  padding: 3rem 0;
-}
-
-.service-grid {
+/* Service grid */
+.service-grid{
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
   margin-bottom: 1rem;
 }
 
-/* Service-kort som link */
-.service-card {
+/* Kort som link */
+.service-card{
   display: block;
-  text-decoration: none;
   color: inherit;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, color 0.2s;
 }
 
-/* Hover-effekt på hele kortet + blå link-hover (samme “link adfærd” som resten) */
+/* Hover: blå + løft/skygge */
 .service-card:hover,
-.service-card:focus-visible {
+.service-card:focus-visible{
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   color: #0E3195;
 }
 
-/* Sørg for at brødteksten også bliver blå (den har ellers fast #555) */
+/* p havde fast #555, så den skal også skifte */
 .service-card:hover p,
-.service-card:focus-visible p {
+.service-card:focus-visible p{
   color: #0E3195;
 }
 
-.service-image-wrapper {
+.service-image-wrapper{
   border: 4px solid #129253;
   padding: 1rem;
   display: flex;
@@ -243,22 +223,20 @@ body a:hover {
   border-radius: 12px;
   overflow: hidden;
 }
-
-.service-image-wrapper img {
+.service-image-wrapper img{
   display: block;
   max-width: 100%;
   height: auto;
   border-radius: 8px;
 }
 
-.service-card h3 {
+.service-card h3{
   margin-top: 1rem;
   text-align: center;
   color: #0E3195;
   font-size: 1.25rem;
 }
-
-.service-card p {
+.service-card p{
   margin-top: 0.5rem;
   text-align: left;
   color: #555;
@@ -266,7 +244,7 @@ body a:hover {
 }
 
 /* Kontakt */
-.cta-contact p {
+.cta-contact p{
   text-align: center;
   font-size: 1rem;
   margin-bottom: 0.75rem;
@@ -279,98 +257,19 @@ body a:hover {
 }
 
 /* Footer */
-.site-footer {
+.site-footer{
   background: #333;
   color: #fff;
   text-align: center;
   padding: 1rem 0;
 }
-/* Footer-links (ingen understregning; blå hover) */
-.site-footer a {
-  color: inherit;
-}
-.site-footer a:hover{
-  color: #0E3195;
-}
-
-/* Tablet+Desktop */
-@media (min-width: 768px) {
-  .nav-toggle {
-    display: none;
-  }
-  .site-nav {
-    display: block !important;
-  }
-  .site-nav ul {
-    gap: 1.5rem;
-  }
-  .hero h1 {
-    font-size: 3rem;
-  }
-  .hero p {
-    font-size: 1.4rem;
-  }
-  .service-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Mobil: kompakt vertikal menu */
-@media (max-width: 767px) {
-  .site-header {
-    position: relative;
-  }
-  .site-nav {
-    position: absolute;
-    top: 100%;
-    right: 1rem;
-    background: #fff;
-    padding: 0.5rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    display: none;
-    width: auto;
-    min-width: 150px;
-  }
-  .site-nav.open {
-    display: block;
-  }
-  .site-nav ul {
-    flex-direction: column;
-  }
-  .site-nav li {
-    margin: 0;
-    border-bottom: 1px solid #eee;
-  }
-  .site-nav li:last-child {
-    border-bottom: none;
-  }
-  .site-nav a {
-    padding: 0.75rem 1rem;
-  }
-  .nav-phone .phone-link {
-    width: auto;
-    justify-content: flex-start;
-  }
-}
-
-/* Større desktop: sticky footer */
-@media (min-width: 1200px) {
-  .site-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  body {
-    padding-bottom: 60px;
-  }
-}
+.site-footer a{ color: inherit; }
+.site-footer a:hover{ color: #0E3195; }
+.footer-links{ margin-top: 0.5rem; font-size: 0.95rem; }
 
 /* =========================
    Reviews banner / slider
    ========================= */
-
 .reviews{
   background:#fff;
   padding: 2.25rem 0;
@@ -381,26 +280,20 @@ body a:hover {
 .reviews__header{
   display:flex;
   align-items: center;
-  justify-content: center; /* centrer header-indhold */
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
   text-align: center;
 }
 
-
-/* Matcher dine H2’er (centeret), men stadig med controls ved siden af */
 .reviews__header h2{
   margin: 0;
   font-size: 2rem;
   text-align: center;
 }
 
-/* Knapper */
-.reviews__controls{
-  display:flex;
-  gap: .5rem;
-}
+.reviews__controls{ display:flex; gap: .5rem; }
 
 .reviews__btn{
   width: 42px;
@@ -413,44 +306,34 @@ body a:hover {
   line-height: 1;
   color: #333;
 }
-
-.reviews__btn:hover{
-  color:#0E3195;
-}
-
+.reviews__btn:hover{ color:#0E3195; }
 .reviews__btn:focus-visible{
   outline: 3px solid rgba(14,49,149,0.35);
   outline-offset: 2px;
 }
 
-/* Viewport */
-.reviews__viewport{
-  display:flex;
-  justify-content:center;
-}
+.reviews__viewport{ display:flex; justify-content:center; }
 
-/* Kortet er et link -> ingen underline + blå hover (som du ønsker) */
 .reviews__card{
   display:block;
   width: min(900px, 100%);
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 1.1rem 1.1rem;
-  text-decoration: none;   /* <-- vigtig */
+  text-decoration: none;
   color: #333;
   background:#fff;
   transition: transform .2s, box-shadow .2s, color .2s;
-  touch-action: pan-y;
+  touch-action: pan-y; /* hjælper swipe uden at ødelægge vertikal scroll */
 }
 
 .reviews__card:hover,
 .reviews__card:focus-visible{
-  color:#0E3195; /* blå hover */
+  color:#0E3195;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-/* Øverste række: avatar + navn/stjerner */
 .reviews__top{
   display:flex;
   align-items:center;
@@ -463,7 +346,7 @@ body a:hover {
   height:44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid #129253; /* matcher din grønne accent */
+  border: 2px solid #129253;
   flex: 0 0 auto;
 }
 
@@ -473,43 +356,37 @@ body a:hover {
   gap: .2rem;
 }
 
-.reviews__name{
-  font-weight: 600;
-}
+.reviews__name{ font-weight: 600; }
 
-/* Stjerner (grønne som dit design) */
 .reviews__stars{
   color:#129253;
   font-size: 1rem;
   letter-spacing: .06em;
 }
 
-/* Tekst */
+/* Du bad om at tom tekst stadig skal have en linje */
 .reviews__text{
   margin: 0;
   margin-top: .25rem;
   color:#555;
+  min-height: 1.6em;
 }
 
-/* Når kortet hoveres/fokuseres: også blå tekst (så det føles ensartet) */
 .reviews__card:hover .reviews__text,
 .reviews__card:focus-visible .reviews__text{
   color:#0E3195;
 }
 
-/* Kilde-linje */
 .reviews__source{
   margin-top: .6rem;
   font-size: .95rem;
   color:#555;
 }
-
 .reviews__card:hover .reviews__source,
 .reviews__card:focus-visible .reviews__source{
   color:#0E3195;
 }
 
-/* Dots */
 .reviews__dots{
   display:flex;
   justify-content:center;
@@ -538,13 +415,53 @@ body a:hover {
   outline-offset: 2px;
 }
 
-/* Mobil: overskrift + knapper pænere */
+/* Tablet+Desktop */
+@media (min-width: 768px){
+  .nav-toggle{ display: none; }
+  .site-nav{ display: block !important; }
+  .site-nav ul{ gap: 1.5rem; }
+
+  .hero h1{ font-size: 3rem; }
+  .hero p{ font-size: 1.4rem; }
+
+  .service-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Mobil nav */
 @media (max-width: 767px){
-  .reviews__header{
-    justify-content: center;
-    text-align:center;
+  .site-header{ position: relative; }
+
+  .site-nav{
+    position: absolute;
+    top: 100%;
+    right: 1rem;
+    background: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: none;
+    width: auto;
+    min-width: 170px;
   }
-  .reviews__header h2{
-    text-align:center;
+  .site-nav.open{ display: block; }
+
+  .site-nav ul{ flex-direction: column; }
+  .site-nav li{
+    margin: 0;
+    border-bottom: 1px solid #eee;
   }
+  .site-nav li:last-child{ border-bottom: none; }
+  .site-nav a{ padding: 0.75rem 1rem; }
+  .nav-phone .phone-link{ justify-content: flex-start; }
+}
+
+/* Større desktop: sticky footer */
+@media (min-width: 1200px){
+  .site-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  body{ padding-bottom: 60px; }
 }
