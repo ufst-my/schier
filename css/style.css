@@ -137,25 +137,51 @@ body a:hover {
 
 /* Hero */
 .hero {
-  background: url("../images/hero-baggrund.jpg") no-repeat center/cover;
-  height: 75vh;
+  /* Hero-billedet styres nu via <picture> i HTML (responsivt) */
+  min-height: clamp(420px, 75vh, 820px);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
   color: #fff;
+  overflow: hidden;
 }
+
+/* Responsivt hero-medie */
+.hero__media{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero__media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .hero::after {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,0.4);
+  z-index: 1;
 }
 .hero .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
+
+@media (orientation: portrait){
+  .hero{
+    min-height: clamp(520px, 85vh, 980px);
+  }
+}
+
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
