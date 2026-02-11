@@ -99,8 +99,8 @@
 
           <li class="nav-phone">
             <a href="tel:+4550507665" class="phone-link">
-              <img src="images/phone-icon.avif" alt="" class="phone-icon" />
-              50 50 76 65
+              <span class="phone-icon" aria-hidden="true">✆</span>
+              <span class="phone-number">50 50 76 65</span>
             </a>
           </li>
         </ul>
@@ -165,7 +165,10 @@
     <section class="reviews" aria-labelledby="reviews-title">
       <div class="container">
         <div class="reviews__header">
-          <h2 id="reviews-title">Anmeldelser</h2>
+          <div class="reviews__titleblock">
+            <h2 id="reviews-title">Kundeanmeldelser</h2>
+            <p class="reviews__subtitle"><em>Det siger kunderne på Lolland-Falster om Schier Rengøring</em></p>
+          </div>
     
           <div class="reviews__controls" aria-label="Skift anmeldelse">
             <button class="reviews__btn" type="button" data-reviews-prev aria-label="Forrige anmeldelse">‹</button>
