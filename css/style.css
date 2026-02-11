@@ -109,20 +109,29 @@ body {
 .nav-phone .phone-link {
   display: flex;
   align-items: center;
-  background: #28a745;
-  color: #fff;
+  background: #28a745;            /* normal */
+  color: #fff;                    /* normal tekst */
   padding: 0.5rem 0.75rem;
   border-radius: 4px;
   text-decoration: none;
   font-weight: 600;
 }
 .nav-phone .phone-link:hover {
-  background: #28a745;
+  background: #218838;            /* hover (mørkere grøn) */
+  color: #0E3195;                 /* hover-tekst (blå) */
+}
+.nav-phone .phone-link:focus-visible{
+  background: #218838;
+  color: #0E3195;
 }
 .nav-phone .phone-icon {
-  width: 20px;
-  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 0.5rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: currentColor;            /* ikon følger telefonnummerets farve */
 }
 
 /* Globale links: INGEN underline + blå hover */
@@ -412,6 +421,16 @@ body a:hover {
   margin-bottom: 1.25rem;
   flex-wrap: wrap;
   text-align: center;
+}
+
+.reviews__titleblock{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviews__subtitle{
+  margin-top: .25rem;
 }
 
 
