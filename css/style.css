@@ -116,8 +116,15 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
+.nav-phone .phone-number{
+  transition: color 0.2s;
+}
 .nav-phone .phone-link:hover {
   background: #218838;
+  color: #fff;
+}
+.nav-phone .phone-link:hover .phone-number{
+  color: #0E3195;
 }
 .nav-phone .phone-icon {
   width: 20px;
@@ -420,6 +427,19 @@ body a:hover {
   margin: 0;
   font-size: 2rem;
   text-align: center;
+}
+
+.reviews__titles{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+}
+
+.reviews__subtitle{
+  margin: 0;
+  color:#555;
+  font-size: 1rem;
 }
 
 /* Knapper */
