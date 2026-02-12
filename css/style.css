@@ -59,7 +59,9 @@ body {
   padding: 1rem 0;
 }
 .logo {
-  max-height: 50px;
+  height: 100px;
+  width: auto;
+  max-height: 100px;
 }
 .nav-toggle {
   font-size: 1.5rem;
