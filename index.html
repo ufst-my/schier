@@ -44,29 +44,94 @@
 
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- Structured data (LocalBusiness/CleaningService) -->
+  <!-- Structured data (WebSite + WebPage + CleaningService) -->
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CleaningService",
-      "@id": "https://ufst-my.github.io/schier/#company",
-      "name": "Schier Professionel Rengøring",
-      "url": "https://ufst-my.github.io/schier/",
-      "telephone": "+4550507665",
-      "email": "my@schier.dk",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Folemarken 59",
-        "postalCode": "4800",
-        "addressLocality": "Nykøbing F",
-        "addressCountry": "DK"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CleaningService",
+        "@id": "https://ufst-my.github.io/schier/#company",
+        "name": "Schier Professionel Rengøring",
+        "url": "https://ufst-my.github.io/schier/",
+        "description": "Erhvervsrengøring på Lolland-Falster: Kontor, butik, klinik, institution, sportshaller m.m. Med fokus på kvalitet. Få et tilbud.",
+        "telephone": "+4550507665",
+        "email": "my@schier.dk",
+        "vatID": "DK38199633",
+        "taxID": "38199633",
+        "logo": {
+          "@id": "https://ufst-my.github.io/schier/#logo"
+        },
+        "image": [
+          {
+            "@id": "https://ufst-my.github.io/schier/#logo"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Folemarken 59",
+          "postalCode": "4800",
+          "addressLocality": "Nykøbing F",
+          "addressCountry": "DK"
+        },
+        "areaServed": [
+          { "@type": "AdministrativeArea", "name": "Lolland" },
+          { "@type": "AdministrativeArea", "name": "Falster" }
+        ]
       },
-      "areaServed": [
-        { "@type": "AdministrativeArea", "name": "Lolland" },
-        { "@type": "AdministrativeArea", "name": "Falster" }
-      ],
-      "vatID": "DK38199633"
-    }
+      {
+        "@type": "ImageObject",
+        "@id": "https://ufst-my.github.io/schier/#logo",
+        "url": "https://ufst-my.github.io/schier/images/schier-professionel-rengoring-logo.svg",
+        "contentUrl": "https://ufst-my.github.io/schier/images/schier-professionel-rengoring-logo.svg"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://ufst-my.github.io/schier/#website",
+        "url": "https://ufst-my.github.io/schier/",
+        "name": "Schier Professionel Rengøring",
+        "inLanguage": "da-DK",
+        "publisher": {
+          "@id": "https://ufst-my.github.io/schier/#company"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://ufst-my.github.io/schier/#webpage",
+        "url": "https://ufst-my.github.io/schier/",
+        "name": "Schier Rengøring – Professionel erhvervsrengøring i Nykøbing F (Lolland-Falster)",
+        "description": "Erhvervsrengøring på Lolland-Falster: Kontor, butik, klinik, institution, sportshaller m.m. Med fokus på kvalitet. Få et tilbud.",
+        "inLanguage": "da-DK",
+        "isPartOf": {
+          "@id": "https://ufst-my.github.io/schier/#website"
+        },
+        "about": {
+          "@id": "https://ufst-my.github.io/schier/#company"
+        },
+        "publisher": {
+          "@id": "https://ufst-my.github.io/schier/#company"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://ufst-my.github.io/schier/#logo"
+        },
+        "breadcrumb": {
+          "@id": "https://ufst-my.github.io/schier/#breadcrumb"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://ufst-my.github.io/schier/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Forside",
+            "item": "https://ufst-my.github.io/schier/"
+          }
+        ]
+      }
+    ]
+  }
   </script>
 </head>
 
@@ -146,11 +211,17 @@
           sizes="100vw"
         />
 
+        <!-- JPEG fallback (for enheder uden AVIF) -->
+        <source
+          type="image/jpeg"
+          srcset="images/ydelser/horizontal_1600x800/rengjort_koekken.jpg"
+          sizes="100vw"
+        />
+
         <!-- Fallback (samme billede, én fil) -->
         <img
-          src="images/ydelser/horizontal_1280x640/rengjort_koekken.avif"
-          alt="Pænt, rengjort køkken"
-          role="presentation"
+          src="images/ydelser/horizontal_1600x800/rengjort_koekken.jpg"
+          alt=""
           decoding="async"
           fetchpriority="high"
         />
@@ -180,7 +251,7 @@
         <div class="reviews__viewport">
           <a class="reviews__card" data-reviews-card href="#" target="_blank" rel="noopener" tabindex="0">
             <div class="reviews__top">
-              <img class="reviews__avatar" data-reviews-avatar src="" alt="Profilbillede af anmelder" width="44" height="44" />
+              <img class="reviews__avatar" data-reviews-avatar src="" alt="" width="44" height="44" />
     
               <div class="reviews__who">
                 <div class="reviews__name" data-reviews-name></div>
@@ -221,7 +292,10 @@
           <!-- Servicekort (hver er et link til ydelsesunderside) -->
           <a href="ydelser/kontorrengoring/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_kontor.avif" alt="Ikon med rengjort kontor">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_kontor.avif">
+                <img src="images/cards/rengjort_kontor.jpg" alt="Ikon med rengjort kontor">
+              </picture>
             </div>
             <h3>Kontorrengøring</h3>
             <p>Effektiv daglig rengøring af kontorer med fokus på detaljen og et sundt arbejdsmiljø.</p>
@@ -229,7 +303,10 @@
 
           <a href="ydelser/institutionsrengoring/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_institution.avif" alt="Ikon med rengjort institution">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_institution.avif">
+                <img src="images/cards/rengjort_institution.jpg" alt="Ikon med rengjort institution">
+              </picture>
             </div>
             <h3>Institutioner</h3>
             <p>Grundig rengøring for daginstitutioner og skoler, så børn og personale trives i rene rammer.</p>
@@ -237,7 +314,10 @@
 
           <a href="ydelser/butiksrengoring/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_butik.avif" alt="Ikon med rengjort butik">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_butik.avif">
+                <img src="images/cards/rengjort_butik.jpg" alt="Ikon med rengjort butik">
+              </picture>
             </div>
             <h3>Butiksrengøring</h3>
             <p>Skinnende rene butikker med pletfri diske og gulve, klar til at byde kunderne velkomne.</p>
@@ -245,7 +325,10 @@
 
           <a href="ydelser/klinikrengoring/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_klinik_udstyr.avif" alt="Ikon med rengjort klinikudstyr">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_klinik_udstyr.avif">
+                <img src="images/cards/rengjort_klinik_udstyr.jpg" alt="Ikon med rengjort klinikudstyr">
+              </picture>
             </div>
             <h3>Klinikrengøring</h3>
             <p>Steril og sikker rengøring af klinikker og behandlingsrum i henhold til hygiejnestandarder.</p>
@@ -253,7 +336,10 @@
 
           <a href="ydelser/restaurantrengoring/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_restaurationsservice.avif" alt="Ikon med rengjort restaurationsservice">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_restaurationsservice.avif">
+                <img src="images/cards/rengjort_restaurationsservice.jpg" alt="Ikon med rengjort restaurationsservice">
+              </picture>
             </div>
             <h3>Restauranter</h3>
             <p>Hyggelige spiseområder og rene køkkener – din restaurant lever op til de højeste krav.</p>
@@ -261,7 +347,10 @@
 
           <a href="ydelser/fabriksrengoring/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_fabrik.avif" alt="Ikon med rengjort fabrik">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_fabrik.avif">
+                <img src="images/cards/rengjort_fabrik.jpg" alt="Ikon med rengjort fabrik">
+              </picture>
             </div>
             <h3>Fabriksrengøring</h3>
             <p>Tilpasset rengøring af produktionshaller og maskiner, så drift og sikkerhed optimeres.</p>
@@ -269,7 +358,10 @@
 
           <a href="ydelser/rengoring-af-sportshaller/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_sportshal.avif" alt="Ikon med rengjort sportshal">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_sportshal.avif">
+                <img src="images/cards/rengjort_sportshal.jpg" alt="Ikon med rengjort sportshal">
+              </picture>
             </div>
             <h3>Sportshaller</h3>
             <p>Professionel rengøring af omklædningsrum og baner, så dine faciliteter fremstår indbydende.</p>
@@ -277,7 +369,10 @@
 
           <a href="ydelser/trappevask/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_trappe.avif" alt="Ikon med rengjort trappeopgang">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_trappe.avif">
+                <img src="images/cards/rengjort_trappe.jpg" alt="Ikon med rengjort trappeopgang">
+              </picture>
             </div>
             <h3>Trappevask</h3>
             <p>Rene og sikre opgange med pletfri trapper og gelændere i ejendomme og boligforeninger.</p>
@@ -285,7 +380,10 @@
 
           <a href="ydelser/skurvognsrengoring/" class="service-card">
             <div class="service-image-wrapper">
-              <img src="images/cards/rengjort_skurvogn.avif" alt="Ikon med rengjort skurvogn">
+              <picture>
+                <source type="image/avif" srcset="images/cards/rengjort_skurvogn.avif">
+                <img src="images/cards/rengjort_skurvogn.jpg" alt="Ikon med rengjort skurvogn">
+              </picture>
             </div>
             <h3>Skurvognsrengøring</h3>
             <p>Komfortable og hygiejniske skurvogne med frisk luft og rene overflader for medarbejdere.</p>
