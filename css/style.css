@@ -62,6 +62,7 @@ body {
   height: 100px;
   width: auto;
   max-height: 100px;
+  display: block;
 }
 .nav-toggle {
   font-size: 1.5rem;
@@ -148,7 +149,7 @@ body a:hover {
 
 /* Hero */
 .hero {
-  /* Hero-billedet styres nu via <picture> i HTML (responsivt) */
+  /* Hero-billedet styres via <picture> i HTML (responsivt) */
   min-height: clamp(420px, 75vh, 820px);
   display: flex;
   align-items: center;
@@ -157,6 +158,11 @@ body a:hover {
   text-align: center;
   color: #fff;
   overflow: hidden;
+}
+
+/* Pres toppen sammen i bredden (kun hero-teksten), uden at ændre SEO/HTML-struktur */
+.hero .container{
+  max-width: 900px;
 }
 
 /* Responsivt hero-medie */
@@ -178,7 +184,10 @@ body a:hover {
 .hero::after {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: rgba(0,0,0,0.4);
   z-index: 1;
 }
@@ -256,7 +265,7 @@ body a:hover {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Hover-effekt på hele kortet + blå link-hover (samme “link adfærd” som resten) */
+/* Hover-effekt på hele kortet + blå link-hover */
 .service-card:hover,
 .service-card:focus-visible {
   transform: translateY(-5px);
@@ -264,7 +273,7 @@ body a:hover {
   color: #0E3195;
 }
 
-/* Sørg for at brødteksten også bliver blå (den har ellers fast #555) */
+/* Sørg for at brødteksten også bliver blå */
 .service-card:hover p,
 .service-card:focus-visible p {
   color: #0E3195;
@@ -286,6 +295,11 @@ body a:hover {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
+}
+
+.service-image-wrapper picture {
+  display: block;
+  width: 100%;
 }
 
 .service-card h3 {
@@ -435,7 +449,6 @@ body a:hover {
   margin-top: .25rem;
 }
 
-
 /* Matcher dine H2’er (centeret), men stadig med controls ved siden af */
 .reviews__header h2{
   margin: 0;
@@ -476,14 +489,14 @@ body a:hover {
   justify-content:center;
 }
 
-/* Kortet er et link -> ingen underline + blå hover (som du ønsker) */
+/* Kortet er et link -> ingen underline + blå hover */
 .reviews__card{
   display:block;
   width: min(900px, 100%);
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 1.1rem 1.1rem;
-  text-decoration: none;   /* <-- vigtig */
+  text-decoration: none;
   color: #333;
   background:#fff;
   transition: transform .2s, box-shadow .2s, color .2s;
@@ -492,7 +505,7 @@ body a:hover {
 
 .reviews__card:hover,
 .reviews__card:focus-visible{
-  color:#0E3195; /* blå hover */
+  color:#0E3195;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
@@ -510,7 +523,7 @@ body a:hover {
   height:44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid #129253; /* matcher din grønne accent */
+  border: 2px solid #129253;
   flex: 0 0 auto;
 }
 
@@ -524,7 +537,7 @@ body a:hover {
   font-weight: 600;
 }
 
-/* Stjerner (grønne som dit design) */
+/* Stjerner (grønne) */
 .reviews__stars{
   color:#129253;
   font-size: 1rem;
@@ -538,7 +551,7 @@ body a:hover {
   color:#555;
 }
 
-/* Når kortet hoveres/fokuseres: også blå tekst (så det føles ensartet) */
+/* Når kortet hoveres/fokuseres: også blå tekst */
 .reviews__card:hover .reviews__text,
 .reviews__card:focus-visible .reviews__text{
   color:#0E3195;
