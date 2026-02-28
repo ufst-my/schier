@@ -612,3 +612,81 @@ body a:hover {
     text-align:center;
   }
 }
+/* Service-side indhold (kontorrengøring) */
+.service-content{
+  background:#fff;
+  padding: 3rem 0;
+}
+
+.service-content__inner{
+  max-width: 920px;
+}
+
+.service-content h2{
+  font-size: 2rem;
+  margin: 2.25rem 0 1rem;
+  text-align: left;
+}
+
+.service-content h2#service-content-title{
+  margin-top: 0;
+}
+
+.service-content h3{
+  font-size: 1.25rem;
+  margin: 1.6rem 0 .6rem;
+  color: #0E3195;
+}
+
+.service-content p{
+  margin-bottom: 1rem;
+  color:#555;
+}
+
+.bullet-list{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem 0;
+}
+
+.bullet-list li{
+  margin-bottom: 1rem;
+  padding-left: 0;
+  color:#555;
+}
+
+.bullet-list strong{
+  color:#0E3195;
+}
+
+.checklist{
+  margin: 0 0 1.25rem 1.15rem;
+  color:#555;
+}
+
+.numbered-list{
+  margin: 0 0 1.25rem 1.15rem;
+  color:#555;
+}
+
+.faq details{
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: .75rem 1rem;
+  margin-bottom: .75rem;
+  background:#fff;
+}
+
+.faq summary{
+  cursor: pointer;
+  font-weight: 600;
+  color:#333;
+}
+
+.faq details[open] summary{
+  margin-bottom: .5rem;
+}
+
+.faq p{
+  margin: 0;
+}
