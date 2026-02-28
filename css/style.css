@@ -1,637 +1,273 @@
-/* Reset & fonte */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html {
-  scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-}
-body {
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background: #f9f9f9;
-}
+// Mobilmenu: åbn/luk + luk ved klik udenfor og ESC
+document.addEventListener("DOMContentLoaded", function () {
+  const navToggle = document.querySelector(".nav-toggle");
+  const siteNav = document.querySelector(".site-nav");
 
-/* Skip link (tilgængelighed) */
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  transform: translateY(-200%);
-  background: #fff;
-  color: #333;
-  border: 1px solid #e0e0e0;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  z-index: 2000;
-  text-decoration: none;
-}
-.skip-link:focus {
-  transform: translateY(0);
-}
+  if (!navToggle || !siteNav) return;
 
-/* Container */
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  navToggle.addEventListener("click", function () {
+    siteNav.classList.toggle("open");
 
-/* Header & Nav */
-.site-header {
-  background: #fff;
-  border-bottom: 1px solid #e0e0e0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-.site-header .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  width: 94%;
-}
+    const isOpen = siteNav.classList.contains("open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+    navToggle.setAttribute("aria-label", isOpen ? "Luk menu" : "Åbn menu");
+  });
 
-.logo {
-  height: 100px;
-  width: auto;
-  max-height: 100px;
-  display: block;
-}
+  document.addEventListener("click", function (e) {
+    if (!siteNav.classList.contains("open")) return;
 
-.nav-toggle {
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: block;
-}
+    const clickedInsideNav = siteNav.contains(e.target);
+    const clickedToggle = navToggle.contains(e.target);
 
-/* Menu (desktop skjult på mobil) */
-.site-nav {
-  display: none;
-}
-.site-nav.open {
-  display: block;
-}
+    if (!clickedInsideNav && !clickedToggle) {
+      siteNav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Åbn menu");
+    }
+  });
 
-/* Menu-items */
-.site-nav ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && siteNav.classList.contains("open")) {
+      siteNav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.setAttribute("aria-label", "Åbn menu");
+    }
+  });
+});
 
-/* Mere kompakt spacing (baseline) */
-.site-nav li {
-  margin-left: 0.5rem;
-}
-.site-nav li:first-child {
-  margin-left: 0;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  // Anmeldelser (data)
+  const REVIEWS = [
+    {
+      name: "Laura Aagaard",
+      avatar: "images/reviews/laura.avif",
+      stars: 5,
+      text: "Vi er virkelig glade for Schier rengøring…",
+      source: "Google",
+      url: "https://share.google/TOX8MqLccJ88ZGPAW"
+    },
+    {
+      name: "zoob77",
+      avatar: "images/reviews/zoob.avif",
+      stars: 5,
+      text: "Intet at udsætte…",
+      source: "Google",
+      url: "https://share.google/8fw9UN9i1ZvmhguR7"
+    },
+    {
+      name: "Joachim Rehder",
+      avatar: "images/reviews/joachim.avif",
+      stars: 5,
+      text: " ",
+      source: "Google",
+      url: "https://share.google/SJxXz1nYu3l2ArTK2"
+    },
+    {
+      name: "Hanne Bruhn",
+      avatar: "images/reviews/hanneb.avif",
+      stars: 5,
+      text: "rengøring i top, altid sød og venlig betjening…",
+      source: "Google",
+      url: "https://share.google/EyA3NZ7IDHXbZSpTA"
+    },
+    {
+      name: "Rene Dissing",
+      avatar: "images/reviews/rene.avif",
+      stars: 5,
+      text: "Bestilte en \"total\" rengøring af mit hus (3 etager)…",
+      source: "Google",
+      url: "https://share.google/Bn9jRVgWNd77TIrpz"
+    },
+    {
+      name: "Hanne Jørgensen",
+      avatar: "images/reviews/hanne.avif",
+      stars: 4,
+      text: " ",
+      source: "Google",
+      url: "https://www.google.com/search?sa=X&sca_esv=21a016e0095234e7&sxsrf=AE3TifOEgnrjS0W1IVIML42CZn4LbGVAwQ:1767396192285&q=Schier+Reng%C3%B8ring+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDQ3MDY0Mzc0NzW1tDA3sDAystjAyPiKUTY4OSMztUghKDUv_fCOosy8dAXHvNzUnJTUnOLUokWs-OUBjmeNplsAAAA&rldimm=11703167175598708228&tbm=lcl&hl=da-DK&ved=2ahUKEwiPxt_x_-2RAxWGRPEDHVu6Gx8Q9fQKegQIRxAG&biw=1680&bih=881&dpr=1#lkt=LocalPoiReviews"
+    },
+    {
+      name: "Jonas Schnack Krog",
+      avatar: "images/reviews/jonas.avif",
+      stars: 5,
+      text: "God og solid rengøring med god kommunikation…",
+      source: "Google",
+      url: "https://share.google/2zHZMIzgZwcFuGmT6"
+    },
+    {
+      name: "Tina Katja Lund Andersen",
+      avatar: "images/reviews/tina.avif",
+      stars: 5,
+      text: "Super god oplevelse, både før, under og efter…",
+      source: "Trustpilot",
+      url: "https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec"
+    },
+    {
+      name: "Lotte Nielsen",
+      avatar: "images/reviews/lotte.avif",
+      stars: 5,
+      text: "Bestilte en fllytteflytterengøring…",
+      source: "Trustpilot",
+      url: "https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75"
+    }
+  ];
 
-/* Ingen understregning i menu */
-.site-nav a {
-  color: #333;
-  text-decoration: none;
-  padding: 0.5rem 0.75rem;
-  display: block;
-  transition: color 0.2s;
-}
-/* Blå hover i menu */
-.site-nav a:hover {
-  color: #0E3195;
-}
+  // Elementer
+  const card = document.querySelector("[data-reviews-card]");
+  const avatar = document.querySelector("[data-reviews-avatar]");
+  const nameEl = document.querySelector("[data-reviews-name]");
+  const starsEl = document.querySelector("[data-reviews-stars]");
+  const textEl = document.querySelector("[data-reviews-text]");
+  const srcEl = document.querySelector("[data-reviews-source]");
+  const prevBtn = document.querySelector("[data-reviews-prev]");
+  const nextBtn = document.querySelector("[data-reviews-next]");
+  const dotsEl = document.querySelector("[data-reviews-dots]");
 
-/* Telefon-knap i nav */
-.nav-phone {
-  margin-left: 0;
-}
-.nav-phone .phone-link {
-  display: flex;
-  align-items: center;
-  background: #208738;            /* normal */
-  color: #fff;                    /* normal tekst */
-  padding: 0.45rem 0.65rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-}
-.nav-phone .phone-link:hover {
-  background: #1e7e34;   /* hover (mørkere grøn) */
-  color: #0E3195;        /* blå hover-tekst */
-}
-.nav-phone .phone-link:focus-visible{
-  background: #1e7e34;
-  color: #0E3195;
-}
-.nav-phone .phone-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 0.35rem;
-  font-size: 1.1rem;
-  line-height: 1;
-  color: currentColor;            /* ikon følger telefonnummerets farve */
-}
+  if (!card || !avatar || !nameEl || !starsEl || !textEl || !srcEl || !prevBtn || !nextBtn || !dotsEl) return;
+  if (!Array.isArray(REVIEWS) || REVIEWS.length === 0) return;
 
-/* Globale links: INGEN underline + blå hover */
-body a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-body a:hover {
-  color: #0E3195;
-}
+  // State
+  let index = 0;
+  let timer = null;
+  const INTERVAL_MS = 6500;
 
-/* Hero */
-.hero {
-  /* Hero-billedet styres nu via <picture> i HTML (responsivt) */
-  min-height: clamp(420px, 75vh, 820px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
-}
-
-/* Responsivt hero-medie */
-.hero__media{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.hero__media img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 1;
-}
-.hero .container {
-  position: relative;
-  z-index: 2;
-}
-
-@media (orientation: portrait){
-  .hero{
-    min-height: clamp(520px, 85vh, 980px);
-  }
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-.hero p {
-  font-size: 1.2rem;
-}
-
-/* Link-styling for overskrift (Vores ydelser) */
-.services-title-link{
-  color: inherit;
-  text-decoration: none;
-}
-
-.services-title-link:hover,
-.services-title-link:focus-visible{
-  color: #0E3195;
-  text-decoration: none;
-}
-
-/* Sektioner */
-.why-choose,
-.cta-contact {
-  background: #fff;
-  padding: 3rem 0;
-}
-.why-choose h2,
-.services h2,
-.cta-contact h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-.features-list {
-  list-style: none;
-  max-width: 800px;
-  margin: 0 auto;
-}
-.features-list li {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-}
-
-.services {
-  background: #fff;
-  padding: 3rem 0;
-}
-
-.service-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  margin-bottom: 1rem;
-}
-
-/* Service-kort som link */
-.service-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-/* Hover-effekt på hele kortet + blå link-hover (samme “link adfærd” som resten) */
-.service-card:hover,
-.service-card:focus-visible {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  color: #0E3195;
-}
-
-/* Sørg for at brødteksten også bliver blå (den har ellers fast #555) */
-.service-card:hover p,
-.service-card:focus-visible p {
-  color: #0E3195;
-}
-
-.service-image-wrapper {
-  border: 4px solid #129253;
-  padding: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.service-image-wrapper img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-.service-image-wrapper picture {
-  display: block;
-  width: 100%;
-}
-
-.service-card h3 {
-  margin-top: 1rem;
-  text-align: center;
-  color: #0E3195;
-  font-size: 1.25rem;
-}
-
-.service-card p {
-  margin-top: 0.5rem;
-  text-align: left;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-/* Kontakt */
-.cta-contact p {
-  text-align: center;
-  font-size: 1rem;
-  margin-bottom: 0.75rem;
-}
-
-/* Kun telefon + e-mail i kontaktsektionen skal understreges */
-.cta-contact .contact-links a{
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-/* Footer */
-.site-footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem 0;
-}
-/* Footer-links (ingen understregning; blå hover) */
-.site-footer a {
-  color: inherit;
-}
-.site-footer a:hover{
-  color: #0E3195;
-}
-
-/* Tablet+Desktop */
-@media (min-width: 768px) {
-  .nav-toggle {
-    display: none;
-  }
-  .site-nav {
-    display: block !important;
+  function starsString(n) {
+    const full = Math.max(0, Math.min(5, Number(n) || 0));
+    return "★".repeat(full) + "☆".repeat(5 - full);
   }
 
-  /* Adskil menupunkter tydeligt når vi presser dem tættere */
-  .site-nav ul {
-    gap: 0;
+  function renderDots() {
+    dotsEl.innerHTML = "";
+    REVIEWS.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "reviews__dot" + (i === index ? " is-active" : "");
+      b.setAttribute("aria-label", `Gå til anmeldelse ${i + 1}`);
+      b.addEventListener("click", () => {
+        index = i;
+        render();
+        restartAuto();
+      });
+      dotsEl.appendChild(b);
+    });
   }
-  .site-nav li {
-    margin-left: 0;
+
+  function render() {
+    const r = REVIEWS[index];
+
+    card.href = r.url || "#";
+
+    avatar.src = r.avatar || "";
+    avatar.alt = r.name ? `Billede af ${r.name}` : "Anmelder";
+
+    nameEl.textContent = r.name || "";
+
+    const s = starsString(r.stars);
+    starsEl.textContent = s;
+    starsEl.setAttribute("aria-label", `${Math.max(0, Math.min(5, Number(r.stars) || 0))} ud af 5 stjerner`);
+
+    const txt = (r.text || "").trim();
+    textEl.style.display = "";
+    textEl.textContent = txt.length ? txt : "\u00A0";
+
+    srcEl.textContent = r.source ? `Anmeldelse fra: ${r.source}` : "";
+
+    renderDots();
   }
-  .site-nav li + li {
-    margin-left: 0.6rem;
-    padding-left: 0.6rem;
-    border-left: 1px solid #e0e0e0;
+
+  // Navigation
+  function next() {
+    index = (index + 1) % REVIEWS.length;
+    render();
   }
 
-  .hero h1 {
-    font-size: 3rem;
+  function prev() {
+    index = (index - 1 + REVIEWS.length) % REVIEWS.length;
+    render();
   }
-  .hero p {
-    font-size: 1.4rem;
+
+  nextBtn.addEventListener("click", () => { next(); restartAuto(); });
+  prevBtn.addEventListener("click", () => { prev(); restartAuto(); });
+
+  // Tastatur (kun når fokus er i reviews)
+  const reviewsSection = card.closest(".reviews");
+
+  document.addEventListener("keydown", (e) => {
+    const active = document.activeElement;
+
+    const focusInsideReviews =
+      (active && (active === card || (reviewsSection && reviewsSection.contains(active))));
+
+    if (!focusInsideReviews) return;
+
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      next();
+      restartAuto();
+    }
+
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      prev();
+      restartAuto();
+    }
+  });
+
+  // Swipe
+  let startX = null;
+
+  card.addEventListener("touchstart", (e) => {
+    if (!e.touches || e.touches.length === 0) return;
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  card.addEventListener("touchend", (e) => {
+    if (startX === null) return;
+
+    const endX =
+      (e.changedTouches && e.changedTouches.length)
+        ? e.changedTouches[0].clientX
+        : startX;
+
+    const dx = endX - startX;
+    startX = null;
+
+    if (Math.abs(dx) < 40) return;
+
+    if (dx < 0) {
+      next();
+      restartAuto();
+    } else {
+      prev();
+      restartAuto();
+    }
+  }, { passive: true });
+
+  // Auto-skift
+  function startAuto() {
+    stopAuto();
+    timer = setInterval(() => next(), INTERVAL_MS);
   }
-  .service-grid {
-    grid-template-columns: repeat(3, 1fr);
+
+  function stopAuto() {
+    if (timer) clearInterval(timer);
+    timer = null;
   }
-}
 
-/* Mobil: kompakt vertikal menu */
-@media (max-width: 767px) {
-  .site-header {
-    position: relative;
+  function restartAuto() {
+    startAuto();
   }
-  .site-nav {
-    position: absolute;
-    top: 100%;
-    right: 0.75rem;
-    background: #fff;
-    padding: 0.5rem;
-    border-radius: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    display: none;
-    width: auto;
-    min-width: 150px;
-  }
-  .site-nav.open {
-    display: block;
-  }
-  .site-nav ul {
-    flex-direction: column;
-  }
-  .site-nav li {
-    margin: 0;
-    border-bottom: 1px solid #eee;
-  }
-  .site-nav li:last-child {
-    border-bottom: none;
-  }
-  .site-nav a {
-    padding: 0.75rem 1rem;
-  }
-  .nav-phone .phone-link {
-    width: auto;
-    justify-content: flex-start;
-  }
-}
 
-/* Større desktop: sticky footer */
-@media (min-width: 1200px) {
-  .site-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  body {
-    padding-bottom: 60px;
-  }
-}
+  card.addEventListener("mouseenter", stopAuto);
+  card.addEventListener("mouseleave", startAuto);
+  card.addEventListener("focusin", stopAuto);
+  card.addEventListener("focusout", startAuto);
 
-/* =========================
-   Reviews banner / slider
-   ========================= */
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopAuto();
+    else startAuto();
+  });
 
-.reviews{
-  background:#fff;
-  padding: 2.25rem 0;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.reviews__header{
-  display:flex;
-  align-items: center;
-  justify-content: center; /* centrer header-indhold */
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.reviews__titleblock{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.reviews__subtitle{
-  margin-top: .25rem;
-}
-
-
-/* Matcher dine H2’er (centeret), men stadig med controls ved siden af */
-.reviews__header h2{
-  margin: 0;
-  font-size: 2rem;
-  text-align: center;
-}
-
-/* Knapper */
-.reviews__controls{
-  display:flex;
-  gap: .5rem;
-}
-
-.reviews__btn{
-  width: 42px;
-  height: 42px;
-  border-radius: 6px;
-  border: 1px solid #e0e0e0;
-  background: #fff;
-  cursor: pointer;
-  font-size: 1.6rem;
-  line-height: 1;
-  color: #333;
-}
-
-.reviews__btn:hover{
-  color:#0E3195;
-}
-
-.reviews__btn:focus-visible{
-  outline: 3px solid rgba(14,49,149,0.35);
-  outline-offset: 2px;
-}
-
-/* Viewport */
-.reviews__viewport{
-  display:flex;
-  justify-content:center;
-}
-
-/* Kortet er et link -> ingen underline + blå hover (som du ønsker) */
-.reviews__card{
-  display:block;
-  width: min(900px, 100%);
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 1.1rem 1.1rem;
-  text-decoration: none;   /* <-- vigtig */
-  color: #333;
-  background:#fff;
-  transition: transform .2s, box-shadow .2s, color .2s;
-  touch-action: pan-y;
-}
-
-.reviews__card:hover,
-.reviews__card:focus-visible{
-  color:#0E3195; /* blå hover */
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-
-/* Øverste række: avatar + navn/stjerner */
-.reviews__top{
-  display:flex;
-  align-items:center;
-  gap:.85rem;
-  margin-bottom: .65rem;
-}
-
-.reviews__avatar{
-  width:44px;
-  height:44px;
-  border-radius: 999px;
-  object-fit: cover;
-  border: 2px solid #129253; /* matcher din grønne accent */
-  flex: 0 0 auto;
-}
-
-.reviews__who{
-  display:flex;
-  flex-direction: column;
-  gap: .2rem;
-}
-
-.reviews__name{
-  font-weight: 600;
-}
-
-/* Stjerner (grønne som dit design) */
-.reviews__stars{
-  color:#129253;
-  font-size: 1rem;
-  letter-spacing: .06em;
-}
-
-/* Tekst */
-.reviews__text{
-  margin: 0;
-  margin-top: .25rem;
-  color:#555;
-}
-
-/* Når kortet hoveres/fokuseres: også blå tekst (så det føles ensartet) */
-.reviews__card:hover .reviews__text,
-.reviews__card:focus-visible .reviews__text{
-  color:#0E3195;
-}
-
-/* Kilde-linje */
-.reviews__source{
-  margin-top: .6rem;
-  font-size: .95rem;
-  color:#555;
-}
-
-.reviews__card:hover .reviews__source,
-.reviews__card:focus-visible .reviews__source{
-  color:#0E3195;
-}
-
-/* Dots */
-.reviews__dots{
-  display:flex;
-  justify-content:center;
-  gap: .4rem;
-  margin-top: .9rem;
-  flex-wrap: wrap;
-}
-
-.reviews__dot{
-  width: 24px;
-  height: 24px;
-  border: 0;
-  background: transparent;
-  cursor:pointer;
-  padding: 0;
-  position: relative;
-}
-
-/* Bevar “prikken” visuelt (10px), men giv større touch-target */
-.reviews__dot::before{
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  transform: translate(-50%, -50%);
-  border-radius: 999px;
-  border: 1px solid #cfcfcf;
-  background:#fff;
-}
-
-.reviews__dot.is-active::before{
-  background:#129253;
-  border-color:#129253;
-}
-
-.reviews__dot:focus-visible{
-  outline: 3px solid rgba(14,49,149,0.35);
-  outline-offset: 2px;
-}
-
-/* Mobil: overskrift + knapper pænere */
-@media (max-width: 767px){
-  .reviews__header{
-    justify-content: center;
-    text-align:center;
-  }
-  .reviews__header h2{
-    text-align:center;
-  }
-}
+  render();
+  startAuto();
+});
