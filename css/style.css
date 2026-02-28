@@ -118,7 +118,7 @@ body {
 .nav-phone .phone-link {
   display: flex;
   align-items: center;
-  background: #28a745;            /* normal */
+  background: #208738;            /* normal */
   color: #fff;                    /* normal tekst */
   padding: 0.45rem 0.65rem;
   border-radius: 4px;
@@ -126,12 +126,12 @@ body {
   font-weight: 600;
 }
 .nav-phone .phone-link:hover {
-  background: #218838;            /* hover (mørkere grøn) */
-  color: #0E3195;                 /* hover-tekst (blå) */
+  background: #1e7e34;            /* hover (mørkere grøn) */
+  color: #fff;                    /* hover-tekst */
 }
 .nav-phone .phone-link:focus-visible{
-  background: #218838;
-  color: #0E3195;
+  background: #1e7e34;
+  color: #fff;
 }
 .nav-phone .phone-icon {
   display: inline-flex;
@@ -592,16 +592,30 @@ body a:hover {
 }
 
 .reviews__dot{
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  cursor:pointer;
+  padding: 0;
+  position: relative;
+}
+
+/* Bevar “prikken” visuelt (10px), men giv større touch-target */
+.reviews__dot::before{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 10px;
   height: 10px;
+  transform: translate(-50%, -50%);
   border-radius: 999px;
   border: 1px solid #cfcfcf;
   background:#fff;
-  cursor:pointer;
-  padding: 0;
 }
 
-.reviews__dot.is-active{
+.reviews__dot.is-active::before{
   background:#129253;
   border-color:#129253;
 }
