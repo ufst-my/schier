@@ -411,7 +411,7 @@ body a:hover {
 }
 
 /* Stor desktop: sticky footer */
-@media (min-width: 1200px) {
+@media (min-width: 1200px) and (min-height: 800px) {
   .site-footer {
     position: fixed;
     bottom: 0;
