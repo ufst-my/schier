@@ -56,14 +56,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
+  width: 94%;
 }
+
 .logo {
   height: 100px;
   width: auto;
   max-height: 100px;
   display: block;
 }
+
 .nav-toggle {
   font-size: 1.5rem;
   background: none;
@@ -86,17 +89,20 @@ body {
   display: flex;
   align-items: center;
 }
+
+/* Mere kompakt spacing (baseline) */
 .site-nav li {
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 .site-nav li:first-child {
   margin-left: 0;
 }
+
 /* Ingen understregning i menu */
 .site-nav a {
   color: #333;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   display: block;
   transition: color 0.2s;
 }
@@ -107,14 +113,14 @@ body {
 
 /* Telefon-knap i nav */
 .nav-phone {
-  margin-left: auto;
+  margin-left: 0;
 }
 .nav-phone .phone-link {
   display: flex;
   align-items: center;
   background: #28a745;            /* normal */
   color: #fff;                    /* normal tekst */
-  padding: 0.5rem 0.75rem;
+  padding: 0.45rem 0.65rem;
   border-radius: 4px;
   text-decoration: none;
   font-weight: 600;
@@ -131,7 +137,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-right: 0.5rem;
+  margin-right: 0.35rem;
   font-size: 1.1rem;
   line-height: 1;
   color: currentColor;            /* ikon følger telefonnummerets farve */
@@ -149,7 +155,7 @@ body a:hover {
 
 /* Hero */
 .hero {
-  /* Hero-billedet styres via <picture> i HTML (responsivt) */
+  /* Hero-billedet styres nu via <picture> i HTML (responsivt) */
   min-height: clamp(420px, 75vh, 820px);
   display: flex;
   align-items: center;
@@ -158,11 +164,6 @@ body a:hover {
   text-align: center;
   color: #fff;
   overflow: hidden;
-}
-
-/* Pres toppen sammen i bredden (kun hero-teksten), uden at ændre SEO/HTML-struktur */
-.hero .container{
-  max-width: 900px;
 }
 
 /* Responsivt hero-medie */
@@ -265,7 +266,7 @@ body a:hover {
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/* Hover-effekt på hele kortet + blå link-hover */
+/* Hover-effekt på hele kortet + blå link-hover (samme “link adfærd” som resten) */
 .service-card:hover,
 .service-card:focus-visible {
   transform: translateY(-5px);
@@ -273,7 +274,7 @@ body a:hover {
   color: #0E3195;
 }
 
-/* Sørg for at brødteksten også bliver blå */
+/* Sørg for at brødteksten også bliver blå (den har ellers fast #555) */
 .service-card:hover p,
 .service-card:focus-visible p {
   color: #0E3195;
@@ -352,9 +353,20 @@ body a:hover {
   .site-nav {
     display: block !important;
   }
+
+  /* Adskil menupunkter tydeligt når vi presser dem tættere */
   .site-nav ul {
-    gap: 1.5rem;
+    gap: 0;
   }
+  .site-nav li {
+    margin-left: 0;
+  }
+  .site-nav li + li {
+    margin-left: 0.6rem;
+    padding-left: 0.6rem;
+    border-left: 1px solid #e0e0e0;
+  }
+
   .hero h1 {
     font-size: 3rem;
   }
@@ -374,7 +386,7 @@ body a:hover {
   .site-nav {
     position: absolute;
     top: 100%;
-    right: 1rem;
+    right: 0.75rem;
     background: #fff;
     padding: 0.5rem;
     border-radius: 4px;
@@ -449,6 +461,7 @@ body a:hover {
   margin-top: .25rem;
 }
 
+
 /* Matcher dine H2’er (centeret), men stadig med controls ved siden af */
 .reviews__header h2{
   margin: 0;
@@ -489,14 +502,14 @@ body a:hover {
   justify-content:center;
 }
 
-/* Kortet er et link -> ingen underline + blå hover */
+/* Kortet er et link -> ingen underline + blå hover (som du ønsker) */
 .reviews__card{
   display:block;
   width: min(900px, 100%);
   border: 1px solid #e0e0e0;
   border-radius: 12px;
   padding: 1.1rem 1.1rem;
-  text-decoration: none;
+  text-decoration: none;   /* <-- vigtig */
   color: #333;
   background:#fff;
   transition: transform .2s, box-shadow .2s, color .2s;
@@ -505,7 +518,7 @@ body a:hover {
 
 .reviews__card:hover,
 .reviews__card:focus-visible{
-  color:#0E3195;
+  color:#0E3195; /* blå hover */
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
@@ -523,7 +536,7 @@ body a:hover {
   height:44px;
   border-radius: 999px;
   object-fit: cover;
-  border: 2px solid #129253;
+  border: 2px solid #129253; /* matcher din grønne accent */
   flex: 0 0 auto;
 }
 
@@ -537,7 +550,7 @@ body a:hover {
   font-weight: 600;
 }
 
-/* Stjerner (grønne) */
+/* Stjerner (grønne som dit design) */
 .reviews__stars{
   color:#129253;
   font-size: 1rem;
@@ -551,7 +564,7 @@ body a:hover {
   color:#555;
 }
 
-/* Når kortet hoveres/fokuseres: også blå tekst */
+/* Når kortet hoveres/fokuseres: også blå tekst (så det føles ensartet) */
 .reviews__card:hover .reviews__text,
 .reviews__card:focus-visible .reviews__text{
   color:#0E3195;
