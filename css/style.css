@@ -126,12 +126,12 @@ body {
   font-weight: 600;
 }
 .nav-phone .phone-link:hover {
-  background: #1e7e34;            /* hover (mørkere grøn) */
-  color: #fff;                    /* hover-tekst */
+  background: #1e7e34;   /* hover (mørkere grøn) */
+  color: #0E3195;        /* blå hover-tekst */
 }
 .nav-phone .phone-link:focus-visible{
   background: #1e7e34;
-  color: #fff;
+  color: #0E3195;
 }
 .nav-phone .phone-icon {
   display: inline-flex;
