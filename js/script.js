@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const REVIEWS = [
     {
       name: "Laura Aagaard",
-      avatar: "images/reviews/laura.avif",
+      avatar: "/images/reviews/laura.avif",
       stars: 5,
       text: "Vi er virkelig glade for Schier rengøring…",
       source: "Google",
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "zoob77",
-      avatar: "images/reviews/zoob.avif",
+      avatar: "/images/reviews/zoob.avif",
       stars: 5,
       text: "Intet at udsætte…",
       source: "Google",
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Joachim Rehder",
-      avatar: "images/reviews/joachim.avif",
+      avatar: "/images/reviews/joachim.avif",
       stars: 5,
       text: " ",
       source: "Google",
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Hanne Bruhn",
-      avatar: "images/reviews/hanneb.avif",
+      avatar: "/images/reviews/hanneb.avif",
       stars: 5,
       text: "rengøring i top, altid sød og venlig betjening…",
       source: "Google",
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Rene Dissing",
-      avatar: "images/reviews/rene.avif",
+      avatar: "/images/reviews/rene.avif",
       stars: 5,
       text: "Bestilte en \"total\" rengøring af mit hus (3 etager)…",
       source: "Google",
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Hanne Jørgensen",
-      avatar: "images/reviews/hanne.avif",
+      avatar: "/images/reviews/hanne.avif",
       stars: 4,
       text: " ",
       source: "Google",
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Jonas Schnack Krog",
-      avatar: "images/reviews/jonas.avif",
+      avatar: "/images/reviews/jonas.avif",
       stars: 5,
       text: "God og solid rengøring med god kommunikation…",
       source: "Google",
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Tina Katja Lund Andersen",
-      avatar: "images/reviews/tina.avif",
+      avatar: "/images/reviews/tina.avif",
       stars: 5,
       text: "Super god oplevelse, både før, under og efter…",
       source: "Trustpilot",
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Lotte Nielsen",
-      avatar: "images/reviews/lotte.avif",
+      avatar: "/images/reviews/lotte.avif",
       stars: 5,
       text: "Bestilte en fllytteflytterengøring…",
       source: "Trustpilot",
