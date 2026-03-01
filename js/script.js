@@ -40,12 +40,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!navToggle || !siteNav) return;
 
+  // Dropdown (Ydelser) – fungerer på både mobil og desktop
+  const dropdown = siteNav.querySelector("[data-dropdown]");
+  const dropdownToggle = dropdown ? dropdown.querySelector(".dropdown-toggle") : null;
+
+  function setDropdown(open) {
+    if (!dropdown || !dropdownToggle) return;
+    dropdown.classList.toggle("open", !!open);
+    dropdownToggle.setAttribute("aria-expanded", String(!!open));
+  }
+
+  function toggleDropdown() {
+    if (!dropdown) return;
+    setDropdown(!dropdown.classList.contains("open"));
+  }
+
+  if (dropdown && dropdownToggle) {
+    dropdownToggle.addEventListener("click", function (e) {
+      // Knappen skal kun åbne/lukke dropdown – ikke navigere
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDropdown();
+    });
+
+    // Luk dropdown ved klik udenfor (gælder både mobil og desktop)
+    document.addEventListener("click", function (e) {
+      if (!dropdown.classList.contains("open")) return;
+      if (dropdown.contains(e.target)) return;
+      setDropdown(false);
+    });
+
+    // Luk dropdown med ESC når fokus er i dropdown
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      if (!dropdown.classList.contains("open")) return;
+
+      const active = document.activeElement;
+      if (active && dropdown.contains(active)) {
+        setDropdown(false);
+        dropdownToggle.focus();
+      }
+    });
+  }
+
   navToggle.addEventListener("click", function () {
     siteNav.classList.toggle("open");
 
     const isOpen = siteNav.classList.contains("open");
     navToggle.setAttribute("aria-expanded", String(isOpen));
     navToggle.setAttribute("aria-label", isOpen ? "Luk menu" : "Åbn menu");
+
+    // Hvis mobilmenuen lukkes, så luk også dropdown
+    if (!isOpen) setDropdown(false);
   });
 
   document.addEventListener("click", function (e) {
@@ -58,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
       siteNav.classList.remove("open");
       navToggle.setAttribute("aria-expanded", "false");
       navToggle.setAttribute("aria-label", "Åbn menu");
+      setDropdown(false);
     }
   });
 
@@ -66,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
       siteNav.classList.remove("open");
       navToggle.setAttribute("aria-expanded", "false");
       navToggle.setAttribute("aria-label", "Åbn menu");
+      setDropdown(false);
     }
   });
 });
