@@ -83,17 +83,17 @@ body {
   display: block;
 }
 
-.site-nav > ul {
+.site-nav ul {
   list-style: none;
   display: flex;
   align-items: center;
 }
 
 /* Lidt mere kompakt spacing */
-.site-nav > ul > li {
+.site-nav li {
   margin-left: 0.5rem;
 }
-.site-nav > ul > li:first-child {
+.site-nav li:first-child {
   margin-left: 0;
 }
 
@@ -109,116 +109,123 @@ body {
   color: #0E3195;
 }
 
-
 /* Dropdown (Ydelser) */
-.site-nav .dropdown{
+.site-nav .has-dropdown{
   position: relative;
+}
+
+.site-nav .dropdown-trigger{
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .site-nav .dropdown-link{
-  padding-right: 0.25rem;
+  padding-right: 0.35rem;
 }
 
 .site-nav .dropdown-toggle{
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem 0.6rem 0.5rem 0.25rem;
+  color: #333;
+  padding: 0.5rem 0.55rem 0.5rem 0.25rem;
+  font-size: 0.95rem;
   line-height: 1;
-  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.2s;
 }
 
-.site-nav .dropdown-toggle:hover,
-.site-nav .dropdown-toggle:focus-visible{
+.site-nav .dropdown-toggle:hover{
   color: #0E3195;
 }
 
-.site-nav .dropdown-caret{
-  font-size: 0.85rem;
+.site-nav .dropdown-toggle:focus-visible{
+  outline: 3px solid rgba(14,49,149,0.35);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 .site-nav .dropdown-menu{
-  display: none;
   list-style: none;
   margin: 0;
   padding: 0.35rem 0;
+  display: none;
   background: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  min-width: 240px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   z-index: 1200;
-  width: 100%;
-}
-
-.site-nav .dropdown.open > .dropdown-menu,
-.site-nav .dropdown:hover > .dropdown-menu,
-.site-nav .dropdown:focus-within > .dropdown-menu{
-  display: block;
 }
 
 .site-nav .dropdown-menu li{
   margin: 0;
-  padding: 0;
-  border: 0;
 }
 
 .site-nav .dropdown-menu li + li{
   margin-left: 0;
   padding-left: 0;
   border-left: none;
+  border-top: 1px solid #eee;
 }
 
 .site-nav .dropdown-menu a{
-  padding: 0.55rem 0.9rem;
+  padding: 0.65rem 0.9rem;
   white-space: nowrap;
 }
 
-.site-nav .dropdown-menu a:hover,
-.site-nav .dropdown-menu a:focus-visible{
-  background: rgba(14,49,149,0.06);
-  color: #0E3195;
+.site-nav .has-dropdown.dropdown-open .dropdown-menu{
+  display: block;
 }
 
+.site-nav .has-dropdown.dropdown-open .dropdown-toggle{
+  transform: rotate(180deg);
+}
+
+/* Desktop: dropdown som flydende panel */
 @media (min-width: 768px){
-  .site-nav .dropdown{
-    flex-wrap: nowrap;
-  }
   .site-nav .dropdown-menu{
     position: absolute;
     top: calc(100% + 6px);
     left: 0;
-    width: auto;
+    min-width: 260px;
+  }
+
+  /* Hover/fokus: vis dropdown på desktop */
+  .site-nav .has-dropdown:hover .dropdown-menu,
+  .site-nav .has-dropdown:focus-within .dropdown-menu{
+    display: block;
   }
 }
 
+/* Mobil: dropdown som "accordion" i mobilmenuen */
 @media (max-width: 767px){
-  /* På mobil åbnes dropdown kun via klik (class .open) */
-  .site-nav .dropdown:hover > .dropdown-menu,
-  .site-nav .dropdown:focus-within > .dropdown-menu{
-    display: none;
+  .site-nav .has-dropdown{
+    width: 100%;
   }
 
-  .site-nav .dropdown.open > .dropdown-menu{
-    display: block;
+  .site-nav .dropdown-trigger{
+    width: 100%;
+    justify-content: space-between;
   }
 
   .site-nav .dropdown-menu{
     position: static;
-    box-shadow: none;
     border: none;
     border-radius: 0;
-    padding: 0.15rem 0 0.5rem;
-    background: transparent;
+    box-shadow: none;
+    padding: 0;
   }
 
   .site-nav .dropdown-menu a{
-    padding: 0.65rem 1rem 0.65rem 1.6rem;
-    white-space: normal;
+    padding-left: 1.35rem;
   }
+
+  .site-nav .dropdown-menu li{
+    border-bottom: none;
+  }
+
 }
 
 /* Telefon-knap i nav */
@@ -465,13 +472,13 @@ body a:hover {
     display: block !important;
   }
 
-  .site-nav > ul {
+  .site-nav ul {
     gap: 0;
   }
-  .site-nav > ul > li {
+  .site-nav li {
     margin-left: 0;
   }
-  .site-nav > ul > li + li {
+  .site-nav li + li {
     margin-left: 0.6rem;
     padding-left: 0.6rem;
     border-left: 1px solid #e0e0e0;
@@ -508,14 +515,14 @@ body a:hover {
   .site-nav.open {
     display: block;
   }
-  .site-nav > ul {
+  .site-nav ul {
     flex-direction: column;
   }
-  .site-nav > ul > li {
+  .site-nav li {
     margin: 0;
     border-bottom: 1px solid #eee;
   }
-  .site-nav > ul > li:last-child {
+  .site-nav li:last-child {
     border-bottom: none;
   }
   .site-nav a {
