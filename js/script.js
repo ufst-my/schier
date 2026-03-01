@@ -32,7 +32,6 @@ function resolveAssetPath(path) {
   return clean;
 }
 
-
 // Mobilmenu + dropdown (Ydelser): åbn/luk + luk ved klik udenfor og ESC
 document.addEventListener("DOMContentLoaded", function () {
   const navToggle = document.querySelector(".nav-toggle");
@@ -43,6 +42,41 @@ document.addEventListener("DOMContentLoaded", function () {
   const dropdownBtn = servicesDropdown ? servicesDropdown.querySelector(".dropdown-toggle") : null;
   const dropdownMenu = servicesDropdown ? servicesDropdown.querySelector(".dropdown-menu") : null;
 
+  // Markér aktiv side i menuen (gør link bold via CSS)
+  (function setActiveNavLink(){
+    const links = document.querySelectorAll('.site-nav a[href]');
+    if (!links.length) return;
+  
+    const normalize = (p) => {
+      if (!p) return "/";
+      p = p.replace(/\/index\.html$/i, "/");
+      p = p.split("?")[0].split("#")[0];
+      if (p.length > 1) p = p.replace(/\/+$/g, "");
+      return p || "/";
+    };
+  
+    const current = normalize(window.location.pathname);
+  
+    links.forEach(a => a.removeAttribute("aria-current"));
+  
+    let best = null;
+    links.forEach(a => {
+      const href = a.getAttribute("href") || "";
+      if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("#")) return;
+  
+      let linkPath = "/";
+      try {
+        linkPath = normalize(new URL(a.href, window.location.origin).pathname);
+      } catch (e) {
+        return;
+      }
+  
+      if (linkPath === current) best = a;
+    });
+  
+    if (best) best.setAttribute("aria-current", "page");
+  })();
+  
   function isDesktop() {
     return window.matchMedia("(min-width: 768px)").matches;
   }
@@ -82,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const open = !servicesDropdown.classList.contains("dropdown-open");
       setDropdownOpen(open);
     });
-
+   
     // Desktop: åbn ved hover/fokus
     servicesDropdown.addEventListener("mouseenter", function () {
       if (isDesktop()) setDropdownOpen(true);
@@ -157,45 +191,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
-// Markér aktiv side i menuen (gør link bold via CSS)
-(function setActiveNavLink(){
-  const links = document.querySelectorAll('.site-nav a[href]');
-  if (!links.length) return;
-
-  const normalize = (p) => {
-    if (!p) return "/";
-    // fjern index.html og trailing slash (undtagen root)
-    p = p.replace(/\/index\.html$/i, "/");
-    p = p.split("?")[0].split("#")[0];
-    if (p.length > 1) p = p.replace(/\/+$/g, "");
-    return p || "/";
-  };
-
-  const current = normalize(window.location.pathname);
-
-  // ryd tidligere markering
-  links.forEach(a => a.removeAttribute("aria-current"));
-
-  // find bedste match (eksakt path-match)
-  let best = null;
-
-  links.forEach(a => {
-    const href = a.getAttribute("href") || "";
-    if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("#")) return;
-
-    let linkPath = "/";
-    try {
-      linkPath = normalize(new URL(a.href, window.location.origin).pathname);
-    } catch (e) {
-      return;
-    }
-
-    if (linkPath === current) best = a;
-  });
-
-  if (best) best.setAttribute("aria-current", "page");
-})();
 
 document.addEventListener("DOMContentLoaded", () => {
   // Anmeldelser (data)
