@@ -128,13 +128,16 @@ body {
   border: none;
   cursor: pointer;
   color: #333;
-  padding: 0.5rem 0.55rem 0.5rem 0.25rem;
-  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.05rem;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: color 0.2s, transform 0.2s;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 10px; /* gør fokus/hover-område tydeligere */
 }
 
 .site-nav .dropdown-toggle:hover{
