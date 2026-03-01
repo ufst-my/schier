@@ -1,3 +1,38 @@
+// Asset-resolver: gør billedstier robuste på både forside og undersider
+const __SCRIPT_SRC__ = (() => {
+  try {
+    // Under parsing er document.currentScript typisk sat
+    if (document.currentScript && document.currentScript.src) return document.currentScript.src;
+
+    // Fallback: find seneste script-tag der peger på script.js
+    const scripts = document.getElementsByTagName("script");
+    for (let i = scripts.length - 1; i >= 0; i--) {
+      const src = scripts[i].getAttribute("src") || "";
+      if (src && src.includes("script.js")) return new URL(src, document.baseURI).toString();
+    }
+  } catch (e) {}
+  return null;
+})();
+
+function resolveAssetPath(path) {
+  if (!path) return path;
+
+  // Eksterne/data-URL'er bruges som de er
+  if (/^(https?:)?\/\//i.test(path) || path.startsWith("data:")) return path;
+
+  // Normalisér til "site-root relativ" sti (uden indledende /)
+  const clean = path.replace(/^\//, "").replace(/^\.\//, "");
+
+  // Hvis vi kender scriptets placering (…/js/script.js), så kan vi altid gå op til site-roden
+  if (__SCRIPT_SRC__) {
+    return new URL("../" + clean, __SCRIPT_SRC__).toString();
+  }
+
+  // Sidste udvej: returnér som relativ sti
+  return clean;
+}
+
+
 // Mobilmenu: åbn/luk + luk ved klik udenfor og ESC
 document.addEventListener("DOMContentLoaded", function () {
   const navToggle = document.querySelector(".nav-toggle");
@@ -40,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const REVIEWS = [
     {
       name: "Laura Aagaard",
-      avatar: "/images/reviews/laura.avif",
+      avatar: "images/reviews/laura.avif",
       stars: 5,
       text: "Vi er virkelig glade for Schier rengøring…",
       source: "Google",
@@ -48,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "zoob77",
-      avatar: "/images/reviews/zoob.avif",
+      avatar: "images/reviews/zoob.avif",
       stars: 5,
       text: "Intet at udsætte…",
       source: "Google",
@@ -56,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Joachim Rehder",
-      avatar: "/images/reviews/joachim.avif",
+      avatar: "images/reviews/joachim.avif",
       stars: 5,
       text: " ",
       source: "Google",
@@ -64,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Hanne Bruhn",
-      avatar: "/images/reviews/hanneb.avif",
+      avatar: "images/reviews/hanneb.avif",
       stars: 5,
       text: "rengøring i top, altid sød og venlig betjening…",
       source: "Google",
@@ -72,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Rene Dissing",
-      avatar: "/images/reviews/rene.avif",
+      avatar: "images/reviews/rene.avif",
       stars: 5,
       text: "Bestilte en \"total\" rengøring af mit hus (3 etager)…",
       source: "Google",
@@ -80,15 +115,15 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Hanne Jørgensen",
-      avatar: "/images/reviews/hanne.avif",
+      avatar: "images/reviews/hanne.avif",
       stars: 4,
       text: " ",
       source: "Google",
-      url: "https://maps.app.goo.gl/VfsHhK9Xv8yfgtBy5"
+      url: "https://www.google.com/search?sa=X&sca_esv=21a016e0095234e7&sxsrf=AE3TifOEgnrjS0W1IVIML42CZn4LbGVAwQ:1767396192285&q=Schier+Reng%C3%B8ring+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDQ3MDY0Mzc0NzW1tDA3sDAystjAyPiKUTY4OSMztUghKDUv_fCOosy8dAXHvNzUnJTUnOLUokWs-OUBjmeNplsAAAA&rldimm=11703167175598708228&tbm=lcl&hl=da-DK&ved=2ahUKEwiPxt_x_-2RAxWGRPEDHVu6Gx8Q9fQKegQIRxAG&biw=1680&bih=881&dpr=1#lkt=LocalPoiReviews"
     },
     {
       name: "Jonas Schnack Krog",
-      avatar: "/images/reviews/jonas.avif",
+      avatar: "images/reviews/jonas.avif",
       stars: 5,
       text: "God og solid rengøring med god kommunikation…",
       source: "Google",
@@ -96,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Tina Katja Lund Andersen",
-      avatar: "/images/reviews/tina.avif",
+      avatar: "images/reviews/tina.avif",
       stars: 5,
       text: "Super god oplevelse, både før, under og efter…",
       source: "Trustpilot",
@@ -104,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       name: "Lotte Nielsen",
-      avatar: "/images/reviews/lotte.avif",
+      avatar: "images/reviews/lotte.avif",
       stars: 5,
       text: "Bestilte en fllytteflytterengøring…",
       source: "Trustpilot",
@@ -157,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     card.href = r.url || "#";
 
-    avatar.src = r.avatar || "";
+    avatar.src = resolveAssetPath(r.avatar || "");
     avatar.alt = r.name ? `Billede af ${r.name}` : "Anmelder";
 
     nameEl.textContent = r.name || "";
