@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       stars: 4,
       text: " ",
       source: "Google",
-      url: "https://www.google.com/search?sa=X&sca_esv=21a016e0095234e7&sxsrf=AE3TifOEgnrjS0W1IVIML42CZn4LbGVAwQ:1767396192285&q=Schier+Reng%C3%B8ring+Anmeldelser&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNDQ3MDY0Mzc0NzW1tDA3sDAystjAyPiKUTY4OSMztUghKDUv_fCOosy8dAXHvNzUnJTUnOLUokWs-OUBjmeNplsAAAA&rldimm=11703167175598708228&tbm=lcl&hl=da-DK&ved=2ahUKEwiPxt_x_-2RAxWGRPEDHVu6Gx8Q9fQKegQIRxAG&biw=1680&bih=881&dpr=1#lkt=LocalPoiReviews"
+      url: "https://maps.app.goo.gl/owZijKgQfCmGVFgj8"
     },
     {
       name: "Jonas Schnack Krog",
