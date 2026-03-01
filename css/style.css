@@ -325,6 +325,11 @@ body a:hover {
   text-underline-offset: 3px;
 }
 
+/* Match samme afgrænsning som service-content */
+.cta-contact__inner{
+  max-width: 920px;
+}
+
 /* Footer */
 .site-footer {
   background: #333;
