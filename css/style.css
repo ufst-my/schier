@@ -75,6 +75,11 @@ body {
   display: block;
 }
 
+/* Aktiv side i menuen */
+.site-nav a[aria-current="page"]{
+  font-weight: 700;
+}
+
 /* Menu (desktop skjult på mobil) */
 .site-nav {
   display: none;
