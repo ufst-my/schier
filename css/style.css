@@ -83,17 +83,17 @@ body {
   display: block;
 }
 
-.site-nav ul {
+.site-nav > ul {
   list-style: none;
   display: flex;
   align-items: center;
 }
 
 /* Lidt mere kompakt spacing */
-.site-nav li {
+.site-nav > ul > li {
   margin-left: 0.5rem;
 }
-.site-nav li:first-child {
+.site-nav > ul > li:first-child {
   margin-left: 0;
 }
 
@@ -107,6 +107,118 @@ body {
 }
 .site-nav a:hover {
   color: #0E3195;
+}
+
+
+/* Dropdown (Ydelser) */
+.site-nav .dropdown{
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.site-nav .dropdown-link{
+  padding-right: 0.25rem;
+}
+
+.site-nav .dropdown-toggle{
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0.6rem 0.5rem 0.25rem;
+  line-height: 1;
+  color: inherit;
+}
+
+.site-nav .dropdown-toggle:hover,
+.site-nav .dropdown-toggle:focus-visible{
+  color: #0E3195;
+}
+
+.site-nav .dropdown-caret{
+  font-size: 0.85rem;
+}
+
+.site-nav .dropdown-menu{
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem 0;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  min-width: 240px;
+  z-index: 1200;
+  width: 100%;
+}
+
+.site-nav .dropdown.open > .dropdown-menu,
+.site-nav .dropdown:hover > .dropdown-menu,
+.site-nav .dropdown:focus-within > .dropdown-menu{
+  display: block;
+}
+
+.site-nav .dropdown-menu li{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.site-nav .dropdown-menu li + li{
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+}
+
+.site-nav .dropdown-menu a{
+  padding: 0.55rem 0.9rem;
+  white-space: nowrap;
+}
+
+.site-nav .dropdown-menu a:hover,
+.site-nav .dropdown-menu a:focus-visible{
+  background: rgba(14,49,149,0.06);
+  color: #0E3195;
+}
+
+@media (min-width: 768px){
+  .site-nav .dropdown{
+    flex-wrap: nowrap;
+  }
+  .site-nav .dropdown-menu{
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    width: auto;
+  }
+}
+
+@media (max-width: 767px){
+  /* På mobil åbnes dropdown kun via klik (class .open) */
+  .site-nav .dropdown:hover > .dropdown-menu,
+  .site-nav .dropdown:focus-within > .dropdown-menu{
+    display: none;
+  }
+
+  .site-nav .dropdown.open > .dropdown-menu{
+    display: block;
+  }
+
+  .site-nav .dropdown-menu{
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    padding: 0.15rem 0 0.5rem;
+    background: transparent;
+  }
+
+  .site-nav .dropdown-menu a{
+    padding: 0.65rem 1rem 0.65rem 1.6rem;
+    white-space: normal;
+  }
 }
 
 /* Telefon-knap i nav */
@@ -353,13 +465,13 @@ body a:hover {
     display: block !important;
   }
 
-  .site-nav ul {
+  .site-nav > ul {
     gap: 0;
   }
-  .site-nav li {
+  .site-nav > ul > li {
     margin-left: 0;
   }
-  .site-nav li + li {
+  .site-nav > ul > li + li {
     margin-left: 0.6rem;
     padding-left: 0.6rem;
     border-left: 1px solid #e0e0e0;
@@ -396,14 +508,14 @@ body a:hover {
   .site-nav.open {
     display: block;
   }
-  .site-nav ul {
+  .site-nav > ul {
     flex-direction: column;
   }
-  .site-nav li {
+  .site-nav > ul > li {
     margin: 0;
     border-bottom: 1px solid #eee;
   }
-  .site-nav li:last-child {
+  .site-nav > ul > li:last-child {
     border-bottom: none;
   }
   .site-nav a {
