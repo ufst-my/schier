@@ -129,7 +129,8 @@ body {
   cursor: pointer;
   color: #333;
   padding: 0.5rem 0.75rem;
-  font-size: 1.05rem;
+  font-size: 1.35rem;
+  font-weight: 700;
   line-height: 1;
   display: inline-flex;
   align-items: center;
