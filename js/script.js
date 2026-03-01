@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Markér aktiv side i menuen (gør link bold via CSS)
   (function setActiveNavLink(){
-    const links = document.querySelectorAll('.site-nav a[href]');
+    const links = Array.from(document.querySelectorAll(".site-nav a[href]"));
     if (!links.length) return;
   
     const normalize = (p) => {
@@ -55,26 +55,61 @@ document.addEventListener("DOMContentLoaded", function () {
       return p || "/";
     };
   
+    // Aktuel sti (kan være /schier/ydelser/... eller /ydelser/...)
     const current = normalize(window.location.pathname);
   
+    // Ryd tidligere markering
     links.forEach(a => a.removeAttribute("aria-current"));
   
+    // Vælg bedste match (eksakt eller "samme sti i undermappe")
     let best = null;
+    let bestLen = -1;
+  
     links.forEach(a => {
       const href = a.getAttribute("href") || "";
       if (!href || href.startsWith("tel:") || href.startsWith("mailto:") || href.startsWith("#")) return;
   
       let linkPath = "/";
       try {
-        linkPath = normalize(new URL(a.href, window.location.origin).pathname);
+        // Brug location.href for robust parsing (lokalt/produktionen/undermapper)
+        linkPath = normalize(new URL(a.getAttribute("href"), window.location.href).pathname);
       } catch (e) {
         return;
       }
   
-      if (linkPath === current) best = a;
+      // Undgå at "/" (forside) matcher "alt"
+      if (linkPath === "/") return;
+  
+      // Match-strategier (host-agnostisk):
+      // 1) Eksakt: /ydelser/kontorrengoring == /ydelser/kontorrengoring
+      // 2) Prefix: /ydelser matcher /ydelser/kontorrengoring
+      // 3) Suffix: /ydelser/kontorrengoring matcher /schier/ydelser/kontorrengoring
+      // 4) Contained: /ydelser/ matcher /schier/ydelser/...
+      const isExact = (linkPath === current);
+      const isPrefix = current.startsWith(linkPath + "/");
+      const isSuffix = current.endsWith(linkPath);
+      const isContained = current.includes(linkPath + "/");
+  
+      if (isExact || isPrefix || isSuffix || isContained) {
+        if (linkPath.length > bestLen) {
+          best = a;
+          bestLen = linkPath.length;
+        }
+      }
     });
   
     if (best) best.setAttribute("aria-current", "page");
+  
+    // Hvis aktivt link er i dropdown, markér også parent ("Ydelser")
+    if (best) {
+      const dropdownParent = best.closest(".dropdown-menu")?.closest(".has-dropdown");
+      if (dropdownParent) {
+        const parentLink = dropdownParent.querySelector(".dropdown-link");
+        if (parentLink && !parentLink.hasAttribute("aria-current")) {
+          parentLink.setAttribute("aria-current", "true");
+        }
+      }
+    }
   })();
   
   function isDesktop() {
