@@ -187,19 +187,17 @@
 
       <nav class="site-nav" id="siteNav" aria-label="Hovedmenu">
         <ul>
-          <li class="has-dropdown">
-            <div class="dropdown-trigger">
-              <a href="https://www.schier.dk/ydelser" class="dropdown-link">Ydelser</a>
-              <button
-                class="dropdown-toggle"
-                type="button"
-                aria-label="Åbn undermenu for Ydelser"
-                aria-expanded="false"
-                aria-controls="submenu-services"
-              >▾</button>
-            </div>
+          <li class="nav-item dropdown" data-dropdown>
+            <a href="https://www.schier.dk/ydelser" class="dropdown-link">Ydelser</a>
+            <button
+              class="dropdown-toggle"
+              type="button"
+              aria-label="Vis ydelser"
+              aria-haspopup="true"
+              aria-expanded="false"
+            ><span class="dropdown-caret" aria-hidden="true">▾</span></button>
 
-            <ul class="dropdown-menu" id="submenu-services">
+            <ul class="dropdown-menu" aria-label="Ydelser undermenu">
               <li><a href="https://www.schier.dk/ydelser/kontorrengoring/">Kontorrengøring</a></li>
               <li><a href="https://www.schier.dk/ydelser/institutionsrengoring/">Institutioner</a></li>
               <li><a href="https://www.schier.dk/ydelser/butiksrengoring/">Butiksrengøring</a></li>
@@ -211,7 +209,6 @@
               <li><a href="https://www.schier.dk/ydelser/skurvognsrengoring/">Skurvognsrengøring</a></li>
             </ul>
           </li>
-
           <li><a href="https://www.schier.dk/om-os">Om os</a></li>
           <li><a href="https://www.schier.dk/kontakt">Kontakt</a></li>
 
