@@ -33,89 +33,129 @@ function resolveAssetPath(path) {
 }
 
 
-// Mobilmenu: åbn/luk + luk ved klik udenfor og ESC
+// Mobilmenu + dropdown (Ydelser): åbn/luk + luk ved klik udenfor og ESC
 document.addEventListener("DOMContentLoaded", function () {
   const navToggle = document.querySelector(".nav-toggle");
   const siteNav = document.querySelector(".site-nav");
 
-  if (!navToggle || !siteNav) return;
+  // Dropdown (Ydelser)
+  const servicesDropdown = document.querySelector(".site-nav .has-dropdown");
+  const dropdownBtn = servicesDropdown ? servicesDropdown.querySelector(".dropdown-toggle") : null;
+  const dropdownMenu = servicesDropdown ? servicesDropdown.querySelector(".dropdown-menu") : null;
 
-  // Dropdown (Ydelser) – fungerer på både mobil og desktop
-  const dropdown = siteNav.querySelector("[data-dropdown]");
-  const dropdownToggle = dropdown ? dropdown.querySelector(".dropdown-toggle") : null;
-
-  function setDropdown(open) {
-    if (!dropdown || !dropdownToggle) return;
-    dropdown.classList.toggle("open", !!open);
-    dropdownToggle.setAttribute("aria-expanded", String(!!open));
+  function isDesktop() {
+    return window.matchMedia("(min-width: 768px)").matches;
   }
 
-  function toggleDropdown() {
-    if (!dropdown) return;
-    setDropdown(!dropdown.classList.contains("open"));
+  function setMobileMenuOpen(open) {
+    if (!navToggle || !siteNav) return;
+
+    siteNav.classList.toggle("open", open);
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute("aria-label", open ? "Luk menu" : "Åbn menu");
+
+    // Når mobilmenu lukkes, skal dropdown også lukkes
+    if (!open) setDropdownOpen(false);
   }
 
-  if (dropdown && dropdownToggle) {
-    dropdownToggle.addEventListener("click", function (e) {
-      // Knappen skal kun åbne/lukke dropdown – ikke navigere
+  function setDropdownOpen(open) {
+    if (!servicesDropdown || !dropdownBtn) return;
+
+    servicesDropdown.classList.toggle("dropdown-open", open);
+    dropdownBtn.setAttribute("aria-expanded", String(open));
+  }
+
+  // Mobilmenu toggle
+  if (navToggle && siteNav) {
+    navToggle.addEventListener("click", function () {
+      const open = !siteNav.classList.contains("open");
+      setMobileMenuOpen(open);
+    });
+  }
+
+  // Dropdown toggle (klik på pilen)
+  if (servicesDropdown && dropdownBtn) {
+    dropdownBtn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
-      toggleDropdown();
+
+      const open = !servicesDropdown.classList.contains("dropdown-open");
+      setDropdownOpen(open);
     });
 
-    // Luk dropdown ved klik udenfor (gælder både mobil og desktop)
-    document.addEventListener("click", function (e) {
-      if (!dropdown.classList.contains("open")) return;
-      if (dropdown.contains(e.target)) return;
-      setDropdown(false);
+    // Desktop: åbn ved hover/fokus
+    servicesDropdown.addEventListener("mouseenter", function () {
+      if (isDesktop()) setDropdownOpen(true);
     });
 
-    // Luk dropdown med ESC når fokus er i dropdown
-    document.addEventListener("keydown", function (e) {
-      if (e.key !== "Escape") return;
-      if (!dropdown.classList.contains("open")) return;
+    servicesDropdown.addEventListener("mouseleave", function () {
+      if (isDesktop()) setDropdownOpen(false);
+    });
 
-      const active = document.activeElement;
-      if (active && dropdown.contains(active)) {
-        setDropdown(false);
-        dropdownToggle.focus();
+    servicesDropdown.addEventListener("focusin", function () {
+      if (isDesktop()) setDropdownOpen(true);
+    });
+
+    servicesDropdown.addEventListener("focusout", function () {
+      if (!isDesktop()) return;
+
+      // Luk kun når fokus forlader dropdown'en helt
+      setTimeout(() => {
+        if (servicesDropdown && !servicesDropdown.contains(document.activeElement)) {
+          setDropdownOpen(false);
+        }
+      }, 0);
+    });
+  }
+
+  // Klik udenfor: luk dropdown og/eller mobilmenu
+  document.addEventListener("click", function (e) {
+    const target = e.target;
+
+    // Luk mobilmenu hvis åben og der klikkes udenfor
+    if (navToggle && siteNav && siteNav.classList.contains("open")) {
+      const clickedInsideNav = siteNav.contains(target);
+      const clickedToggle = navToggle.contains(target);
+
+      if (!clickedInsideNav && !clickedToggle) {
+        setMobileMenuOpen(false);
+        return;
+      }
+    }
+
+    // Luk dropdown hvis der klikkes udenfor dropdown'en
+    if (servicesDropdown && servicesDropdown.classList.contains("dropdown-open")) {
+      const clickedInsideDropdown = servicesDropdown.contains(target);
+      if (!clickedInsideDropdown) setDropdownOpen(false);
+    }
+  });
+
+  // ESC: luk alt (dropdown først)
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+
+    if (servicesDropdown && servicesDropdown.classList.contains("dropdown-open")) {
+      setDropdownOpen(false);
+    }
+
+    if (siteNav && siteNav.classList.contains("open")) {
+      setMobileMenuOpen(false);
+    }
+  });
+
+  // Klik på undermenu-link: luk dropdown (og mobilmenu på mobil)
+  if (dropdownMenu) {
+    dropdownMenu.addEventListener("click", function (e) {
+      const a = e.target.closest("a");
+      if (!a) return;
+
+      setDropdownOpen(false);
+
+      if (!isDesktop()) {
+        setMobileMenuOpen(false);
       }
     });
   }
-
-  navToggle.addEventListener("click", function () {
-    siteNav.classList.toggle("open");
-
-    const isOpen = siteNav.classList.contains("open");
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-    navToggle.setAttribute("aria-label", isOpen ? "Luk menu" : "Åbn menu");
-
-    // Hvis mobilmenuen lukkes, så luk også dropdown
-    if (!isOpen) setDropdown(false);
-  });
-
-  document.addEventListener("click", function (e) {
-    if (!siteNav.classList.contains("open")) return;
-
-    const clickedInsideNav = siteNav.contains(e.target);
-    const clickedToggle = navToggle.contains(e.target);
-
-    if (!clickedInsideNav && !clickedToggle) {
-      siteNav.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "Åbn menu");
-      setDropdown(false);
-    }
-  });
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && siteNav.classList.contains("open")) {
-      siteNav.classList.remove("open");
-      navToggle.setAttribute("aria-expanded", "false");
-      navToggle.setAttribute("aria-label", "Åbn menu");
-      setDropdown(false);
-    }
-  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
