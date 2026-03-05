@@ -60,191 +60,245 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <!-- Structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "LocalBusiness",
-        "additionalType": "https://schema.org/CleaningService",
-        "@id": "https://www.schier.dk/#company",
-        "name": "Schier Professionel Rengøring",
-        "url": "https://www.schier.dk/",
-        "description": "Professionel erhvervsrengøring på Lolland-Falster. Vi tilbyder alt fra kontorrengøring og trappevask til rengøring af butik, klinik og skurvogne. Få et gratis tilbud i dag!",
-        "telephone": "+4550507665",
-        "email": "my@schier.dk",
-        "vatID": "DK38199633",
-        "taxID": "38199633",
-        "logo": {
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "additionalType": "https://schema.org/CleaningService",
+      "@id": "https://www.schier.dk/#company",
+      "name": "Schier Professionel Rengøring",
+      "url": "https://www.schier.dk/",
+      "description": "Professionel erhvervsrengøring på Lolland-Falster. Vi tilbyder alt fra kontorrengøring og trappevask til rengøring af butik, klinik og skurvogne. Få et gratis tilbud i dag!",
+      "telephone": "+4550507665",
+      "email": "my@schier.dk",
+      "vatID": "DK38199633",
+      "taxID": "38199633",
+      "logo": {
+        "@id": "https://www.schier.dk/#logo"
+      },
+      "image": [
+        {
           "@id": "https://www.schier.dk/#logo"
-        },
-        "image": [
-          {
-            "@id": "https://www.schier.dk/#logo"
-          }
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Folemarken 59",
-          "postalCode": "4800",
-          "addressLocality": "Nykøbing F",
-          "addressCountry": "DK"
-        },
-        "areaServed": [
-          { "@type": "AdministrativeArea", "name": "Lolland" },
-          { "@type": "AdministrativeArea", "name": "Falster" }
-        ],
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
-            "closes": "16:00"
-          }
-        ],
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 54.75525589008013,
-          "longitude": 11.899858768549127
-        },
-        "priceRange": "$$",
-        "serviceArea": {
-          "@type": "AdministrativeArea",
-          "name": "Lolland-Falster"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Ydelser",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Kontorrengøring",
-                "url": "https://www.schier.dk/ydelser/kontorrengoring/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Institutioner",
-                "url": "https://www.schier.dk/ydelser/institutionsrengoring/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Butiksrengøring",
-                "url": "https://www.schier.dk/ydelser/butiksrengoring/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Klinikrengøring",
-                "url": "https://www.schier.dk/ydelser/klinikrengoring/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Restaurantrengøring",
-                "url": "https://www.schier.dk/ydelser/restaurantrengoring/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Fabriksrengøring",
-                "url": "https://www.schier.dk/ydelser/fabriksrengoring/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Rengøring af sportshaller",
-                "url": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Trappevask",
-                "url": "https://www.schier.dk/ydelser/trappevask/"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Skurvognsrengøring",
-                "url": "https://www.schier.dk/ydelser/skurvognsrengoring/"
-              }
-            }
-          ]
         }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Folemarken 59",
+        "postalCode": "4800",
+        "addressLocality": "Nykøbing F",
+        "addressCountry": "DK"
       },
-      {
-        "@type": "ImageObject",
-        "@id": "https://www.schier.dk/#logo",
-        "url": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg",
-        "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.schier.dk/#website",
-        "url": "https://www.schier.dk/",
-        "name": "Schier Professionel Rengøring",
-        "inLanguage": "da-DK",
-        "publisher": {
-          "@id": "https://www.schier.dk/#company"
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Lolland" },
+        { "@type": "AdministrativeArea", "name": "Falster" }
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "16:00"
         }
+      ],
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 54.75525589008013,
+        "longitude": 11.899858768549127
       },
-      {
-        "@type": "WebPage",
-        "@id": "https://www.schier.dk/#webpage",
-        "url": "https://www.schier.dk/",
-        "name": "Schier Rengøring - Nykøbing F | Erhvervsrengøring på Lolland-Falster",
-        "description": "Professionel erhvervsrengøring på Lolland-Falster. Vi tilbyder alt fra kontorrengøring og trappevask til rengøring af butik, klinik og skurvogne. Få et gratis tilbud i dag!",
-        "inLanguage": "da-DK",
-        "isPartOf": {
-          "@id": "https://www.schier.dk/#website"
-        },
-        "about": {
-          "@id": "https://www.schier.dk/#company"
-        },
-        "publisher": {
-          "@id": "https://www.schier.dk/#company"
-        },
-        "primaryImageOfPage": {
-          "@id": "https://www.schier.dk/#logo"
-        },
-        "breadcrumb": {
-          "@id": "https://www.schier.dk/#breadcrumb"
-        }
+      "priceRange": "$$",
+      "serviceArea": {
+        "@type": "AdministrativeArea",
+        "name": "Lolland-Falster"
       },
-      {
-        "@type": "BreadcrumbList",
-        "@id": "https://www.schier.dk/#breadcrumb",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ydelser",
         "itemListElement": [
           {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Forside",
-            "item": "https://www.schier.dk/"
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Kontorrengøring",
+              "url": "https://www.schier.dk/ydelser/kontorrengoring/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Institutioner",
+              "url": "https://www.schier.dk/ydelser/institutionsrengoring/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Butiksrengøring",
+              "url": "https://www.schier.dk/ydelser/butiksrengoring/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Klinikrengøring",
+              "url": "https://www.schier.dk/ydelser/klinikrengoring/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Restaurantrengøring",
+              "url": "https://www.schier.dk/ydelser/restaurantrengoring/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Fabriksrengøring",
+              "url": "https://www.schier.dk/ydelser/fabriksrengoring/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Rengøring af sportshaller",
+              "url": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Trappevask",
+              "url": "https://www.schier.dk/ydelser/trappevask/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Skurvognsrengøring",
+              "url": "https://www.schier.dk/ydelser/skurvognsrengoring/"
+            }
           }
         ]
       }
-    ]
-  }
-  </script>
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://www.schier.dk/#logo",
+      "url": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg",
+      "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.schier.dk/#website",
+      "url": "https://www.schier.dk/",
+      "name": "Schier Professionel Rengøring",
+      "inLanguage": "da-DK",
+      "publisher": {
+        "@id": "https://www.schier.dk/#company"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.schier.dk/#webpage",
+      "url": "https://www.schier.dk/",
+      "name": "Schier Rengøring - Nykøbing F | Erhvervsrengøring på Lolland-Falster",
+      "description": "Professionel erhvervsrengøring på Lolland-Falster. Vi tilbyder alt fra kontorrengøring og trappevask til rengøring af butik, klinik og skurvogne. Få et gratis tilbud i dag!",
+      "inLanguage": "da-DK",
+      "isPartOf": {
+        "@id": "https://www.schier.dk/#website"
+      },
+      "about": {
+        "@id": "https://www.schier.dk/#company"
+      },
+      "publisher": {
+        "@id": "https://www.schier.dk/#company"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://www.schier.dk/#logo"
+      },
+      "breadcrumb": {
+        "@id": "https://www.schier.dk/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.schier.dk/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Forside",
+          "item": "https://www.schier.dk/"
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hvilke byer dækker Schier Rengøring?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vi kører ud til virksomheder på hele Lolland og Falster. Vi har mange faste kunder i bl.a. Nykøbing F, Maribo, Sakskøbing, Nysted, Stubbekøbing, Nr Alslev og Væggerløse. Se også vores ydelser eller kontakt os for en konkret vurdering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tilbyder I faste rengøringsaftaler?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, vi specialiserer os i faste aftaler om erhvervsrengøring, hvor vi sammen lægger en plan, der passer til jeres åbningstider og behov. Kontakt os for en uforpligtende besigtigelse."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bruger I miljøvenlige produkter?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, vi anvender miljøvenlige rengøringsmidler, når det giver mening i forhold til opgavens karakter og hygiejnekrav."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kan I gøre rent uden for åbningstid?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, vi planlægger ofte rengøring tidligt, sent eller på andre tidspunkter, hvor det passer bedst til driften. Det gælder både kontorer, butikker og restauranter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hvad kan en erhvervsrengøringsaftale indeholde?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Det kan fx være løbende rengøring af overflader, gulve, sanitære områder, køkken/te-køkken, affaldshåndtering og aftalte periodiske opgaver. Se vores ydelser, eller kontakt os for at sammensætte en plan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hvordan starter vi et samarbejde?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vi aftaler en uforpligtende besigtigelse, gennemgår behov og rammer, og sender et tilbud. Start her: Kontakt Schier Rengøring."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
@@ -368,7 +422,7 @@
       </picture>
 
       <div class="container">
-        <h1>Professionel rengøring til erhverv</h1>
+        <h1>Professionel rengøring til erhverv på Lolland-Falster</h1>
         <p>Skab et rent og sundt arbejdsmiljø med førsteklasses rengøring på Lolland og Falster.</p>
       </div>
     </section>
