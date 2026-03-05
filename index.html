@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" class="no-js">
 <head>
   <!-- SEO + mobil -->
   <meta charset="UTF-8" />
@@ -21,6 +21,11 @@
   <link href="images/schier-professionel-rengoring-logo.jpg" rel="icon" type="image/jpeg">
   <link href="images/schier-professionel-rengoring-logo.jpg" rel="apple-touch-icon">
 
+  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -42,7 +47,7 @@
     name="twitter:description"
     content="Erhvervsrengøring på Lolland-Falster: kontor, butik, klinik, institution, sportshal, restaurant, fabrik, trappevask og skurvogne. Få et tilbud."
   />
-  
+
   <!-- Twitter image -->
   <meta name="twitter:image" content="https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg" />
   <meta name="twitter:image:alt" content="Professionel erhvervsrengøring på Lolland-Falster – Schier" />
@@ -401,16 +406,7 @@
 
         <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
 
-
         <noscript>
-          <style>
-            .reviews__controls, .reviews__dots, .reviews__viewport { display: none !important; }
-            .reviews__noscript { display: block !important; }
-    
-            .reviews__noscript ul { list-style: none; padding: 0; margin: 0; }
-            .reviews__noscript li + li { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
-            .reviews__noscript a { text-decoration: underline; text-underline-offset: 3px; }
-          </style>
           <div class="reviews__noscript" aria-label="Kundeanmeldelser (uden JavaScript)">
             <p><strong>Kundeanmeldelser</strong> (vises som liste, fordi JavaScript er slået fra)</p>
             <ul>
@@ -430,14 +426,57 @@
     <!-- Om / hvorfor vælge os -->
     <section id="about" class="why-choose">
       <div class="container">
-        <h2>Hvorfor vælge Schier Rengøring?</h2>
-        <ul class="features-list">
-          <li><strong>Lokalt rengøringsfirma på Lolland-Falster:</strong> Vi hjælper virksomheder med professionel erhvervsrengøring på Lolland og Falster – bl.a. i Nykøbing F og Maribo.</li>
-          <li><strong>Professionel ekspertise:</strong> Vores erfarne team tilbyder daglig rengøring, specialrengøring, gulvpleje og vinduespudsning, skræddersyet til dit behov.</li>
-          <li><strong>Stor erfaring</strong> Vi har eksisteret i over 10 år, og vores dygtige medarbejdere hjælper dig sikkert gennem opstarten. Du får en fast plan og løbende kvalitetssikring, så niveauet er stabilt.</li>
-          <li><strong>Kvalitet og effektivitet:</strong> Vi leverer resultater i topkvalitet og bruger miljøvenlige rengøringsmidler for et sundt arbejdsmiljø uden at gå på kompromis.</li>
-          <li><strong>Loyalitet og samarbejde:</strong> Vores dedikerede medarbejdere er pålidelige og altid klar til at rådgive om vedligeholdelse af et rent arbejdsområde.</li>
+        <h2>Derfor skal du vælge os</h2>
+        <ul class="features-list features-list--wide">
+          <li>
+            <strong>Lokalt rengøringsfirma med kendskab til nærområdet:</strong>
+            Vi er din foretrukne partner til <a href="https://www.schier.dk/ydelser">erhvervsrengøring</a> på Lolland og Falster.
+            Vi dækker hele regionen, herunder Nykøbing F, Maribo, Stubbekøbing og Væggerløse, så du altid har en lokal ekspert tæt på.
+          </li>
+          <li>
+            <strong>Specialister i rene arbejdsmiljøer:</strong>
+            Vores erfarne team leverer alt fra daglig <a href="https://www.schier.dk/ydelser/kontorrengoring/">kontorrengøring</a> og vinduespudsning til avanceret gulvpleje og specialrengøring.
+            Vi skræddersyr altid løsningen, så den matcher jeres virksomheds specifikke behov.
+          </li>
+          <li>
+            <strong>Over 10 års erfaring og tryghed:</strong>
+            Med mere end et årti i branchen sikrer vi en stabil opstart og drift.
+            Du får en fast rengøringsplan og løbende kvalitetssikring, så I altid møder ind til et skinnende rent resultat.
+          </li>
+          <li>
+            <strong>Kvalitet med omtanke:</strong>
+            Vi leverer resultater i topkvalitet og prioriterer altid brug af miljøvenlige rengøringsmidler, når det giver mening for opgaven.
+            Det sikrer et sundt arbejdsmiljø uden at gå på kompromis med effektiviteten.
+          </li>
+          <li>
+            <strong>Loyalt samarbejde:</strong>
+            Vores dedikerede medarbejdere er pålidelige, professionelle og altid klar til at sikre, at jeres arbejdsområde fremstår knivskarpt.
+            <a href="#contact">Kontakt os</a> for en løsning, der passer til jer.
+          </li>
         </ul>
+      </div>
+    </section>
+
+    <section id="industries" class="why-choose">
+      <div class="container">
+        <h2>Professionel erhvervsrengøring til alle brancher</h2>
+        <p>
+          Uanset om I har brug for <a href="https://www.schier.dk/ydelser/kontorrengoring/">kontorrengøring</a> i Nykøbing F eller
+          specialrengøring i en produktionshal, har vi ekspertisen. Vi ved, at et rent arbejdsmiljø mindsker sygefravær og øger arbejdsglæden.
+          Vores team anvender professionelle metoder inden for bl.a. gulvpleje, affedtning og kalkfjernelse, så jeres lokaler altid præsenterer
+          sig professionelt over for både kunder og ansatte. Se de <a href="#services">ydelser vi kan tilbyde</a> eller <a href="#contact">kontakt os</a> for et tilbud.
+        </p>
+      </div>
+    </section>
+
+    <section id="safety" class="why-choose">
+      <div class="container">
+        <h2>Din tryghed er vores prioritet</h2>
+        <p>
+          Når du vælger Schier Rengøring, vælger du sikkerhed. Alle vores medarbejdere kan fremvise ren straffeattest, og vi er fuldt forsikrede.
+          Vi kombinerer vores 10 års erfaring med en tæt personlig kontakt, så du trygt kan overlade rengøringen til os og fokusere på jeres kerneforretning.
+          <a href="#contact">Kontakt os</a> i dag for en uforpligtende besigtigelse.
+        </p>
       </div>
     </section>
 
@@ -549,12 +588,69 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq" class="why-choose faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title">FAQ – Ofte stillede spørgsmål</h2>
+
+        <details>
+          <summary>Hvilke byer dækker Schier Rengøring?</summary>
+          <p>
+            Vi kører ud til virksomheder på hele Lolland og Falster. Vi har mange faste kunder i bl.a. Nykøbing F, Maribo, Sakskøbing, Nysted,
+            Stubbekøbing, Nr Alslev og Væggerløse. Se også vores <a href="#services">ydelser</a> eller <a href="#contact">kontakt os</a> for en konkret vurdering.
+          </p>
+        </details>
+
+        <details>
+          <summary>Tilbyder I faste rengøringsaftaler?</summary>
+          <p>
+            Ja, vi specialiserer os i faste aftaler om <a href="https://www.schier.dk/ydelser">erhvervsrengøring</a>, hvor vi sammen lægger en plan,
+            der passer til jeres åbningstider og behov. <a href="#contact">Kontakt os</a> for en uforpligtende besigtigelse.
+          </p>
+        </details>
+
+        <details>
+          <summary>Bruger I miljøvenlige produkter?</summary>
+          <p>
+            Ja, vi anvender miljøvenlige rengøringsmidler, når det giver mening i forhold til opgavens karakter og hygiejnekrav.
+          </p>
+        </details>
+
+        <details>
+          <summary>Kan I gøre rent uden for åbningstid?</summary>
+          <p>
+            Ja, vi planlægger ofte rengøring tidligt, sent eller på andre tidspunkter, hvor det passer bedst til driften. Det gælder både
+            <a href="https://www.schier.dk/ydelser/kontorrengoring/">kontorer</a>, <a href="https://www.schier.dk/ydelser/butiksrengoring/">butikker</a> og
+            <a href="https://www.schier.dk/ydelser/restaurantrengoring/">restauranter</a>.
+          </p>
+        </details>
+
+        <details>
+          <summary>Hvad kan en erhvervsrengøringsaftale indeholde?</summary>
+          <p>
+            Det kan fx være løbende rengøring af overflader, gulve, sanitære områder, køkken/te-køkken, affaldshåndtering og aftalte periodiske opgaver.
+            Se vores <a href="#services">ydelser</a>, eller <a href="#contact">kontakt os</a> for at sammensætte en plan.
+          </p>
+        </details>
+
+        <details>
+          <summary>Hvordan starter vi et samarbejde?</summary>
+          <p>
+            Vi aftaler en uforpligtende besigtigelse, gennemgår behov og rammer, og sender et tilbud. Start her: <a href="#contact">Kontakt Schier Rengøring</a>.
+          </p>
+        </details>
+      </div>
+    </section>
+
     <!-- Kontakt -->
     <section id="contact" class="cta-contact">
       <div class="container">
-        <div class="cta-contact__inner">
+        <div class="cta-contact__inner cta-contact__inner--wide">
           <h2>Kontakt Schier Rengøring i dag</h2>
-          <p>Skab et præsentabelt, indbydende og rengjort arbejdsmiljø med vores pålidelige medarbejdere.<br />Vi dækker Lolland-Falster og kører bl.a. i Nykøbing F og Maribo – ring eller skriv for et hurtigt tilbud.</p>
+          <p>
+            Skab et præsentabelt, indbydende og rengjort arbejdsmiljø med vores pålidelige medarbejdere.<br />
+            Vi dækker Lolland-Falster og kører bl.a. i Nykøbing F og Maribo. Kontakt os i dag for en uforpligtende besigtigelse og få et tilbud.
+          </p>
 
           <p class="contact-links">
             <strong>Telefon:</strong> <a href="tel:+4550507665">50 50 76 65</a> |
