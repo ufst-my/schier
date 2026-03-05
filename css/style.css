@@ -76,7 +76,8 @@ body {
 }
 
 /* Aktiv side i menuen */
-.site-nav a[aria-current="page"]{
+.site-nav a[aria-current="page"],
+.site-nav a[aria-current="true"]{
   font-weight: 700;
 }
 
