@@ -468,12 +468,12 @@ body a:hover {
   text-underline-offset: 3px;
 }
 
-/* Match samme afgrænsning som service-content */
-.cta-contact__inner{
-  max-width: 920px;
-}
+/* Match tekstbredde tættere på anmeldelsesboksen */
+.cta-contact__inner,
 .cta-contact__inner--wide{
-  max-width: none;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 /* Footer */
@@ -797,11 +797,11 @@ body a:hover {
   padding: 3rem 0;
 }
 
-.service-content__inner{
-  max-width: 920px;
-}
+.service-content__inner,
 .service-content__inner--wide{
-  max-width: none;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .service-content h2{
@@ -842,9 +842,7 @@ body a:hover {
 }
 
 #about-values .bullet-list{
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto 1.25rem auto;
+  margin: 0 0 1.25rem 0;
   text-align: left;
 }
 
