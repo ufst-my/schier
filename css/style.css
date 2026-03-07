@@ -810,7 +810,7 @@ body a:hover {
 .service-content__inner--wide p,
 .service-content__inner--wide ul,
 .service-content__inner--wide ol{
-  max-width: 75ch;
+  max-width: 700px;
 }
 
 .service-content h2{
