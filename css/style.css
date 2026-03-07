@@ -800,6 +800,9 @@ body a:hover {
 .service-content__inner{
   max-width: 920px;
 }
+.service-content__inner--wide{
+  max-width: none;
+}
 
 .service-content h2{
   font-size: 2rem;
