@@ -57,7 +57,6 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 0;
-  padding-inline: 1rem;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
@@ -921,4 +920,24 @@ body a:hover {
 #faq,
 #contact{
   border-top: 1px solid #e0e0e0;
+}
+
+/* Kontakt-side */
+.contact-page .reviews__titleblock,
+.contact-page .why-choose .container,
+.contact-page .cta-contact__inner {
+  text-align: left;
+}
+
+.contact-page .why-choose h2,
+.contact-page .cta-contact h2 {
+  text-align: left;
+}
+
+.contact-page .hero h1 {
+  text-align: center;
+}
+
+.contact-page .reviews__header {
+  align-items: flex-start;
 }
