@@ -10,6 +10,18 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.schier.dk/ydelser/butiksrengoring/" />
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
@@ -21,7 +33,7 @@
   <meta property="og:description" content="Butiksrengøring i Nykøbing F og på Lolland-Falster: fast team, skinnende salgsareal og fleksible tidspunkter. Få et uforpligtende tilbud." />
   <meta property="og:url" content="https://www.schier.dk/ydelser/butiksrengoring/" />
   <meta property="og:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_butik.jpg" />
-  <meta property="og:image:alt" content="Rengjort butik – Schier Rengøring" />
+  <meta property="og:image:alt" content="Rengjort skotøjsbutik" />
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -30,7 +42,7 @@
 
   <!-- Twitter image -->
   <meta name="twitter:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_butik.jpg" />
-  <meta name="twitter:image:alt" content="Rengjort butik – Schier Rengøring" />
+  <meta name="twitter:image:alt" content="Rengjort skotøjsbutik" />
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,6 +125,16 @@
       "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
     },
     {
+      "@type": "ImageObject",
+      "@id": "https://www.schier.dk/ydelser/butiksrengoring/#heroimage",
+      "url": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_butik.jpg",
+      "contentUrl": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_butik.jpg",
+      "name": "Rengjort skotøjsbutik",
+      "caption": "Rengjort skotøjsbutik",
+      "width": 1600,
+      "height": 800
+    },
+    {
       "@type": "WebSite",
       "@id": "https://www.schier.dk/#website",
       "url": "https://www.schier.dk/",
@@ -139,7 +161,7 @@
         "@id": "https://www.schier.dk/#company"
       },
       "primaryImageOfPage": {
-        "@id": "https://www.schier.dk/#logo"
+        "@id": "https://www.schier.dk/ydelser/butiksrengoring/#heroimage"
       },
       "breadcrumb": {
         "@id": "https://www.schier.dk/ydelser/butiksrengoring/#breadcrumb"
@@ -347,7 +369,7 @@
 
         <img
           src="../../images/ydelser/horizontal_1600x800/rengjort_butik.jpg"
-          alt=""
+          alt="Rengjort skotøjsbutik"
           width="1600"
           height="800"
           decoding="async"
@@ -393,6 +415,20 @@
         </div>
 
         <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
+        <noscript>
+          <div class="reviews__noscript" aria-label="Kundeanmeldelser (uden JavaScript)">
+            <p><strong>Kundeanmeldelser</strong> (vises som liste, fordi JavaScript er slået fra)</p>
+            <ul>
+              <li>★★★★★ — <a href="https://share.google/TOX8MqLccJ88ZGPAW" target="_blank" rel="noopener noreferrer">Laura Aagaard (Google)</a>: Vi er virkelig glade for Schier rengøring…</li>
+              <li>★★★★★ — <a href="https://share.google/8fw9UN9i1ZvmhguR7" target="_blank" rel="noopener noreferrer">zoob77 (Google)</a>: Intet at udsætte…</li>
+              <li>★★★★★ — <a href="https://share.google/EyA3NZ7IDHXbZSpTA" target="_blank" rel="noopener noreferrer">Hanne Bruhn (Google)</a>: rengøring i top, altid sød og venlig betjening…</li>
+              <li>★★★★★ — <a href="https://share.google/Bn9jRVgWNd77TIrpz" target="_blank" rel="noopener noreferrer">Rene Dissing (Google)</a>: Bestilte en "total" rengøring af mit hus (3 etager)…</li>
+              <li>★★★★★ — <a href="https://share.google/2zHZMIzgZwcFuGmT6" target="_blank" rel="noopener noreferrer">Jonas Schnack Krog (Google)</a>: God og solid rengøring med god kommunikation…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec" target="_blank" rel="noopener noreferrer">Tina Katja Lund Andersen (Trustpilot)</a>: Super god oplevelse, både før, under og efter…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75" target="_blank" rel="noopener noreferrer">Lotte Nielsen (Trustpilot)</a>: Bestilte en fllytteflytterengøring…</li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
 
@@ -410,7 +446,7 @@
 
         <h2>Derfor vælger butikker os til butiksrengøring</h2>
         <ul class="bullet-list">
-          <li><strong>Fast team og stabil kvalitet</strong><br />I får som udgangspunkt en fast assistent eller et fast team, så standarden bliver ensartet, og vi lærer jeres rutiner og fokusområder at kende.</li>
+          <li><strong><a href="https://www.schier.dk/om-os">Fast team og stabil kvalitet</a></strong><br />I får som udgangspunkt en fast assistent eller et fast team, så standarden bliver ensartet, og vi lærer jeres rutiner og fokusområder at kende.</li>
           <li><strong>Skræddersyet plan</strong><br />Frekvens og opgaver tilpasses butiksstørrelse, branche og kundetryk.</li>
           <li><strong>Fokus på det kunderne bemærker</strong><br />Indgang, salgsareal, kassezone, prøverum og glas prioriteres, så butikken tager sig godt ud hele dagen.</li>
           <li><strong>Kontaktflader i fokus</strong><br />Ekstra opmærksomhed på håndtag, gelændere, kortterminal, kurve/vogne (efter aftale), knapper, spejle og andre flader, der berøres ofte.</li>
@@ -525,7 +561,7 @@
     <section id="contact" class="cta-contact">
       <div class="container cta-contact__inner">
         <h2>Få et uforpligtende tilbud på butiksrengøring</h2>
-        <p>Fortæl kort om jeres butik, ønsket frekvens og hvilke områder der er vigtigst. Så vender vi tilbage med et tilbud på en løsning, der passer til jeres butik på Lolland-Falster.</p>
+        <p>Fortæl kort om jeres butik, ønsket frekvens og hvilke områder der er vigtigst. Så vender vi tilbage med et <a href="https://www.schier.dk/kontakt">tilbud</a> på en løsning, der passer til jeres butik på Lolland-Falster.</p>
 
         <p class="contact-links">
           <strong>Telefon:</strong> <a href="tel:+4550507665">50 50 76 65</a> |
