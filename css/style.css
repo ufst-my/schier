@@ -57,7 +57,10 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 0;
-  width: 94%;
+  padding-inline: 1rem;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .logo {
@@ -331,6 +334,17 @@ body a:hover {
 .hero .container {
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+.services .container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-inline: 1rem;
 }
 
 @media (orientation: portrait){
@@ -388,15 +402,15 @@ body a:hover {
 
 .services {
   background: #fff;
-  border-top: 1px solid #e0e0e0;
-  margin-top: 3rem;
   padding: 3rem 0;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 0;
 }
 
 .service-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem;
+  gap: 2rem;
   margin-bottom: 1rem;
 }
 
@@ -520,7 +534,8 @@ body a:hover {
     font-size: 1.4rem;
   }
   .service-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
   }
 }
 
