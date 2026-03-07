@@ -807,7 +807,7 @@ body a:hover {
 .service-content h2{
   font-size: 2rem;
   margin: 2.25rem 0 1rem;
-  text-align: left;
+  text-align: center;
 }
 
 .service-content h2#service-content-title{
