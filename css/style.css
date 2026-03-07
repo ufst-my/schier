@@ -881,3 +881,27 @@ body a:hover {
 .faq p{
   margin: 0;
 }
+
+
+/* Forside: tekstsektioner som ydelsessider */
+#about .container,
+#industries .container,
+#safety .container,
+#faq .container{
+  max-width: 900px;
+}
+
+#about h2,
+#industries h2,
+#safety h2,
+#faq h2{
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+#industries,
+#safety,
+#faq,
+#contact{
+  border-top: 1px solid #e0e0e0;
+}
