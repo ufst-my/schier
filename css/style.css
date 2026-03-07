@@ -543,6 +543,9 @@ body a:hover {
   .site-header {
     position: relative;
   }
+  .site-header .container {
+    padding: 0.75rem 1rem;
+  }
   .site-nav {
     position: absolute;
     top: 100%;
