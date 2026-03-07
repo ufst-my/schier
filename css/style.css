@@ -804,6 +804,15 @@ body a:hover {
   margin: 0 auto;
 }
 
+.service-content__inner p,
+.service-content__inner ul,
+.service-content__inner ol,
+.service-content__inner--wide p,
+.service-content__inner--wide ul,
+.service-content__inner--wide ol{
+  max-width: 75ch;
+}
+
 .service-content h2{
   font-size: 2rem;
   margin: 2.25rem 0 1rem;
