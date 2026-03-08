@@ -844,6 +844,13 @@ body a:hover {
   color:#555;
 }
 
+@media (max-width: 767px) {
+  .service-content .container {
+    width: 100%;
+    padding-inline: 1.25rem;
+  }
+}
+
 .bullet-list{
   list-style: none;
   padding: 0;
