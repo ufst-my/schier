@@ -10,6 +10,20 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.schier.dk/ydelser/trappevask/" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
@@ -112,6 +126,14 @@
       "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
     },
     {
+      "@type": "ImageObject",
+      "@id": "https://www.schier.dk/ydelser/trappevask/#primaryimage",
+      "url": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_trappe.jpg",
+      "contentUrl": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_trappe.jpg",
+      "name": "Rengjort trappeopgang",
+      "caption": "Rengjort trappeopgang"
+    },
+    {
       "@type": "WebSite",
       "@id": "https://www.schier.dk/#website",
       "url": "https://www.schier.dk/",
@@ -138,7 +160,7 @@
         "@id": "https://www.schier.dk/#company"
       },
       "primaryImageOfPage": {
-        "@id": "https://www.schier.dk/#logo"
+        "@id": "https://www.schier.dk/ydelser/trappevask/#primaryimage"
       },
       "breadcrumb": {
         "@id": "https://www.schier.dk/ydelser/trappevask/#breadcrumb"
@@ -311,7 +333,7 @@
   <main id="main" class="site-content">
     <!-- Hero -->
     <section class="hero">
-      <picture class="hero__media" aria-hidden="true">
+      <picture class="hero__media">
         <source
           type="image/avif"
           media="(orientation: portrait)"
@@ -351,7 +373,7 @@
 
         <img
           src="../../images/ydelser/horizontal_1600x800/rengjort_trappe.jpg"
-          alt=""
+          alt="Rengjort trappeopgang"
           width="1600"
           height="800"
           decoding="async"
@@ -397,6 +419,20 @@
         </div>
 
         <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
+        <noscript>
+          <div class="reviews__noscript" aria-label="Kundeanmeldelser (uden JavaScript)">
+            <p><strong>Kundeanmeldelser</strong> (vises som liste, fordi JavaScript er slået fra)</p>
+            <ul>
+              <li>★★★★★ — <a href="https://share.google/TOX8MqLccJ88ZGPAW" target="_blank" rel="noopener noreferrer">Laura Aagaard (Google)</a>: Vi er virkelig glade for Schier rengøring…</li>
+              <li>★★★★★ — <a href="https://share.google/8fw9UN9i1ZvmhguR7" target="_blank" rel="noopener noreferrer">zoob77 (Google)</a>: Intet at udsætte…</li>
+              <li>★★★★★ — <a href="https://share.google/EyA3NZ7IDHXbZSpTA" target="_blank" rel="noopener noreferrer">Hanne Bruhn (Google)</a>: rengøring i top, altid sød og venlig betjening…</li>
+              <li>★★★★★ — <a href="https://share.google/Bn9jRVgWNd77TIrpz" target="_blank" rel="noopener noreferrer">Rene Dissing (Google)</a>: Bestilte en "total" rengøring af mit hus (3 etager)…</li>
+              <li>★★★★★ — <a href="https://share.google/2zHZMIzgZwcFuGmT6" target="_blank" rel="noopener noreferrer">Jonas Schnack Krog (Google)</a>: God og solid rengøring med god kommunikation…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec" target="_blank" rel="noopener noreferrer">Tina Katja Lund Andersen (Trustpilot)</a>: Super god oplevelse, både før, under og efter…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75" target="_blank" rel="noopener noreferrer">Lotte Nielsen (Trustpilot)</a>: Bestilte en fllytteflytterengøring…</li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
 
@@ -407,6 +443,7 @@
         <p>En trappeopgang bliver hurtigt præget af støv, sand og mærker fra daglig trafik – især ved indgangspartiet, på repos og ved gelændere. I våde perioder, hvor mudder nemt trækkes med ind, og i vinterperioden, hvor salt og grus kan sætte tydelige spor, planlægger vi indsatsen, så standarden holdes pæn hele året.</p>
         <p>Når der bliver gjort rent efter en fast plan, føles opgangen mere indbydende, og standarden holder sig pæn uge efter uge.</p>
         <p>Vi hjælper boligforeninger, ejerforeninger, udlejere og erhvervsejendomme i Nykøbing F og på resten af Lolland-Falster – med en løsning, der tilpasses opgangens størrelse, materialer og brug.</p>
+        <p>Har I brug for en samlet løsning, kan I også se alle vores <a href="https://www.schier.dk/ydelser/">ydelser</a> eller læse mere <a href="https://www.schier.dk/om-os">om os</a> og måden, vi arbejder på.</p>
 
         <h2>Derfor vælger mange os til trappevask</h2>
         <ul class="bullet-list">
@@ -461,6 +498,7 @@
           <li>Periodisk hovedrengøring af opgang</li>
           <li>Gulvpleje eller behandling ved behov</li>
           <li>Rengøring af indgangsdør/-parti</li>
+          <li>Ved behov for rengøring af andre typer arealer: <a href="https://www.schier.dk/ydelser/">Se alle vores rengøringsydelser</a>.</li>
         </ul>
 
         <h2>Sådan starter vi op</h2>
