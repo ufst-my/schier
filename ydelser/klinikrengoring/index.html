@@ -10,6 +10,20 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.schier.dk/ydelser/klinikrengoring/" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
@@ -21,7 +35,7 @@
   <meta property="og:description" content="Klinikrengøring i Nykøbing F og på Lolland-Falster: høj hygiejne, diskretion og fast kvalitet. Få et uforpligtende tilbud." />
   <meta property="og:url" content="https://www.schier.dk/ydelser/klinikrengoring/" />
   <meta property="og:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_klinik.jpg" />
-  <meta property="og:image:alt" content="Rengjort klinik – Schier Rengøring" />
+  <meta property="og:image:alt" content="Rengjort tandlægeklinik" />
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -30,7 +44,7 @@
   
   <!-- Twitter image -->
   <meta name="twitter:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_klinik.jpg" />
-  <meta name="twitter:image:alt" content="Rengjort klinik – Schier Rengøring" />
+  <meta name="twitter:image:alt" content="Rengjort tandlægeklinik" />
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,6 +126,16 @@
       "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
     },
     {
+      "@type": "ImageObject",
+      "@id": "https://www.schier.dk/ydelser/klinikrengoring/#primaryimage",
+      "url": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_klinik.jpg",
+      "contentUrl": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_klinik.jpg",
+      "name": "Rengjort tandlægeklinik",
+      "caption": "Rengjort tandlægeklinik",
+      "width": 1600,
+      "height": 800
+    },
+    {
       "@type": "WebSite",
       "@id": "https://www.schier.dk/#website",
       "url": "https://www.schier.dk/",
@@ -138,7 +162,7 @@
         "@id": "https://www.schier.dk/#company"
       },
       "primaryImageOfPage": {
-        "@id": "https://www.schier.dk/#logo"
+        "@id": "https://www.schier.dk/ydelser/klinikrengoring/#primaryimage"
       },
       "breadcrumb": {
         "@id": "https://www.schier.dk/ydelser/klinikrengoring/#breadcrumb"
@@ -343,7 +367,7 @@
       
         <img
           src="../../images/ydelser/horizontal_1600x800/rengjort_klinik.jpg"
-          alt=""
+          alt="Rengjort tandlægeklinik"
           width="1600"
           height="800"
           decoding="async"
@@ -389,6 +413,20 @@
         </div>
 
         <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
+        <noscript>
+          <div class="reviews__noscript" aria-label="Kundeanmeldelser (uden JavaScript)">
+            <p><strong>Kundeanmeldelser</strong> (vises som liste, fordi JavaScript er slået fra)</p>
+            <ul>
+              <li>★★★★★ — <a href="https://share.google/TOX8MqLccJ88ZGPAW" target="_blank" rel="noopener noreferrer">Laura Aagaard (Google)</a>: Vi er virkelig glade for Schier rengøring…</li>
+              <li>★★★★★ — <a href="https://share.google/8fw9UN9i1ZvmhguR7" target="_blank" rel="noopener noreferrer">zoob77 (Google)</a>: Intet at udsætte…</li>
+              <li>★★★★★ — <a href="https://share.google/EyA3NZ7IDHXbZSpTA" target="_blank" rel="noopener noreferrer">Hanne Bruhn (Google)</a>: rengøring i top, altid sød og venlig betjening…</li>
+              <li>★★★★★ — <a href="https://share.google/Bn9jRVgWNd77TIrpz" target="_blank" rel="noopener noreferrer">Rene Dissing (Google)</a>: Bestilte en "total" rengøring af mit hus (3 etager)…</li>
+              <li>★★★★★ — <a href="https://share.google/2zHZMIzgZwcFuGmT6" target="_blank" rel="noopener noreferrer">Jonas Schnack Krog (Google)</a>: God og solid rengøring med god kommunikation…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec" target="_blank" rel="noopener noreferrer">Tina Katja Lund Andersen (Trustpilot)</a>: Super god oplevelse, både før, under og efter…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75" target="_blank" rel="noopener noreferrer">Lotte Nielsen (Trustpilot)</a>: Bestilte en fllytteflytterengøring…</li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
 
@@ -412,7 +450,7 @@
 
         <h3>Tryghed og kvalitet i praksis</h3>
         <ul class="checklist">
-          <li>Fast kontaktperson og tydelig kommunikation før, under og efter opstart.</li>
+          <li>Fast kontaktperson og tydelig kommunikation før, under og efter opstart. <a href="https://www.schier.dk/om-os/">Læs mere om os og vores måde at arbejde på</a>.</li>
           <li>Nøgle- og alarmrutiner aftales og følges efter jeres retningslinjer.</li>
           <li>Opgaver udføres ensartet via tjekliste og faste arbejdsgange.</li>
           <li>Løbende kvalitetstjek og mulighed for hurtige justeringer, når behov ændrer sig.</li>
@@ -453,6 +491,7 @@
           <li>Aftørring af skabe/greb efter behov</li>
           <li>Affald, sortering og nye poser efter aftale</li>
           <li>Gulve og generel opfriskning</li>
+          <li>Ved kontorpladser i klinikken kan vi kombinere med <a href="https://www.schier.dk/ydelser/kontorrengoring/">kontorrengøring</a>.</li>
         </ul>
 
         <h3>Gulve i klinikken</h3>
