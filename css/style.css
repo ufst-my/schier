@@ -947,9 +947,3 @@ body a:hover {
 .contact-page .reviews__header {
   align-items: flex-start;
 }
-
-.contact-page .why-choose__block + .why-choose__block {
-  border-top: 1px solid #e0e0e0;
-  margin-top: 2rem;
-  padding-top: 2rem;
-}
