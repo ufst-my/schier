@@ -483,14 +483,6 @@ body a:hover {
   text-underline-offset: 3px;
 }
 
-/* Match tekstbredde tættere på anmeldelsesboksen */
-.cta-contact__inner,
-.cta-contact__inner--wide{
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
 /* Footer */
 .site-footer {
   background: #333;
@@ -816,13 +808,6 @@ body a:hover {
   padding: 3rem 0;
 }
 
-.service-content__inner,
-.service-content__inner--wide{
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
 .service-content h2{
   font-size: 2rem;
   margin: 2.25rem 0 1rem;
@@ -844,11 +829,12 @@ body a:hover {
   color:#555;
 }
 
-@media (max-width: 767px) {
-  .service-content .container {
-    width: 100%;
-    padding-inline: 1.25rem;
-  }
+.service-content__inner,
+.service-content__inner--wide,
+.cta-contact__inner,
+.cta-contact__inner--wide {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .bullet-list{
