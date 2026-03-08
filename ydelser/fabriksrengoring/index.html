@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" class="no-js">
 <head>
   <!-- SEO + mobil -->
   <meta charset="UTF-8" />
@@ -10,6 +10,20 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.schier.dk/ydelser/fabriksrengoring/" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
@@ -21,7 +35,7 @@
   <meta property="og:description" content="Fabriksrengøring i Nykøbing F og på Lolland-Falster: stabil og planlagt rengøring i produktion, lager og fællesområder. Få et uforpligtende tilbud." />
   <meta property="og:url" content="https://www.schier.dk/ydelser/fabriksrengoring/" />
   <meta property="og:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_fabrik.jpg" />
-  <meta property="og:image:alt" content="Rengjort fabrik – Schier Rengøring" />
+  <meta property="og:image:alt" content="Rengjort fabrikshal" />
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -30,7 +44,7 @@
 
   <!-- Twitter image -->
   <meta name="twitter:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_fabrik.jpg" />
-  <meta name="twitter:image:alt" content="Rengjort fabrik – Schier Rengøring" />
+  <meta name="twitter:image:alt" content="Rengjort fabrikshal" />
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,6 +126,14 @@
       "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
     },
     {
+      "@type": "ImageObject",
+      "@id": "https://www.schier.dk/ydelser/fabriksrengoring/#primaryimage",
+      "url": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_fabrik.jpg",
+      "contentUrl": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_fabrik.jpg",
+      "caption": "Rengjort fabrikshal",
+      "name": "Rengjort fabrikshal"
+    },
+    {
       "@type": "WebSite",
       "@id": "https://www.schier.dk/#website",
       "url": "https://www.schier.dk/",
@@ -137,8 +159,11 @@
       "publisher": {
         "@id": "https://www.schier.dk/#company"
       },
+      "image": {
+        "@id": "https://www.schier.dk/ydelser/fabriksrengoring/#primaryimage"
+      },
       "primaryImageOfPage": {
-        "@id": "https://www.schier.dk/#logo"
+        "@id": "https://www.schier.dk/ydelser/fabriksrengoring/#primaryimage"
       },
       "breadcrumb": {
         "@id": "https://www.schier.dk/ydelser/fabriksrengoring/#breadcrumb"
@@ -311,7 +336,7 @@
   <main id="main" class="site-content">
     <!-- Hero -->
     <section class="hero">
-      <picture class="hero__media" aria-hidden="true">
+      <picture class="hero__media">
         <source
           type="image/avif"
           media="(orientation: portrait)"
@@ -351,7 +376,7 @@
 
         <img
           src="../../images/ydelser/horizontal_1600x800/rengjort_fabrik.jpg"
-          alt=""
+          alt="Rengjort fabrikshal"
           width="1600"
           height="800"
           decoding="async"
@@ -397,6 +422,20 @@
         </div>
 
         <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
+        <noscript>
+          <div class="reviews__noscript" aria-label="Kundeanmeldelser (uden JavaScript)">
+            <p><strong>Kundeanmeldelser</strong> (vises som liste, fordi JavaScript er slået fra)</p>
+            <ul>
+              <li>★★★★★ — <a href="https://share.google/TOX8MqLccJ88ZGPAW" target="_blank" rel="noopener noreferrer">Laura Aagaard (Google)</a>: Vi er virkelig glade for Schier rengøring…</li>
+              <li>★★★★★ — <a href="https://share.google/8fw9UN9i1ZvmhguR7" target="_blank" rel="noopener noreferrer">zoob77 (Google)</a>: Intet at udsætte…</li>
+              <li>★★★★★ — <a href="https://share.google/EyA3NZ7IDHXbZSpTA" target="_blank" rel="noopener noreferrer">Hanne Bruhn (Google)</a>: rengøring i top, altid sød og venlig betjening…</li>
+              <li>★★★★★ — <a href="https://share.google/Bn9jRVgWNd77TIrpz" target="_blank" rel="noopener noreferrer">Rene Dissing (Google)</a>: Bestilte en "total" rengøring af mit hus (3 etager)…</li>
+              <li>★★★★★ — <a href="https://share.google/2zHZMIzgZwcFuGmT6" target="_blank" rel="noopener noreferrer">Jonas Schnack Krog (Google)</a>: God og solid rengøring med god kommunikation…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec" target="_blank" rel="noopener noreferrer">Tina Katja Lund Andersen (Trustpilot)</a>: Super god oplevelse, både før, under og efter…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75" target="_blank" rel="noopener noreferrer">Lotte Nielsen (Trustpilot)</a>: Bestilte en fllytteflytterengøring…</li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
 
@@ -404,7 +443,7 @@
 <section class="service-content" aria-labelledby="service-content-title">
       <div class="container service-content__inner">
         <h2 id="service-content-title">Professionel fabriksrengøring, der passer til jeres hverdag</h2>
-        <p>I en fabrik eller produktionsvirksomhed bliver lokalerne hurtigt påvirket af støv, partikler, trafikspor, spild og mange kontaktflader – og det kan ses på både gulve, overflader og fællesområder. Vi leverer fabriksrengøring i Nykøbing F og på Lolland-Falster med faste aftaler, tydelige rutiner og et resultat, der holder fra uge til uge.</p>
+        <p>I en fabrik eller produktionsvirksomhed bliver lokalerne hurtigt påvirket af støv, partikler, trafikspor, spild og mange kontaktflader – og det kan ses på både gulve, overflader og fællesområder. Har I også administration eller kontorpladser, kan vi kombinere løsningen med <a href="https://www.schier.dk/ydelser/kontorrengoring/">kontorrengøring</a>. Vi leverer fabriksrengøring i Nykøbing F og på Lolland-Falster med faste aftaler, tydelige rutiner og et resultat, der holder fra uge til uge.</p>
 
         <h2>Derfor vælger virksomheder os til fabriksrengøring</h2>
         <ul class="bullet-list">
@@ -447,7 +486,7 @@
         <ul class="checklist">
           <li>Omklædning: bænke, skabe (udvendigt), gulve og kontaktflader</li>
           <li>Toiletter og badefaciliteter: sanitære flader, spejle, gulve og opfyldning efter aftale</li>
-          <li>Kantine/pauserum: bordflader, vask, synlige flader og gulve</li>
+          <li><a href="https://www.schier.dk/ydelser/restaurantrengoring/">Kantine</a>a/pauserum: bordflader, vask, synlige flader og gulve</li>
         </ul>
 
         <h3>Ekstra ydelser (kan tilføjes)</h3>
