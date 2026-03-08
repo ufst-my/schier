@@ -10,6 +10,20 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.schier.dk/ydelser/rengoring-af-sportshaller/" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
@@ -21,7 +35,7 @@
   <meta property="og:description" content="Rengøring af sportshaller i Nykøbing F og på Lolland-Falster: gulve, omklædning og foyer. Faste aftaler, synligt resultat. Få et tilbud." />
   <meta property="og:url" content="https://www.schier.dk/ydelser/rengoring-af-sportshaller/" />
   <meta property="og:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_sportshal.jpg" />
-  <meta property="og:image:alt" content="Rengjort sportshal – Schier Rengøring" />
+  <meta property="og:image:alt" content="Rengjort sportshal med håndboldmål" />
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -30,7 +44,7 @@
   
   <!-- Twitter image -->
   <meta name="twitter:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_sportshal.jpg" />
-  <meta name="twitter:image:alt" content="Rengjort sportshal – Schier Rengøring" />
+  <meta name="twitter:image:alt" content="Rengjort cafemiljø" />
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,201 +56,213 @@
   <!-- Structured data -->
   <script type="application/ld+json">
   {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      "additionalType": "https://schema.org/CleaningService",
-      "@id": "https://www.schier.dk/#company",
-      "name": "Schier Professionel Rengøring",
-      "url": "https://www.schier.dk/",
-      "description": "Erhvervsrengøring på Lolland-Falster: Kontor, butik, klinik, institution, sportshaller m.m. Med fokus på kvalitet. Få et tilbud.",
-      "telephone": "+4550507665",
-      "email": "my@schier.dk",
-      "vatID": "DK38199633",
-      "taxID": "38199633",
-      "logo": {
-        "@id": "https://www.schier.dk/#logo"
-      },
-      "image": [
-        {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "additionalType": "https://schema.org/CleaningService",
+        "@id": "https://www.schier.dk/#company",
+        "name": "Schier Professionel Rengøring",
+        "url": "https://www.schier.dk/",
+        "description": "Erhvervsrengøring på Lolland-Falster: Kontor, butik, klinik, institution, sportshaller m.m. Med fokus på kvalitet. Få et tilbud.",
+        "telephone": "+4550507665",
+        "email": "my@schier.dk",
+        "vatID": "DK38199633",
+        "taxID": "38199633",
+        "logo": {
           "@id": "https://www.schier.dk/#logo"
-        }
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Folemarken 59",
-        "postalCode": "4800",
-        "addressLocality": "Nykøbing F",
-        "addressCountry": "DK"
-      },
-      "areaServed": [
-        {
+        },
+        "image": [
+          {
+            "@id": "https://www.schier.dk/#logo"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Folemarken 59",
+          "postalCode": "4800",
+          "addressLocality": "Nykøbing F",
+          "addressCountry": "DK"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Lolland"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Falster"
+          }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "16:00"
+          }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 54.75525589008013,
+          "longitude": 11.899858768549127
+        },
+        "priceRange": "$$",
+        "serviceArea": {
           "@type": "AdministrativeArea",
-          "name": "Lolland"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Falster"
+          "name": "Lolland-Falster"
         }
-      ],
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "08:00",
-          "closes": "16:00"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://www.schier.dk/#logo",
+        "url": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg",
+        "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#primaryimage",
+        "url": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_sportshal.jpg",
+        "contentUrl": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_sportshal.jpg",
+        "width": 1600,
+        "height": 800,
+        "caption": "Rengjort cafemiljø"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.schier.dk/#website",
+        "url": "https://www.schier.dk/",
+        "name": "Schier Professionel Rengøring",
+        "inLanguage": "da-DK",
+        "publisher": {
+          "@id": "https://www.schier.dk/#company"
         }
-      ],
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 54.75525589008013,
-        "longitude": 11.899858768549127
       },
-      "priceRange": "$$",
-      "serviceArea": {
-        "@type": "AdministrativeArea",
-        "name": "Lolland-Falster"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://www.schier.dk/#logo",
-      "url": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg",
-      "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.schier.dk/#website",
-      "url": "https://www.schier.dk/",
-      "name": "Schier Professionel Rengøring",
-      "inLanguage": "da-DK",
-      "publisher": {
-        "@id": "https://www.schier.dk/#company"
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#webpage",
-      "url": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/",
-      "name": "Schier Rengøring - Nykøbing F | Rengøring af sportshaller på Lolland-Falster",
-      "description": "Rengøring af sportshaller i Nykøbing F og på Lolland-Falster: gulve, omklædning og foyer. Faste aftaler, synligt resultat. Få et tilbud.",
-      "inLanguage": "da-DK",
-      "isPartOf": {
-        "@id": "https://www.schier.dk/#website"
-      },
-      "about": {
-        "@id": "https://www.schier.dk/#company"
-      },
-      "publisher": {
-        "@id": "https://www.schier.dk/#company"
-      },
-      "primaryImageOfPage": {
-        "@id": "https://www.schier.dk/#logo"
-      },
-      "breadcrumb": {
-        "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#breadcrumb"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Forside",
-          "item": "https://www.schier.dk/"
+      {
+        "@type": "WebPage",
+        "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#webpage",
+        "url": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/",
+        "name": "Schier Rengøring - Nykøbing F | Rengøring af sportshaller på Lolland-Falster",
+        "description": "Rengøring af sportshaller i Nykøbing F og på Lolland-Falster: gulve, omklædning og foyer. Faste aftaler, synligt resultat. Få et tilbud.",
+        "inLanguage": "da-DK",
+        "isPartOf": {
+          "@id": "https://www.schier.dk/#website"
         },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Ydelser",
-          "item": "https://www.schier.dk/ydelser/"
+        "about": {
+          "@id": "https://www.schier.dk/#company"
         },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Rengøring af sportshaller",
-          "item": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/"
+        "publisher": {
+          "@id": "https://www.schier.dk/#company"
+        },
+        "image": {
+          "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#primaryimage"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#primaryimage"
+        },
+        "breadcrumb": {
+          "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#breadcrumb"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Forside",
+            "item": "https://www.schier.dk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Ydelser",
+            "item": "https://www.schier.dk/ydelser/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Rengøring af sportshaller",
+            "item": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/"
+          }
+        ]
+      }
+    ]
+  }
   </script>
 
   <!-- FAQ structured data -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#faq",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Hvad koster rengøring af en sportshal?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Prisen afhænger af kvadratmeter, gulvtype, frekvens og hvilke områder der indgår (hal, omklædning, foyer m.m.). I får et uforpligtende tilbud baseret på jeres behov."
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://www.schier.dk/ydelser/rengoring-af-sportshaller/#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hvad koster rengøring af en sportshal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prisen afhænger af kvadratmeter, gulvtype, frekvens og hvilke områder der indgår (hal, omklædning, foyer m.m.). I får et uforpligtende tilbud baseret på jeres behov."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan I arbejde uden for åbningstid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, ofte kan vi planlægge arbejdet uden for de travleste perioder eller helt uden for arbejdstid, så aktiviteterne forstyrres mindst muligt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvordan håndterer I harpiks, gummimærker og trafikspor på gulvet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi bruger metoder, der passer til sportsgulve – fx målrettet pletbehandling og maskinvask (fx med gulvvaskemaskine), så gulvet rengøres grundigt uden unødigt slid."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Bliver gulvet glat efter gulvbehandling eller vask?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi tilpasser dosering, udstyr og tørretid til gulvet og belastningen, og vi planlægger arbejdet, så overfladen når at blive korrekt tør og klar til brug."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan I lave ekstra indsats ved stævner eller særlige arrangementer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Ved turneringer, udlejning eller travle perioder kan vi udvide efter aftale – fx før/efter events eller som en periodisk hovedrengøring."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan vi få en fast person eller et fast team?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Det er målet i de fleste aftaler, fordi det giver mest stabil kvalitet og bedst kendskab til jeres faciliteter."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan I hjælpe med forbrugsartikler som papirvarer og sæbe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, efter aftale kan vi hjælpe med indkøb og opfyldning af forbrugsartikler, så I har styr på hverdagen."
+        }
       }
-    },
-    {
-      "@type": "Question",
-      "name": "Kan I arbejde uden for åbningstid?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja, ofte kan vi planlægge arbejdet uden for de travleste perioder eller helt uden for arbejdstid, så aktiviteterne forstyrres mindst muligt."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Hvordan håndterer I harpiks, gummimærker og trafikspor på gulvet?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Vi bruger metoder, der passer til sportsgulve – fx målrettet pletbehandling og maskinvask (fx med gulvvaskemaskine), så gulvet rengøres grundigt uden unødigt slid."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Bliver gulvet glat efter gulvbehandling eller vask?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Vi tilpasser dosering, udstyr og tørretid til gulvet og belastningen, og vi planlægger arbejdet, så overfladen når at blive korrekt tør og klar til brug."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kan I lave ekstra indsats ved stævner eller særlige arrangementer?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja. Ved turneringer, udlejning eller travle perioder kan vi udvide efter aftale – fx før/efter events eller som en periodisk hovedrengøring."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kan vi få en fast person eller et fast team?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Det er målet i de fleste aftaler, fordi det giver mest stabil kvalitet og bedst kendskab til jeres faciliteter."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kan I hjælpe med forbrugsartikler som papirvarer og sæbe?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja, efter aftale kan vi hjælpe med indkøb og opfyldning af forbrugsartikler, så I har styr på hverdagen."
-      }
-    }
-  ]
-}
+    ]
+  }
   </script>
 </head>
 
@@ -311,7 +337,7 @@
   <main id="main" class="site-content">
     <!-- Hero -->
     <section class="hero">
-      <picture class="hero__media" aria-hidden="true">
+      <picture class="hero__media">
         <source
           type="image/avif"
           media="(orientation: portrait)"
@@ -351,7 +377,7 @@
       
         <img
           src="../../images/ydelser/horizontal_1600x800/rengjort_sportshal.jpg"
-          alt=""
+          alt="Rengjort cafemiljø"
           width="1600"
           height="800"
           decoding="async"
@@ -397,6 +423,20 @@
         </div>
 
         <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
+        <noscript>
+          <div class="reviews__noscript" aria-label="Kundeanmeldelser (uden JavaScript)">
+            <p><strong>Kundeanmeldelser</strong> (vises som liste, fordi JavaScript er slået fra)</p>
+            <ul>
+              <li>★★★★★ — <a href="https://share.google/TOX8MqLccJ88ZGPAW" target="_blank" rel="noopener noreferrer">Laura Aagaard (Google)</a>: Vi er virkelig glade for Schier rengøring…</li>
+              <li>★★★★★ — <a href="https://share.google/8fw9UN9i1ZvmhguR7" target="_blank" rel="noopener noreferrer">zoob77 (Google)</a>: Intet at udsætte…</li>
+              <li>★★★★★ — <a href="https://share.google/EyA3NZ7IDHXbZSpTA" target="_blank" rel="noopener noreferrer">Hanne Bruhn (Google)</a>: rengøring i top, altid sød og venlig betjening…</li>
+              <li>★★★★★ — <a href="https://share.google/Bn9jRVgWNd77TIrpz" target="_blank" rel="noopener noreferrer">Rene Dissing (Google)</a>: Bestilte en "total" rengøring af mit hus (3 etager)…</li>
+              <li>★★★★★ — <a href="https://share.google/2zHZMIzgZwcFuGmT6" target="_blank" rel="noopener noreferrer">Jonas Schnack Krog (Google)</a>: God og solid rengøring med god kommunikation…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec" target="_blank" rel="noopener noreferrer">Tina Katja Lund Andersen (Trustpilot)</a>: Super god oplevelse, både før, under og efter…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75" target="_blank" rel="noopener noreferrer">Lotte Nielsen (Trustpilot)</a>: Bestilte en fllytteflytterengøring…</li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
 
@@ -442,6 +482,7 @@
           <li>Aftørring af synlige flader og kontaktpunkter efter aftale</li>
           <li>Affaldshåndtering og nye poser efter aftale</li>
           <li>Opfriskning af indgangsparti, så helhedsindtrykket altid er i orden</li>
+          <li>Hvis hallen også rummer administration eller personalefaciliteter, kan vi fx kombinere  med <a href="https://www.schier.dk/ydelser/kontorrengoring/">kontorrengøring</a>.</li>
         </ul>
 
         <h3>Omklædning, toiletter og badefaciliteter</h3>
@@ -513,7 +554,7 @@
       </div>
     </section>
 
-<!-- Kontakt -->
+    <!-- Kontakt -->
     <section id="contact" class="cta-contact">
       <div class="container cta-contact__inner">
         <h2>Få et uforpligtende tilbud på rengøring af sportshaller</h2>
