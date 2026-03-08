@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="da" class="no-js">
 <head>
   <!-- SEO + mobil -->
   <meta charset="UTF-8" />
@@ -10,6 +10,20 @@
 
   <!-- Canonical -->
   <link rel="canonical" href="https://www.schier.dk/ydelser/institutionsrengoring/" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+
+  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
@@ -21,7 +35,7 @@
   <meta property="og:description" content="Institutionsrengøring i Nykøbing F og på Lolland-Falster: faste aftaler, tydelige standarder og fokus på hygiejne. Få et uforpligtende tilbud." />
   <meta property="og:url" content="https://www.schier.dk/ydelser/institutionsrengoring/" />
   <meta property="og:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_institution.jpg" />
-  <meta property="og:image:alt" content="Rengjort institution – Schier Rengøring" />
+  <meta property="og:image:alt" content="Rengjort børnehave" />
 
   <!-- Twitter card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -30,7 +44,7 @@
 
   <!-- Twitter image -->
   <meta name="twitter:image" content="https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_institution.jpg" />
-  <meta name="twitter:image:alt" content="Rengjort institution – Schier Rengøring" />
+  <meta name="twitter:image:alt" content="Rengjort børnehave" />
 
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,193 +56,207 @@
   <!-- Structured data -->
   <script type="application/ld+json">
   {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      "additionalType": "https://schema.org/CleaningService",
-      "@id": "https://www.schier.dk/#company",
-      "name": "Schier Professionel Rengøring",
-      "url": "https://www.schier.dk/",
-      "description": "Erhvervsrengøring på Lolland-Falster: Kontor, butik, klinik, institution, sportshaller m.m. Med fokus på kvalitet. Få et tilbud.",
-      "telephone": "+4550507665",
-      "email": "my@schier.dk",
-      "vatID": "DK38199633",
-      "taxID": "38199633",
-      "logo": {
-        "@id": "https://www.schier.dk/#logo"
-      },
-      "image": [
-        {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "additionalType": "https://schema.org/CleaningService",
+        "@id": "https://www.schier.dk/#company",
+        "name": "Schier Professionel Rengøring",
+        "url": "https://www.schier.dk/",
+        "description": "Erhvervsrengøring på Lolland-Falster: Kontor, butik, klinik, institution, sportshaller m.m. Med fokus på kvalitet. Få et tilbud.",
+        "telephone": "+4550507665",
+        "email": "my@schier.dk",
+        "vatID": "DK38199633",
+        "taxID": "38199633",
+        "logo": {
           "@id": "https://www.schier.dk/#logo"
-        }
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Folemarken 59",
-        "postalCode": "4800",
-        "addressLocality": "Nykøbing F",
-        "addressCountry": "DK"
-      },
-      "areaServed": [
-        {
+        },
+        "image": [
+          {
+            "@id": "https://www.schier.dk/#logo"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Folemarken 59",
+          "postalCode": "4800",
+          "addressLocality": "Nykøbing F",
+          "addressCountry": "DK"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Lolland"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Falster"
+          }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "08:00",
+            "closes": "16:00"
+          }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 54.75525589008013,
+          "longitude": 11.899858768549127
+        },
+        "priceRange": "$$",
+        "serviceArea": {
           "@type": "AdministrativeArea",
-          "name": "Lolland"
-        },
-        {
-          "@type": "AdministrativeArea",
-          "name": "Falster"
+          "name": "Lolland-Falster"
         }
-      ],
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "08:00",
-          "closes": "16:00"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://www.schier.dk/#logo",
+        "url": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg",
+        "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#primaryimage",
+        "url": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_institution.jpg",
+        "contentUrl": "https://www.schier.dk/images/ydelser/horizontal_1600x800/rengjort_institution.jpg",
+        "name": "Rengjort børnehave",
+        "caption": "Rengjort børnehave",
+        "inLanguage": "da-DK",
+        "width": 1600,
+        "height": 800
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.schier.dk/#website",
+        "url": "https://www.schier.dk/",
+        "name": "Schier Professionel Rengøring",
+        "inLanguage": "da-DK",
+        "publisher": {
+          "@id": "https://www.schier.dk/#company"
         }
-      ],
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 54.75525589008013,
-        "longitude": 11.899858768549127
       },
-      "priceRange": "$$",
-      "serviceArea": {
-        "@type": "AdministrativeArea",
-        "name": "Lolland-Falster"
-      }
-    },
-    {
-      "@type": "ImageObject",
-      "@id": "https://www.schier.dk/#logo",
-      "url": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg",
-      "contentUrl": "https://www.schier.dk/images/schier-professionel-rengoring-logo.jpg"
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://www.schier.dk/#website",
-      "url": "https://www.schier.dk/",
-      "name": "Schier Professionel Rengøring",
-      "inLanguage": "da-DK",
-      "publisher": {
-        "@id": "https://www.schier.dk/#company"
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#webpage",
-      "url": "https://www.schier.dk/ydelser/institutionsrengoring/",
-      "name": "Schier Rengøring - Nykøbing F | Rengøring af institutioner på Lolland-Falster",
-      "description": "Institutionsrengøring i Nykøbing F og på Lolland-Falster: faste aftaler, tydelige standarder og fokus på hygiejne. Få et uforpligtende tilbud.",
-      "inLanguage": "da-DK",
-      "isPartOf": {
-        "@id": "https://www.schier.dk/#website"
-      },
-      "about": {
-        "@id": "https://www.schier.dk/#company"
-      },
-      "publisher": {
-        "@id": "https://www.schier.dk/#company"
-      },
-      "primaryImageOfPage": {
-        "@id": "https://www.schier.dk/#logo"
-      },
-      "breadcrumb": {
-        "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#breadcrumb"
-      }
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Forside",
-          "item": "https://www.schier.dk/"
+      {
+        "@type": "WebPage",
+        "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#webpage",
+        "url": "https://www.schier.dk/ydelser/institutionsrengoring/",
+        "name": "Schier Rengøring - Nykøbing F | Rengøring af institutioner på Lolland-Falster",
+        "description": "Institutionsrengøring i Nykøbing F og på Lolland-Falster: faste aftaler, tydelige standarder og fokus på hygiejne. Få et uforpligtende tilbud.",
+        "inLanguage": "da-DK",
+        "isPartOf": {
+          "@id": "https://www.schier.dk/#website"
         },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Ydelser",
-          "item": "https://www.schier.dk/ydelser/"
+        "about": {
+          "@id": "https://www.schier.dk/#company"
         },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "Institutionsrengøring",
-          "item": "https://www.schier.dk/ydelser/institutionsrengoring/"
+        "publisher": {
+          "@id": "https://www.schier.dk/#company"
+        },
+        "image": {
+          "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#primaryimage"
+        },
+        "primaryImageOfPage": {
+          "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#primaryimage"
+        },
+        "breadcrumb": {
+          "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#breadcrumb"
         }
-      ]
-    }
-  ]
-}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Forside",
+            "item": "https://www.schier.dk/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Ydelser",
+            "item": "https://www.schier.dk/ydelser/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Institutionsrengøring",
+            "item": "https://www.schier.dk/ydelser/institutionsrengoring/"
+          }
+        ]
+      }
+    ]
+  }
   </script>
 
   <!-- FAQ structured data -->
   <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#faq",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Hvad koster institutionsrengøring?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Prisen afhænger af størrelse, frekvens, opgaveindhold og adgangsforhold. Vi giver altid et uforpligtende tilbud baseret på jeres behov."
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://www.schier.dk/ydelser/institutionsrengoring/#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Hvad koster institutionsrengøring?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Prisen afhænger af størrelse, frekvens, opgaveindhold og adgangsforhold. Vi giver altid et uforpligtende tilbud baseret på jeres behov."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan I gøre rent uden for åbningstid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, det kan ofte aftales, så rengøringen forstyrrer mindst muligt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan vi få et fast team?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, det er målet i de fleste aftaler – det giver mere ensartet kvalitet og bedre kendskab til lokalerne."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvordan håndterer I nøgler og alarmer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vi aftaler klare rutiner og følger jeres retningslinjer, så det foregår trygt og diskret."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan vi få ekstra rengøring i bestemte perioder?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja – ved arrangementer, travle uger eller hvis behovet ændrer sig, kan vi udvide efter aftale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hvad er typisk inkluderet i en standardaftale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Typisk gulve, frie overflader, affald, toiletter og fællesarealer – og efter behov køkken/personalerum. I får en tjekliste, så det er tydeligt, hvad der er med."
+        }
       }
-    },
-    {
-      "@type": "Question",
-      "name": "Kan I gøre rent uden for åbningstid?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja, det kan ofte aftales, så rengøringen forstyrrer mindst muligt."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kan vi få et fast team?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja, det er målet i de fleste aftaler – det giver mere ensartet kvalitet og bedre kendskab til lokalerne."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Hvordan håndterer I nøgler og alarmer?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Vi aftaler klare rutiner og følger jeres retningslinjer, så det foregår trygt og diskret."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Kan vi få ekstra rengøring i bestemte perioder?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ja – ved arrangementer, travle uger eller hvis behovet ændrer sig, kan vi udvide efter aftale."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Hvad er typisk inkluderet i en standardaftale?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Typisk gulve, frie overflader, affald, toiletter og fællesarealer – og efter behov køkken/personalerum. I får en tjekliste, så det er tydeligt, hvad der er med."
-      }
-    }
-  ]
-}
+    ]
+  }
   </script>
 </head>
 
@@ -303,7 +331,7 @@
   <main id="main" class="site-content">
     <!-- Hero -->
     <section class="hero">
-      <picture class="hero__media" aria-hidden="true">
+      <picture class="hero__media">
         <source
           type="image/avif"
           media="(orientation: portrait)"
@@ -343,7 +371,7 @@
 
         <img
           src="../../images/ydelser/horizontal_1600x800/rengjort_institution.jpg"
-          alt=""
+          alt="Rengjort børnehave"
           width="1600"
           height="800"
           decoding="async"
@@ -389,6 +417,20 @@
         </div>
 
         <div class="reviews__dots" data-reviews-dots aria-label="Vælg anmeldelse"></div>
+        <noscript>
+          <div class="reviews__noscript" aria-label="Kundeanmeldelser (uden JavaScript)">
+            <p><strong>Kundeanmeldelser</strong> (vises som liste, fordi JavaScript er slået fra)</p>
+            <ul>
+              <li>★★★★★ — <a href="https://share.google/TOX8MqLccJ88ZGPAW" target="_blank" rel="noopener noreferrer">Laura Aagaard (Google)</a>: Vi er virkelig glade for Schier rengøring…</li>
+              <li>★★★★★ — <a href="https://share.google/8fw9UN9i1ZvmhguR7" target="_blank" rel="noopener noreferrer">zoob77 (Google)</a>: Intet at udsætte…</li>
+              <li>★★★★★ — <a href="https://share.google/EyA3NZ7IDHXbZSpTA" target="_blank" rel="noopener noreferrer">Hanne Bruhn (Google)</a>: rengøring i top, altid sød og venlig betjening…</li>
+              <li>★★★★★ — <a href="https://share.google/Bn9jRVgWNd77TIrpz" target="_blank" rel="noopener noreferrer">Rene Dissing (Google)</a>: Bestilte en "total" rengøring af mit hus (3 etager)…</li>
+              <li>★★★★★ — <a href="https://share.google/2zHZMIzgZwcFuGmT6" target="_blank" rel="noopener noreferrer">Jonas Schnack Krog (Google)</a>: God og solid rengøring med god kommunikation…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/605db2ccf85d75087035fcec" target="_blank" rel="noopener noreferrer">Tina Katja Lund Andersen (Trustpilot)</a>: Super god oplevelse, både før, under og efter…</li>
+              <li>★★★★★ — <a href="https://dk.trustpilot.com/reviews/689f0fc9f2fd65a1267fde75" target="_blank" rel="noopener noreferrer">Lotte Nielsen (Trustpilot)</a>: Bestilte en fllytteflytterengøring…</li>
+            </ul>
+          </div>
+        </noscript>
       </div>
     </section>
 
@@ -454,10 +496,10 @@
 
         <h3>Særlige zoner (efter behov)</h3>
         <ul class="checklist">
-          <li>Personalekontorer og mødelokaler</li>
-          <li>Trapper, gelændere og elevatorområder</li>
+          <li><a href="https://www.schier.dk/ydelser/kontorrengoring/">Personalekontorer og mødelokaler</a></li>
+          <li>Trapper, gelændere og elevatorområder – herunder <a href="https://www.schier.dk/ydelser/trappevask/">trappevask</a></li>
           <li>Depot-/lagerområder</li>
-          <li>Sale/haller og andre større rum med særlige gulvkrav</li>
+          <li>Sale/haller og andre større rum med særlige gulvkrav – se også <a href="https://www.schier.dk/ydelser/rengoring-af-sportshaller/">rengøring af sportshaller</a></li>
         </ul>
 
         <h3>Ekstra ydelser (kan tilføjes)</h3>
