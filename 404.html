@@ -26,21 +26,6 @@
 
   <link rel="stylesheet" href="css/style.css" />
 
-  <script>
-    (function () {
-      const user = "my";
-      const domain = "schier";
-      const tld = "dk";
-  
-      const link = document.getElementById("email-link");
-      if (!link) return;
-  
-      const email = `${user}@${domain}.${tld}`;
-      link.href = `mailto:${email}`;
-      link.textContent = email;
-    })();
-  </script>
-  
   <style>
     .error-404 {
       min-height: calc(100vh - 220px);
@@ -144,5 +129,21 @@
       </p>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const user = "my";
+      const domain = "schier";
+      const tld = "dk";
+  
+      const link = document.getElementById("email-link");
+      if (!link) return;
+  
+      const email = `${user}@${domain}.${tld}`;
+      link.href = `mailto:${email}`;
+      link.textContent = email;
+    })();
+  </script>
+  
 </body>
 </html>
