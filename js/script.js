@@ -463,3 +463,17 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
   startAuto();
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const user = "my";
+  const domain = "schier";
+  const tld = "dk";
+
+  const email = `${user}@${domain}.${tld}`;
+  const link = document.getElementById("email-link");
+
+  if (!link) return;
+
+  link.href = `mailto:${email}`;
+  link.textContent = email;
+});
