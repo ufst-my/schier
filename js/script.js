@@ -464,16 +464,16 @@ document.addEventListener("DOMContentLoaded", () => {
   startAuto();
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const user = "my";
-  const domain = "schier";
-  const tld = "dk";
+  (function () {
+    const user = "my";
+    const domain = "schier";
+    const tld = "dk";
+    const email = `${user}@${domain}.${tld}`;
 
-  const email = `${user}@${domain}.${tld}`;
-  const link = document.getElementById("email-link");
+    const links = document.querySelectorAll(".email-link");
 
-  if (!link) return;
-
-  link.href = `mailto:${email}`;
-  link.textContent = email;
-});
+    links.forEach(function (link) {
+      link.href = `mailto:${email}`;
+      link.textContent = email;
+    });
+  })();
