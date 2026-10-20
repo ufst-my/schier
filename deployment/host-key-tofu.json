@@ -1,0 +1,32 @@
+{
+  "trust_model": "TOFU",
+  "owner_authorization": "Accept this key if all three separate connections agree.",
+  "provider_verified": false,
+  "endpoint": "ssh.cmcay2ntn.service.one",
+  "port": 22,
+  "algorithm": "ssh-ed25519",
+  "checks": [
+    {
+      "Check": 1,
+      "UTC": "2026-10-20T00:44:09.0827154Z",
+      "Fingerprint": "SHA256:iDgAh/1dj9HyXk3nOztS6nK7jJI1IyR2uUrxDCF9kI8",
+      "PublicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqIQzp1R9ZzoL0Mw4ERjRBsiHP10j8LkY8ch8C/vtyt",
+      "KnownHostsLine": "ssh.cmcay2ntn.service.one ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqIQzp1R9ZzoL0Mw4ERjRBsiHP10j8LkY8ch8C/vtyt"
+    },
+    {
+      "Check": 2,
+      "UTC": "2026-10-20T00:44:24.2028301Z",
+      "Fingerprint": "SHA256:iDgAh/1dj9HyXk3nOztS6nK7jJI1IyR2uUrxDCF9kI8",
+      "PublicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqIQzp1R9ZzoL0Mw4ERjRBsiHP10j8LkY8ch8C/vtyt",
+      "KnownHostsLine": "ssh.cmcay2ntn.service.one ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqIQzp1R9ZzoL0Mw4ERjRBsiHP10j8LkY8ch8C/vtyt"
+    },
+    {
+      "Check": 3,
+      "UTC": "2026-10-20T00:44:39.3213874Z",
+      "Fingerprint": "SHA256:iDgAh/1dj9HyXk3nOztS6nK7jJI1IyR2uUrxDCF9kI8",
+      "PublicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqIQzp1R9ZzoL0Mw4ERjRBsiHP10j8LkY8ch8C/vtyt",
+      "KnownHostsLine": "ssh.cmcay2ntn.service.one ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHqIQzp1R9ZzoL0Mw4ERjRBsiHP10j8LkY8ch8C/vtyt"
+    }
+  ]
+}
+

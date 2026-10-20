@@ -1,0 +1,138 @@
+name: one.com SFTP
+run-name: "one.com SFTP · ${{ inputs.mode }} · ${{ github.ref_name }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Test = read-only comparison. Deploy = upload new/changed public files."
+        type: choice
+        required: true
+        default: Test
+        options: [Test, Deploy]
+      test_run_id:
+        description: "Deploy only: successful Test run ID for THIS commit/configuration (max 24 hours old)."
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: schier-one-com-production-sftp
+  cancel-in-progress: false
+
+jobs:
+  sftp:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - name: Require manual run on main
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          MODE: ${{ inputs.mode }}
+          TEST_RUN_ID: ${{ inputs.test_run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT" != "workflow_dispatch" || "$REF" != "refs/heads/main" ]]; then
+            echo "::error::Only a manual run from main is permitted."
+            exit 1
+          fi
+          if [[ "$MODE" != "Test" && "$MODE" != "Deploy" ]]; then
+            echo "::error::Unknown mode."
+            exit 1
+          fi
+          if [[ "$MODE" == "Deploy" && ! "$TEST_RUN_ID" =~ ^[0-9]+$ ]]; then
+            echo "::error::Deploy requires a successful Test run ID for this commit."
+            exit 1
+          fi
+
+      - name: Check out the selected main commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Set up pinned Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13.16"
+          check-latest: false
+
+      - name: Install version- and hash-pinned SFTP dependencies
+        run: |
+          python -m pip install --only-binary=:all: --require-hashes -r deployment/requirements.lock
+
+      - name: Run offline safety tests (no one.com connection)
+        run: python -m unittest discover -s deployment/tests -v
+
+      - name: Download the successful Test receipt
+        if: inputs.mode == 'Deploy'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: sftp-test-receipt
+          path: ${{ runner.temp }}/prior-sftp-test
+          run-id: ${{ inputs.test_run_id }}
+          github-token: ${{ github.token }}
+
+      # The script first opens a read-only OpenSSH SFTP session with:
+      # StrictHostKeyChecking=yes, HostKeyAlgorithms=ssh-ed25519 and the sole
+      # repository pin in deployment/known_hosts. It never refreshes the pin.
+      # Paramiko independently checks the same key again before any transfer.
+      - name: Verify pinned host and compare or deploy
+        env:
+          DEPLOY_MODE: ${{ inputs.mode }}
+          SFTP_TEST_RUN_ID: ${{ inputs.test_run_id }}
+          SFTP_HOST: ${{ secrets.SFTP_HOST }}
+          SFTP_USER: ${{ secrets.SFTP_USER }}
+          SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
+          SFTP_REMOTE_DIR: ${{ vars.SFTP_REMOTE_DIR }}
+          SFTP_ROOT_CONFIRMED: ${{ vars.SFTP_ROOT_CONFIRMED }}
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python deployment/sftp_deploy.py \
+            --mode "$DEPLOY_MODE" \
+            --report-dir "$RUNNER_TEMP/sftp-report" \
+            --test-receipt "$RUNNER_TEMP/prior-sftp-test/test-receipt.json"
+
+      - name: Explain an early failure without claiming a comparison
+        if: always()
+        shell: bash
+        run: |
+          if [[ ! -f "$RUNNER_TEMP/sftp-report/summary.md" ]]; then
+            printf '%s\n' '## SFTP stopped without a complete report' \
+              'See the failed step above. No successful Test receipt was issued.' \
+              'If a Deploy step started, inspect the server before assuming it was unchanged.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Keep the comparison/deployment report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: sftp-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/sftp-report/report.json
+            ${{ runner.temp }}/sftp-report/summary.md
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Record successful read-only Test
+        if: success() && inputs.mode == 'Test'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: sftp-test-receipt
+          overwrite: true
+          path: ${{ runner.temp }}/sftp-report/test-receipt.json
+          if-no-files-found: error
+          retention-days: 2
+
+
