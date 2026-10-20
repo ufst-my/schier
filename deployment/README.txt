@@ -218,3 +218,31 @@ https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-w
 https://help.one.com/hc/en-us/articles/49226612219153-Where-can-I-find-the-File-System-Path-for-my-domain-or-subdomain
 
 
+
+Preview target: test.schier.dk
+----------------------------
+Choose target Preview (the default) for the separate test website.
+Production still uses its existing SFTP_REMOTE_DIR / SFTP_ROOT_CONFIRMED variables.
+Preview uses SFTP_PREVIEW_REMOTE_DIR and SFTP_PREVIEW_ROOT_CONFIRMED=true.
+The owner confirmed /webroots/df12bd7c in the one.com control panel.
+Its sole allowed canonical SFTP root is:
+  /customers/7/7/4/cmcay2ntn/webroots/df12bd7c
+The workflow verifies this exact directory and rejects symlinks, a missing root,
+production fallback or a different canonical root. It never creates a webroot.
+An empty Preview root or a provider default index is permitted for first upload.
+
+Preview publishes the same 236-file manifest, with two deterministic overlays:
+- .htaccess from deployment/preview.htaccess: test host only, HTTPS redirect to
+  test.schier.dk, X-Robots-Tag noindex/nofollow/noarchive, index.html as default.
+- robots.txt: User-agent: * / Disallow: /.
+These overrides do not change the production website files in Git.
+Production canonical/SEO URLs in HTML stay unchanged.
+Noindex is a request to search engines, not password protection.
+The Preview .htaccess is published first, before public pages.
+
+First run Preview + Test, then Preview + Deploy with that successful run ID.
+Receipts are bound to target, root, commit, overlay bytes and full manifest;
+a Production Test cannot authorize a Preview Deploy, or the reverse.
+The shared concurrency group serializes both targets. Existing secrets and
+the pinned TOFU ED25519 host key / StrictHostKeyChecking=yes are unchanged.
+No deletion was added. The owner removed hohoho and visit in the control panel.

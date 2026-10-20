@@ -1,9 +1,15 @@
 name: one.com SFTP
-run-name: "one.com SFTP · ${{ inputs.mode }} · ${{ github.ref_name }}"
+run-name: "one.com SFTP · ${{ inputs.target }} · ${{ inputs.mode }} · ${{ github.ref_name }}"
 
 on:
   workflow_dispatch:
     inputs:
+      target:
+        description: "Preview = test.schier.dk. Production = www.schier.dk."
+        type: choice
+        required: true
+        default: Preview
+        options: [Preview, Production]
       mode:
         description: "Test = read-only comparison. Deploy = upload new/changed public files."
         type: choice
@@ -36,6 +42,7 @@ jobs:
         env:
           EVENT: ${{ github.event_name }}
           REF: ${{ github.ref }}
+          TARGET: ${{ inputs.target }}
           MODE: ${{ inputs.mode }}
           TEST_RUN_ID: ${{ inputs.test_run_id }}
         shell: bash
@@ -43,6 +50,10 @@ jobs:
           set -euo pipefail
           if [[ "$EVENT" != "workflow_dispatch" || "$REF" != "refs/heads/main" ]]; then
             echo "::error::Only a manual run from main is permitted."
+            exit 1
+          fi
+          if [[ "$TARGET" != "Preview" && "$TARGET" != "Production" ]]; then
+            echo "::error::Unknown target."
             exit 1
           fi
           if [[ "$MODE" != "Test" && "$MODE" != "Deploy" ]]; then
@@ -88,6 +99,7 @@ jobs:
       # Paramiko independently checks the same key again before any transfer.
       - name: Verify pinned host and compare or deploy
         env:
+          SFTP_TARGET: ${{ inputs.target }}
           DEPLOY_MODE: ${{ inputs.mode }}
           SFTP_TEST_RUN_ID: ${{ inputs.test_run_id }}
           SFTP_HOST: ${{ secrets.SFTP_HOST }}
@@ -95,6 +107,8 @@ jobs:
           SFTP_PASSWORD: ${{ secrets.SFTP_PASSWORD }}
           SFTP_REMOTE_DIR: ${{ vars.SFTP_REMOTE_DIR }}
           SFTP_ROOT_CONFIRMED: ${{ vars.SFTP_ROOT_CONFIRMED }}
+          SFTP_PREVIEW_REMOTE_DIR: ${{ vars.SFTP_PREVIEW_REMOTE_DIR }}
+          SFTP_PREVIEW_ROOT_CONFIRMED: ${{ vars.SFTP_PREVIEW_ROOT_CONFIRMED }}
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |

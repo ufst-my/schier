@@ -313,6 +313,132 @@ class SafetyTests(unittest.TestCase):
             self.assertFalse((Path(folder) / "test-receipt.json").exists())
 
 
+class PreviewSafetyTests(unittest.TestCase):
+    def config(self, root=None, confirmed=True):
+        return deploy.Config("ssh.cmcay2ntn.service.one", "local-test", "local-test-only",
+                             deploy.pinned_identity()[1], root or deploy.PREVIEW_ROOT,
+                             confirmed, target="Preview")
+
+    def remote(self):
+        remote = MemorySFTP()
+        from pathlib import PurePosixPath
+        for path in (deploy.PREVIEW_ROOT, deploy.PREVIEW_ALIAS):
+            remote.dirs.update(str(p) for p in [PurePosixPath(path), *PurePosixPath(path).parents])
+        remote.normalize = lambda path: deploy.PREVIEW_ROOT
+        remote.listdir_iter = lambda *args, **kwargs: iter([])
+        remote.close = lambda: None
+        return remote
+
+    def test_preview_config_has_no_production_fallback(self):
+        env = {"SFTP_HOST": "ssh.cmcay2ntn.service.one", "SFTP_USER": "local-test",
+               "SFTP_PASSWORD": "local-test-only", "SFTP_TARGET": "Preview",
+               "SFTP_REMOTE_DIR": deploy.PRODUCTION_ROOT, "SFTP_ROOT_CONFIRMED": "true"}
+        with patch.dict(os.environ, env, clear=True), self.assertRaises(deploy.SafeError):
+            deploy.load_config()
+        env.update(SFTP_PREVIEW_REMOTE_DIR=deploy.PREVIEW_ALIAS,
+                   SFTP_PREVIEW_ROOT_CONFIRMED="true")
+        with patch.dict(os.environ, env, clear=True):
+            config = deploy.load_config()
+            self.assertEqual(config.target, "Preview")
+            self.assertEqual(config.remote_dir, deploy.PREVIEW_ALIAS)
+            self.assertTrue(config.root_confirmed)
+        env["SFTP_PREVIEW_REMOTE_DIR"] = deploy.PRODUCTION_ROOT
+        with patch.dict(os.environ, env, clear=True), self.assertRaises(deploy.SafeError):
+            deploy.load_config()
+
+    def test_empty_confirmed_preview_root_is_allowed_without_writes(self):
+        remote = self.remote()
+        for path in [deploy.PREVIEW_ROOT, deploy.PREVIEW_ALIAS]:
+            self.assertEqual(deploy.validate_target_root(remote, self.config(path)), deploy.PREVIEW_ROOT)
+        self.assertEqual(remote.writes, [])
+
+    def test_wrong_canonical_root_and_production_are_rejected(self):
+        for path in [deploy.PRODUCTION_ROOT, "/", "/webroots/elsewhere"]:
+            remote = self.remote()
+            remote.normalize = lambda _: path
+            with self.assertRaises(deploy.SafeError):
+                deploy.validate_target_root(remote, self.config())
+            self.assertEqual(remote.writes, [])
+        with self.assertRaises(deploy.SafeError):
+            deploy.validate_target_root(self.remote(), self.config(deploy.PRODUCTION_ROOT))
+
+    def test_missing_unconfirmed_or_symlink_root_is_rejected(self):
+        remote = self.remote()
+        remote.dirs.remove(deploy.PREVIEW_ROOT)
+        with self.assertRaises(deploy.SafeError):
+            deploy.validate_target_root(remote, self.config())
+        with self.assertRaises(deploy.SafeError):
+            deploy.validate_target_root(self.remote(), self.config(confirmed=False))
+        remote = self.remote()
+        remote.links.add(deploy.PREVIEW_ROOT)
+        with self.assertRaises(deploy.SafeError):
+            deploy.validate_target_root(remote, self.config())
+        self.assertEqual(remote.writes, [])
+
+    def test_production_still_requires_schier_index(self):
+        remote = self.remote()
+        remote.normalize = lambda path: path
+        config = deploy.Config("example.test", "local-test", "local-test-only", "pin", "/site", True)
+        with self.assertRaises(deploy.SafeError):
+            deploy.validate_target_root(remote, config)
+
+    def test_overlays_do_not_change_production_sources(self):
+        files = [public(".htaccess", b"production redirect"),
+                 public("robots.txt", b"production robots"), public("index.html", b"site")]
+        production = deploy.Config("example.test", "local-test", "local-test-only", "pin", "/site", True)
+        self.assertIs(deploy.publication_files(files, production), files)
+        result = deploy.publication_files(files, self.config())
+        self.assertEqual(len(files), len(result))
+        self.assertEqual(files[0].content, b"production redirect")
+        self.assertEqual(result[2], files[2])
+        self.assertIn(b"https://test.schier.dk", result[0].content)
+        self.assertNotIn(b"www.schier.dk", result[0].content)
+        self.assertIn(b"noindex, nofollow, noarchive", result[0].content)
+        self.assertIn(b"Disallow: /", result[1].content)
+        self.assertNotEqual(deploy.manifest_digest(result), deploy.manifest_digest(files))
+
+    def test_receipt_digest_separates_targets_even_for_same_files(self):
+        from dataclasses import replace
+        preview = self.config()
+        production = replace(preview, target="Production")
+        files = [public("index.html", b"site")]
+        self.assertNotEqual(deploy.configuration_digest(preview, files),
+                            deploy.configuration_digest(production, files))
+
+    def test_preview_host_guards_are_published_before_pages(self):
+        remote = MemorySFTP()
+        files = [public("index.html", b"site"), public(".htaccess", b"guard"),
+                 public("robots.txt", b"deny")]
+        rows = deploy.compare_files(remote, "/site", files)
+        deploy.deploy_files(remote, "/site", files, rows, preview=True)
+        targets = [path for op, path in remote.writes if op == "rename"]
+        self.assertEqual(targets[0], "/site/.htaccess")
+        self.assertTrue(all(r["upload_state"] == "VERIFIED" for r in rows))
+
+    def test_full_preview_test_reads_only_and_records_exact_root(self):
+        remote = self.remote()
+        files = [public(".htaccess", b"production"), public("robots.txt", b"allow"),
+                 public("index.html", b"site")]
+        env = {"GITHUB_REPOSITORY": "ufst-my/schier", "GITHUB_SHA": "a" * 40,
+               "GITHUB_RUN_ID": "123", "GITHUB_RUN_ATTEMPT": "1"}
+        with tempfile.TemporaryDirectory() as folder, patch.dict(os.environ, env):
+            with patch.object(deploy, "load_public_files", return_value=files), \
+                 patch.object(deploy, "load_config", return_value=self.config()), \
+                 patch.object(deploy, "assert_current_main"), \
+                 patch.object(deploy, "openssh_preflight"), \
+                 patch.object(deploy, "connect", return_value=(SimpleNamespace(close=lambda: None), remote)):
+                result = deploy.run("Test", Path(folder), Path(folder) / "missing.json")
+            report = json.loads((Path(folder) / "report.json").read_text())
+            receipt = json.loads((Path(folder) / "test-receipt.json").read_text())
+            self.assertEqual(result, 0)
+            self.assertEqual(report["target"], "Preview")
+            self.assertEqual(report["canonical_root"], deploy.PREVIEW_ROOT)
+            self.assertEqual(receipt["remote_writes"], 0)
+            self.assertEqual(receipt["canonical_root"], deploy.PREVIEW_ROOT)
+            self.assertTrue(all(row["status"] == "NEW" for row in report["files"]))
+            self.assertEqual(remote.writes, [])
+
+
 # A real SSH/SFTP server bound ONLY to loopback. It exposes no shell at all.
 class LoopbackServer(paramiko.ServerInterface):
     def __init__(self):

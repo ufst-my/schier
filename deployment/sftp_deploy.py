@@ -33,6 +33,9 @@ KNOWN_HOSTS = REPO / "deployment" / "known_hosts"
 MAX_FILE = 32 * 1024 * 1024
 MAX_TOTAL = 256 * 1024 * 1024
 WORKFLOW = ".github/workflows/deploy.yml"
+PRODUCTION_ROOT = "/customers/7/7/4/cmcay2ntn/webroots/www"
+PREVIEW_ROOT = "/customers/7/7/4/cmcay2ntn/webroots/df12bd7c"
+PREVIEW_ALIAS = "/webroots/df12bd7c"
 ALLOWED_ROOT = {".htaccess", "404.html", "index.html", "favicon.ico",
                 "robots.txt", "site.webmanifest", "sitemap.xml"}
 ALLOWED_EXTENSIONS = {
@@ -66,6 +69,7 @@ class Config:
     remote_dir: str
     root_confirmed: bool
     port: int = 22
+    target: str = "Production"
 
 
 class PinnedHostKey(paramiko.MissingHostKeyPolicy):
@@ -257,7 +261,15 @@ def load_config() -> Config:
     optional_pin = os.environ.get("SFTP_HOST_KEY_SHA256", "").strip()
     if optional_pin and not hmac.compare_digest(optional_pin, fingerprint):
         raise SafeError("Optional fingerprint variable disagrees with repository-pinned host key.")
-    remote_dir = os.environ.get("SFTP_REMOTE_DIR", "").strip()
+    target = os.environ.get("SFTP_TARGET", "Production")
+    if target not in {"Production", "Preview"}:
+        raise SafeError("Unknown deployment target.")
+    prefix = "SFTP_PREVIEW" if target == "Preview" else "SFTP"
+    remote_dir = os.environ.get(prefix + "_REMOTE_DIR", "").strip()
+    if target == "Preview" and remote_dir not in {PREVIEW_ROOT, PREVIEW_ALIAS}:
+        raise SafeError("Preview requires the owner-confirmed df12bd7c webroot; production fallback is forbidden.")
+    if target == "Production" and remote_dir in {PREVIEW_ROOT, PREVIEW_ALIAS}:
+        raise SafeError("The preview root cannot be used as a Production target.")
     if remote_dir and (
         not remote_dir.startswith("/") or "\\" in remote_dir or
         any(ord(c) < 32 or ord(c) == 127 for c in remote_dir) or
@@ -272,13 +284,14 @@ def load_config() -> Config:
         raise SafeError("SFTP_HOST is not the hostname pinned in deployment/known_hosts.")
     return Config(host, os.environ["SFTP_USER"], os.environ["SFTP_PASSWORD"],
                   fingerprint, remote_dir,
-                  os.environ.get("SFTP_ROOT_CONFIRMED", "") == "true")
+                  os.environ.get(prefix + "_ROOT_CONFIRMED", "") == "true",
+                  target=target)
 
 
 def configuration_digest(config: Config, files):
     # Deliberately excludes the password. No password or password hash is recorded.
     data = [config.host, config.user, config.port, config.fingerprint,
-            config.remote_dir, manifest_digest(files)]
+            config.remote_dir, config.target, manifest_digest(files)]
     return hashlib.sha256(json.dumps(data, separators=(",", ":")).encode()).hexdigest()
 
 
@@ -359,6 +372,41 @@ def validate_root(sftp, remote_dir):
     return canonical
 
 
+def publication_files(files, config):
+    """Preview-only overlays; production website sources remain unchanged."""
+    if config.target == "Production":
+        return files
+    if config.target != "Preview":
+        raise SafeError("Unknown deployment target.")
+    replacements = {
+        ".htaccess": (REPO / "deployment" / "preview.htaccess").read_bytes(),
+        "robots.txt": b"User-agent: *\nDisallow: /\n",
+    }
+    result = []
+    for file in files:
+        content = replacements.get(file.path, file.content)
+        result.append(PublicFile(file.path, content, hashlib.sha256(content).hexdigest()))
+    return result
+
+
+def validate_target_root(sftp, config):
+    if config.target == "Production":
+        return validate_root(sftp, config.remote_dir)
+    if (config.target != "Preview" or not config.root_confirmed or
+            config.remote_dir not in {PREVIEW_ROOT, PREVIEW_ALIAS}):
+        raise SafeError("Preview root has not been explicitly confirmed.")
+    canonical = sftp.normalize(config.remote_dir)
+    if canonical != PREVIEW_ROOT or canonical == PRODUCTION_ROOT:
+        raise SafeError("Preview resolved outside its sole approved webroot. No upload permitted.")
+    for path in {config.remote_dir, canonical}:
+        info = check_remote_path(sftp, path)
+        if not stat.S_ISDIR(info.st_mode):
+            raise SafeError("Preview webroot must already exist as a real directory.")
+    # New subdomains may be empty or contain a provider default index. This exact
+    # root is owner-confirmed; do not require a production index or create a root.
+    return canonical
+
+
 def discover_roots(sftp):
     """Read-only hints only; never select a root or produce a passing Test receipt."""
     landing = sftp.normalize(".")
@@ -432,7 +480,7 @@ def ensure_parent(sftp, root, relative):
             raise SafeError("Remote publication parent is not a directory.")
 
 
-def deploy_files(sftp, root, files, rows):
+def deploy_files(sftp, root, files, rows, *, preview=False):
     """All comparison errors stop publication BEFORE any upload/mkdir/rename."""
     if any(row["status"] == "ERROR" for row in rows):
         raise SafeError("Comparison has errors; no upload was attempted.")
@@ -440,7 +488,8 @@ def deploy_files(sftp, root, files, rows):
     # Every file is compared before the first write. Recheck changed/new targets too.
     def publication_order(row):
         path = row["path"]
-        priority = (3 if path.endswith(".htaccess") else
+        priority = (-1 if preview and path == ".htaccess" else
+                    3 if path.endswith(".htaccess") else
                     2 if path.endswith(".html") else
                     1 if path in {"site.webmanifest", "robots.txt", "sitemap.xml"} else 0)
         return priority, path
@@ -580,6 +629,8 @@ def write_report(directory, report):
     lines = [
         "# one.com SFTP — " + escape(report["mode"]),
         "", "**Result:** " + escape(report["result"]), "",
+        "Target: " + escape(report.get("target", "Production")),
+        "Remote root: " + escape(report.get("canonical_root", "not verified")), "",
         "Content is compared using SHA-256, including files of equal size. No mtime-only assumptions.",
         "No remote deletion commands exist. Server-only files are preserved.",
         "", f"NEW: {counts['NEW']} · CHANGED: {counts['CHANGED']} · "
@@ -623,6 +674,8 @@ def run(mode, report_dir, test_receipt):
     try:
         files = load_public_files()
         config = load_config()
+        report["target"] = config.target
+        files = publication_files(files, config)
         assert_current_main()
         receipt = None
         if mode == "Deploy":
@@ -636,7 +689,8 @@ def run(mode, report_dir, test_receipt):
         if not config.remote_dir:
             report["discovery"] = discover_roots(sftp)
             raise SafeError("No remote root configured. Hints are NOT a completed comparison; Deploy stays blocked.")
-        root = validate_root(sftp, config.remote_dir)
+        root = validate_target_root(sftp, config)
+        report["canonical_root"] = root
         report["files"] = compare_files(sftp, root, files)
         report["preserved_root_entries"] = preserved_root_entries(sftp, root, files)
         if any(row["status"] == "ERROR" for row in report["files"]):
@@ -647,7 +701,7 @@ def run(mode, report_dir, test_receipt):
             if root != receipt["canonical_root"]:
                 raise SafeError("Canonical remote root differs from the earlier Test.")
             assert_current_main()
-            deploy_files(sftp, root, files, report["files"])
+            deploy_files(sftp, root, files, report["files"], preview=config.target == "Preview")
             report["result"] = "DEPLOYED_AND_VERIFIED"
         else:
             report_dir.mkdir(parents=True, exist_ok=True)
