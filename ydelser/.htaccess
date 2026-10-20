@@ -1,0 +1,5 @@
+
+# Display the default page. The below line is safe to remove.
+DirectoryIndex index.php index.php4 index.php5 index.phtml index.html index.htm index.shtml default.html default.htm index.ehtml /____groupone_default/default.shtml
+# End default page
+    
