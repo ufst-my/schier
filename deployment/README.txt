@@ -251,11 +251,14 @@ The job permits 60 minutes for initial full uploads and per-file verification.
 
 Indexing policy (supersedes the earlier robots.txt overlay description)
 ---------------------------------------------------------------------
-Source HTML and Preview HTML use noindex. robots.txt allows crawling so crawlers
-can read the noindex rule; robots.txt itself cannot reliably prevent indexing.
+Source HTML and Preview HTML use noindex. Source/Preview robots.txt contains
+User-agent: * and Disallow: /. A blocked crawler cannot read the noindex rule;
+this does not guarantee removal of already indexed URLs or provide access control.
 Preview also sends X-Robots-Tag: noindex, nofollow, noarchive.
 Production always receives deployment/production-robots.txt as public robots.txt
-(Allow: /, empty Disallow, production sitemap), regardless of source robots.txt.
+(empty Disallow, production sitemap), regardless of source robots.txt. The exact
+bytes approved from live production are preserved, including CRLF line endings
+and the absence of a final newline.
 Production HTML is transformed to index,follow,max-image-preview:large; the 404
 page remains noindex. Production publication fails if the robots template differs
 from the exact allow policy, if a page lacks the expected robots meta, or if the

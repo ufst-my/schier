@@ -1,3 +1,2 @@
-# Source/Preview: pages use noindex; allow crawlers to read that rule.
 User-agent: *
-Disallow:
+Disallow: /

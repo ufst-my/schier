@@ -375,8 +375,8 @@ def publication_files(files, config):
     """Bind indexing policy to the target, never to the source robots.txt."""
     if config.target == "Production":
         production_robots = (REPO / "deployment" / "production-robots.txt").read_bytes()
-        expected = (b"User-agent: *\nAllow: /\nDisallow:\n\n"
-                    b"Sitemap: https://www.schier.dk/sitemap.xml\n")
+        expected = (b"User-agent: *\r\nDisallow:\r\n\r\n"
+                    b"Sitemap: https://www.schier.dk/sitemap.xml")
         if production_robots != expected:
             raise SafeError("Production robots policy changed or blocks indexing; publication is forbidden.")
         if any(f.path == ".htaccess" and b"noindex" in f.content.lower() for f in files):
@@ -385,7 +385,7 @@ def publication_files(files, config):
     elif config.target == "Preview":
         replacements = {
             ".htaccess": (REPO / "deployment" / "preview.htaccess").read_bytes(),
-            "robots.txt": b"# Source/Preview: pages use noindex; allow crawlers to read that rule.\nUser-agent: *\nDisallow:\n",
+            "robots.txt": b"User-agent: *\nDisallow: /\n",
         }
     else:
         raise SafeError("Unknown deployment target.")

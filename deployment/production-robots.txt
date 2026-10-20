@@ -1,5 +1,4 @@
 User-agent: *
-Allow: /
 Disallow:
 
 Sitemap: https://www.schier.dk/sitemap.xml

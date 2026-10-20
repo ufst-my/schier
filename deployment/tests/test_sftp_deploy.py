@@ -406,7 +406,7 @@ class PreviewSafetyTests(unittest.TestCase):
                  public("index.html", b'<meta name="robots" content="noindex,nofollow" />site')]
         production = deploy.Config("example.test", "local-test", "local-test-only", "pin", "/site", True)
         prod = {f.path: f.content for f in deploy.publication_files(files, production)}
-        self.assertIn(b"Allow: /", prod["robots.txt"])
+        self.assertEqual(prod["robots.txt"], b"User-agent: *\r\nDisallow:\r\n\r\nSitemap: https://www.schier.dk/sitemap.xml")
         self.assertNotIn(b"Disallow: /", prod["robots.txt"])
         self.assertIn(b"index,follow,max-image-preview:large", prod["index.html"])
         self.assertNotIn(b"noindex", prod["index.html"])
@@ -418,7 +418,7 @@ class PreviewSafetyTests(unittest.TestCase):
         self.assertIn(b"https://test.schier.dk", result[0].content)
         self.assertNotIn(b"www.schier.dk", result[0].content)
         self.assertIn(b"noindex, nofollow, noarchive", result[0].content)
-        self.assertNotIn(b"Disallow: /", result[1].content)
+        self.assertEqual(result[1].content, b"User-agent: *\nDisallow: /\n")
         self.assertIn(b"noindex", result[2].content)
         self.assertNotEqual(deploy.manifest_digest(result), deploy.manifest_digest(files))
 
@@ -426,7 +426,7 @@ class PreviewSafetyTests(unittest.TestCase):
         files = deploy.load_public_files()
         production = deploy.Config("example.test", "local-test", "local-test-only", "pin", "/site", True)
         result = {f.path: f.content for f in deploy.publication_files(files, production)}
-        self.assertIn(b"Allow: /", result["robots.txt"])
+        self.assertEqual(result["robots.txt"], b"User-agent: *\r\nDisallow:\r\n\r\nSitemap: https://www.schier.dk/sitemap.xml")
         self.assertNotIn(b"Disallow: /", result["robots.txt"])
         for path, content in result.items():
             if path.endswith(".html") and path != "404.html":
