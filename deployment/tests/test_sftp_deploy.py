@@ -581,7 +581,7 @@ class IntegrationTests(unittest.TestCase):
         self.root = Path(self.folder.name)
         (self.root / "site").mkdir()
         (self.root / "site/index.html").write_bytes(b"https://www.schier.dk/ old")
-        self.files = [public("index.html", b"https://www.schier.dk/ new"),
+        self.files = [public("index.html", b'<meta name="robots" content="noindex,nofollow" />https://www.schier.dk/ new'),
                       public("css/style.css", b"body{}")]
         self.key = paramiko.RSAKey.generate(2048)
         self.fingerprint = "SHA256:" + base64.b64encode(
