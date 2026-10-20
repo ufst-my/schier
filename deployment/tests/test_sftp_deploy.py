@@ -148,13 +148,14 @@ class SafetyTests(unittest.TestCase):
 
     def test_allowlist_rejects_metadata_secrets_code_and_traversal(self):
         for name in [".git/config", ".github/workflows/deploy.yml", ".env", "README.md",
+                     "icons/favicon-32x32.png",
                      "deployment/sftp_deploy.py", "images/.env", "images/desktop.ini",
                      "images/../private.jpg", "/index.html", "uploads/file.jpg",
                      "kontakt/config.php", "images/backups/file.jpg", "js/new.js\n::error::x"]:
             with self.subTest(name=name):
                 self.assertFalse(deploy.allowed_public_path(name))
         for name in [".htaccess", "kontakt/.htaccess", "index.html", "js/script.js",
-                     "images/cards/a.avif", "ydelser/trappevask/index.html"]:
+                     "images/cards/a.avif", "images/icons/favicon-32x32.png", "ydelser/trappevask/index.html"]:
             self.assertTrue(deploy.allowed_public_path(name))
 
     def test_manifest_matches_exact_tracked_public_files(self):

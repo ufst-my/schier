@@ -10,7 +10,10 @@ manifest = set(json.loads((ROOT / "deployment/public-files.json").read_text(enco
 assert len(manifest) == 236
 assert all((ROOT / path).is_file() for path in manifest)
 assert not (ROOT / "app-icons").exists()
-assert (ROOT / "icons").is_dir()
+assert not (ROOT / "icons").exists()
+assert (ROOT / "images/icons").is_dir()
+assert len([p for p in manifest if p.startswith("images/icons/")]) == 5
+assert not any(p.startswith("icons/") for p in manifest)
 class Document(HTMLParser):
     def __init__(self, name):
         super().__init__()
@@ -101,13 +104,13 @@ for request in ("/missing/page/", "/missing/page.html", "/ydelser/missing/"):
         if target.netloc == "example.invalid":
             assert unquote(target.path).lstrip("/") in manifest, (request, ref)
 for icon in json.loads((ROOT / "site.webmanifest").read_text(encoding="utf-8"))["icons"]:
+    assert icon["src"].startswith("/images/icons/")
     assert icon["src"].lstrip("/") in manifest
 css = (ROOT / "css/style.css").read_text(encoding="utf-8")
 assert ".no-js .site-nav" in css and ".no-js .nav-toggle" in css
 assert re.search(r"\.no-js \.site-nav \.dropdown-menu\s*\{\s*display: block", css)
 js = (ROOT / "js/script.js").read_text(encoding="utf-8")
 assert address not in js
-assert '"icons": {".png"}' in (ROOT / "deployment/sftp_deploy.py").read_text(encoding="utf-8")
 print(json.dumps({"HTMLPages": len(documents), "publicFiles": len(manifest),
                   "localResourceReferencesChecked": count, "missingResources": 0,
                   "emailPhoneFallbacks": sum(d.email_count for d in documents.values()),

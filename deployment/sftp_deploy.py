@@ -39,7 +39,6 @@ PREVIEW_ALIAS = "/webroots/df12bd7c"
 ALLOWED_ROOT = {".htaccess", "404.html", "index.html", "favicon.ico",
                 "robots.txt", "site.webmanifest", "sitemap.xml"}
 ALLOWED_EXTENSIONS = {
-    "icons": {".png"},
     "css": {".css"},
     "js": {".js"},
     "images": {".avif", ".jpg", ".png", ".svg", ".webp"},
