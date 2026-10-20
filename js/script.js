@@ -158,7 +158,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     servicesDropdown.addEventListener("mouseleave", function () {
-      if (isDesktop()) setDropdownOpen(false);
+      if (isDesktop() && !servicesDropdown.contains(document.activeElement)) {
+        setDropdownOpen(false);
+      }
     });
 
     servicesDropdown.addEventListener("focusin", function () {
@@ -204,10 +206,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (e.key !== "Escape") return;
 
     if (servicesDropdown && servicesDropdown.classList.contains("dropdown-open")) {
+      if (servicesDropdown.contains(document.activeElement)) dropdownBtn.focus();
       setDropdownOpen(false);
     }
 
     if (siteNav && siteNav.classList.contains("open")) {
+      if (siteNav.contains(document.activeElement)) navToggle.focus();
       setMobileMenuOpen(false);
     }
   });
@@ -225,6 +229,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // Keep the accessible fallback until the menu handlers are ready.
+  document.documentElement.classList.remove("no-js");
+  document.documentElement.classList.add("js");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -328,19 +336,29 @@ document.addEventListener("DOMContentLoaded", () => {
     return "★".repeat(full) + "☆".repeat(5 - full);
   }
 
+  const dotButtons = [];
+
   function renderDots() {
-    dotsEl.innerHTML = "";
-    REVIEWS.forEach((_, i) => {
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "reviews__dot" + (i === index ? " is-active" : "");
-      b.setAttribute("aria-label", `Gå til anmeldelse ${i + 1}`);
-      b.addEventListener("click", () => {
-        index = i;
-        render();
-        restartAuto();
+    // Create controls once: updating a review must not remove the focused button.
+    if (!dotButtons.length) {
+      dotsEl.innerHTML = "";
+      REVIEWS.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "reviews__dot";
+        b.setAttribute("aria-label", `Gå til anmeldelse ${i + 1}`);
+        b.addEventListener("click", () => {
+          index = i;
+          render();
+          restartAuto();
+        });
+        dotsEl.appendChild(b);
+        dotButtons.push(b);
       });
-      dotsEl.appendChild(b);
+    }
+    dotButtons.forEach((button, i) => {
+      button.classList.toggle("is-active", i === index);
+      button.setAttribute("aria-current", i === index ? "true" : "false");
     });
   }
 
@@ -382,7 +400,8 @@ document.addEventListener("DOMContentLoaded", () => {
   prevBtn.addEventListener("click", () => { prev(); restartAuto(); });
 
   // Tastatur (kun når fokus er i reviews)
-  const reviewsSection = card.closest(".reviews");
+  const reviewsSection = card.closest(".reviews") || card;
+  let pointerInsideReviews = false;
 
   document.addEventListener("keydown", (e) => {
     const active = document.activeElement;
@@ -438,6 +457,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Auto-skift
   function startAuto() {
     stopAuto();
+    if (document.hidden || pointerInsideReviews ||
+        reviewsSection.contains(document.activeElement)) return;
     timer = setInterval(() => next(), INTERVAL_MS);
   }
 
@@ -450,10 +471,19 @@ document.addEventListener("DOMContentLoaded", () => {
     startAuto();
   }
 
-  card.addEventListener("mouseenter", stopAuto);
-  card.addEventListener("mouseleave", startAuto);
-  card.addEventListener("focusin", stopAuto);
-  card.addEventListener("focusout", startAuto);
+  reviewsSection.addEventListener("mouseenter", () => {
+    pointerInsideReviews = true;
+    stopAuto();
+  });
+  reviewsSection.addEventListener("mouseleave", () => {
+    pointerInsideReviews = false;
+    startAuto();
+  });
+  reviewsSection.addEventListener("focusin", stopAuto);
+  reviewsSection.addEventListener("focusout", () => {
+    // Wait until the browser has moved focus, then recheck the entire section.
+    setTimeout(startAuto, 0);
+  });
 
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) stopAuto();
@@ -475,5 +505,8 @@ document.addEventListener("DOMContentLoaded", () => {
     links.forEach(function (link) {
       link.href = `mailto:${email}`;
       link.textContent = email;
+      link.hidden = false;
+      const fallback = link.nextElementSibling;
+      if (fallback?.classList.contains("email-fallback")) fallback.hidden = true;
     });
   })();

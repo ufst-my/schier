@@ -204,9 +204,9 @@ body {
     min-width: 260px;
   }
 
-  /* Hover/fokus: vis dropdown på desktop */
-  .site-nav .has-dropdown:hover .dropdown-menu,
-  .site-nav .has-dropdown:focus-within .dropdown-menu{
+  /* Without JS, keyboard focus/hover still exposes the submenu. */
+  .no-js .site-nav .has-dropdown:hover .dropdown-menu,
+  .no-js .site-nav .has-dropdown:focus-within .dropdown-menu{
     display: block;
   }
 
@@ -955,4 +955,33 @@ body a:hover {
   border-top: 1px solid #e0e0e0;
   margin-top: 0;
   padding-top: 3rem;
+}
+
+/* Progressive enhancement: menus remain usable if JavaScript is unavailable. */
+.no-js .nav-toggle,
+.no-js .dropdown-toggle {
+  display: none;
+}
+
+.no-js .site-nav {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .no-js .site-header .container {
+    flex-wrap: wrap;
+  }
+
+  .no-js .site-nav {
+    position: static;
+    flex-basis: 100%;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .no-js .site-nav .dropdown-menu {
+    display: block;
+  }
 }

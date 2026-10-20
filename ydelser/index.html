@@ -21,12 +21,6 @@
   <link href="../images/schier-professionel-rengoring-logo.jpg" rel="icon" type="image/jpeg">
   <link href="../images/schier-professionel-rengoring-logo.jpg" rel="apple-touch-icon">
 
-  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
-  <script>
-    document.documentElement.classList.remove('no-js');
-    document.documentElement.classList.add('js');
-  </script>
-
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="da_DK" />
@@ -406,8 +400,8 @@
             </ul>
           </li>
 
-          <li><a href="../om-os">Om os</a></li>
-          <li><a href="../kontakt">Kontakt</a></li>
+          <li><a href="../om-os/">Om os</a></li>
+          <li><a href="../kontakt/">Kontakt</a></li>
 
           <li class="nav-phone">
             <a href="tel:+4550507665" class="phone-link">
@@ -552,7 +546,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_kontor.avif">
-                <img src="../images/cards/rengjort_kontor.jpg" alt="Ikon med rengjort kontor" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/kontor.jpg" alt="Ikon med rengjort kontor" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Kontorrengøring</h3>
@@ -563,7 +557,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_institution.avif">
-                <img src="../images/cards/rengjort_institution.jpg" alt="Ikon med rengjort institution" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/institution.jpg" alt="Ikon med rengjort institution" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Institutioner</h3>
@@ -574,7 +568,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_butik.avif">
-                <img src="../images/cards/rengjort_butik.jpg" alt="Ikon med rengjort butik" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/butik.jpg" alt="Ikon med rengjort butik" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Butiksrengøring</h3>
@@ -585,7 +579,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_klinik_udstyr.avif">
-                <img src="../images/cards/rengjort_klinik_udstyr.jpg" alt="Ikon med rengjort klinikudstyr" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/klinik.jpg" alt="Ikon med rengjort klinikudstyr" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Klinikrengøring</h3>
@@ -596,7 +590,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_restaurationsservice.avif">
-                <img src="../images/cards/rengjort_restaurationsservice.jpg" alt="Ikon med rengjort restaurationsservice" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/restaurant.jpg" alt="Ikon med rengjort restaurationsservice" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Restauranter</h3>
@@ -607,7 +601,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_fabrik.avif">
-                <img src="../images/cards/rengjort_fabrik.jpg" alt="Ikon med rengjort fabrik" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/fabrik.jpg" alt="Ikon med rengjort fabrik" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Fabriksrengøring</h3>
@@ -618,7 +612,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_sportshal.avif">
-                <img src="../images/cards/rengjort_sportshal.jpg" alt="Ikon med rengjort sportshal" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/sportshal.jpg" alt="Ikon med rengjort sportshal" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Sportshaller</h3>
@@ -629,7 +623,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_trappe.avif">
-                <img src="../images/cards/rengjort_trappe.jpg" alt="Ikon med rengjort trappeopgang" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/trappe.jpg" alt="Ikon med rengjort trappeopgang" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Trappevask</h3>
@@ -640,7 +634,7 @@
             <div class="service-image-wrapper">
               <picture>
                 <source type="image/avif" srcset="../images/cards/rengjort_skurvogn.avif">
-                <img src="../images/cards/rengjort_skurvogn.jpg" alt="Ikon med rengjort skurvogn" width="600" height="600" loading="lazy" decoding="async">
+                <img src="../images/cards/skurvogn.jpg" alt="Ikon med rengjort skurvogn" width="600" height="600" loading="lazy" decoding="async">
               </picture>
             </div>
             <h3>Skurvognsrengøring</h3>
@@ -664,7 +658,7 @@
 
           <p class="contact-links">
             <strong>Telefon:</strong> <a href="tel:+4550507665">50 50 76 65</a> |
-            <strong>E-mail:</strong> <a class="email-link" href="#"></a>
+            <strong>E-mail:</strong> <a class="email-link" href="#" hidden></a><span class="email-fallback">Aktivér JavaScript for e-mail, eller <a href="tel:+4550507665">ring til os</a>.</span>
           </p>
 
           <p>Folemarken 59, 4800 Nykøbing F | CVR-nr. 38199633</p>
@@ -678,7 +672,7 @@
       <p>
         Schier Rengøring · Folemarken 59, 4800 Nykøbing F |
         <a href="tel:+4550507665">50 50 76 65</a> |
-        <a class="email-link" href="#"></a> | CVR-nr. 38199633
+        <a class="email-link" href="#" hidden></a><span class="email-fallback">Aktivér JavaScript for e-mail, eller <a href="tel:+4550507665">ring til os</a>.</span> | CVR-nr. 38199633
       </p>
     </div>
   </footer>

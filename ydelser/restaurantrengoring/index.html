@@ -18,12 +18,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../../icons/apple-touch-icon.png">
   <link rel="manifest" href="../../site.webmanifest">
 
-  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
-  <script>
-    document.documentElement.classList.remove('no-js');
-    document.documentElement.classList.add('js');
-  </script>
-
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
@@ -262,7 +256,7 @@
   <!-- Header + navigation -->
   <header class="site-header">
     <div class="container">
-      <a href="https://www.schier.dk/" class="logo-link" aria-label="Gå til forsiden">
+      <a href="../../" class="logo-link" aria-label="Gå til forsiden">
         <picture>
           <source type="image/svg+xml" srcset="../../images/schier-professionel-rengoring-logo.svg">
           <img
@@ -287,7 +281,7 @@
         <ul>
           <li class="has-dropdown">
             <div class="dropdown-trigger">
-              <a href="https://www.schier.dk/ydelser" class="dropdown-link">Ydelser</a>
+              <a href="../" class="dropdown-link">Ydelser</a>
               <button
                 class="dropdown-toggle"
                 type="button"
@@ -298,20 +292,20 @@
             </div>
 
             <ul class="dropdown-menu" id="submenu-services">
-              <li><a href="https://www.schier.dk/ydelser/kontorrengoring/">Kontorrengøring</a></li>
-              <li><a href="https://www.schier.dk/ydelser/institutionsrengoring/">Institutioner</a></li>
-              <li><a href="https://www.schier.dk/ydelser/butiksrengoring/">Butiksrengøring</a></li>
-              <li><a href="https://www.schier.dk/ydelser/klinikrengoring/">Klinikrengøring</a></li>
-              <li><a href="https://www.schier.dk/ydelser/restaurantrengoring/">Restauranter</a></li>
-              <li><a href="https://www.schier.dk/ydelser/fabriksrengoring/">Fabriksrengøring</a></li>
-              <li><a href="https://www.schier.dk/ydelser/rengoring-af-sportshaller/">Sportshaller</a></li>
-              <li><a href="https://www.schier.dk/ydelser/trappevask/">Trappevask</a></li>
-              <li><a href="https://www.schier.dk/ydelser/skurvognsrengoring/">Skurvognsrengøring</a></li>
+              <li><a href="../kontorrengoring/">Kontorrengøring</a></li>
+              <li><a href="../institutionsrengoring/">Institutioner</a></li>
+              <li><a href="../butiksrengoring/">Butiksrengøring</a></li>
+              <li><a href="../klinikrengoring/">Klinikrengøring</a></li>
+              <li><a href="./">Restauranter</a></li>
+              <li><a href="../fabriksrengoring/">Fabriksrengøring</a></li>
+              <li><a href="../rengoring-af-sportshaller/">Sportshaller</a></li>
+              <li><a href="../trappevask/">Trappevask</a></li>
+              <li><a href="../skurvognsrengoring/">Skurvognsrengøring</a></li>
             </ul>
           </li>
 
-          <li><a href="https://www.schier.dk/om-os">Om os</a></li>
-          <li><a href="https://www.schier.dk/kontakt">Kontakt</a></li>
+          <li><a href="../../om-os/">Om os</a></li>
+          <li><a href="../../kontakt/">Kontakt</a></li>
 
           <li class="nav-phone">
             <a href="tel:+4550507665" class="phone-link">
@@ -480,7 +474,7 @@
           <li>Gulve og synlige flader</li>
           <li>Affalds- og sorteringsområde (rensning og opfriskning efter aftale)</li>
           <li>Personalerum/omklædning efter behov</li>
-          <li>Administrative områder, som fx et <a href="https://www.schier.dk/ydelser/kontorrengoring/">kontor</a>.</li>
+          <li>Administrative områder, som fx et <a href="../kontorrengoring/">kontor</a>.</li>
         </ul>
 
         <h3>Toiletter</h3>
@@ -503,7 +497,7 @@
           <li>Plan og tjekliste – I får en klar aftale om opgaver, frekvens og standard.</li>
           <li>Opstart med kvalitet i fokus – vi finjusterer, så resultatet sidder rigtigt fra start.</li>
           <li>Løbende opfølgning – ændrer behovet sig, justerer vi uden bøvl.</li>
-          <li><a href="https://www.schier.dk/kontakt">Kontakt os her</a> hvis I har en konkret opgave i tankerne.</li>
+          <li><a href="../../kontakt/">Kontakt os her</a> hvis I har en konkret opgave i tankerne.</li>
         </ol>
 
         <h2>Køkkenrengøring, der støtter en stabil hverdag</h2>
@@ -547,7 +541,7 @@
 
         <p class="contact-links">
           <strong>Telefon:</strong> <a href="tel:+4550507665">50 50 76 65</a> |
-          <strong>E-mail:</strong> <a class="email-link" href="#"></a>
+          <strong>E-mail:</strong> <a class="email-link" href="#" hidden></a><span class="email-fallback">Aktivér JavaScript for e-mail, eller <a href="tel:+4550507665">ring til os</a>.</span>
         </p>
 
         <p>Folemarken 59, 4800 Nykøbing F | CVR-nr. 38199633</p>
@@ -560,7 +554,7 @@
       <p>
         Schier Rengøring · Folemarken 59, 4800 Nykøbing F |
         <a href="tel:+4550507665">50 50 76 65</a> |
-        <a class="email-link" href="#"></a> | CVR-nr. 38199633
+        <a class="email-link" href="#" hidden></a><span class="email-fallback">Aktivér JavaScript for e-mail, eller <a href="tel:+4550507665">ring til os</a>.</span> | CVR-nr. 38199633
       </p>
     </div>
   </footer>

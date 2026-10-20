@@ -23,12 +23,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png">
   <link rel="manifest" href="../site.webmanifest">
 
-  <!-- Markér JS-tilstand (bruges til no-JS fallback styling i CSS) -->
-  <script>
-    document.documentElement.classList.remove('no-js');
-    document.documentElement.classList.add('js');
-  </script>
-
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="da_DK" />
@@ -308,7 +302,7 @@
             </ul>
           </li>
 
-          <li><a href="../om-os/">Om os</a></li>
+          <li><a href="./">Om os</a></li>
           <li><a href="../kontakt/">Kontakt</a></li>
 
           <li class="nav-phone">
@@ -512,7 +506,7 @@
 
           <p class="contact-links">
             <strong>Telefon:</strong> <a href="tel:+4550507665">50 50 76 65</a> |
-            <strong>E-mail:</strong> <a class="email-link" href="#"></a>
+            <strong>E-mail:</strong> <a class="email-link" href="#" hidden></a><span class="email-fallback">Aktivér JavaScript for e-mail, eller <a href="tel:+4550507665">ring til os</a>.</span>
           </p>
 
           <p>Folemarken 59, 4800 Nykøbing F | CVR-nr. 38199633</p>
@@ -526,7 +520,7 @@
       <p>
         Schier Rengøring · Folemarken 59, 4800 Nykøbing F |
         <a href="tel:+4550507665">50 50 76 65</a> |
-        <a class="email-link" href="#"></a> | CVR-nr. 38199633
+        <a class="email-link" href="#" hidden></a><span class="email-fallback">Aktivér JavaScript for e-mail, eller <a href="tel:+4550507665">ring til os</a>.</span> | CVR-nr. 38199633
       </p>
     </div>
   </footer>

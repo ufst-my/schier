@@ -36,7 +36,7 @@ WORKFLOW = ".github/workflows/deploy.yml"
 ALLOWED_ROOT = {".htaccess", "404.html", "index.html", "favicon.ico",
                 "robots.txt", "site.webmanifest", "sitemap.xml"}
 ALLOWED_EXTENSIONS = {
-    "app-icons": {".png"},
+    "icons": {".png"},
     "css": {".css"},
     "js": {".js"},
     "images": {".avif", ".jpg", ".png", ".svg", ".webp"},
