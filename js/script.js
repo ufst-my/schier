@@ -127,9 +127,15 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!open) setDropdownOpen(false);
   }
 
-  function setDropdownOpen(open) {
+  let dropdownOpenedAutomatically = false;
+
+  function setDropdownOpen(open, automatic = false) {
     if (!servicesDropdown || !dropdownBtn) return;
 
+    if (!open) dropdownOpenedAutomatically = false;
+    else if (!servicesDropdown.classList.contains("dropdown-open")) {
+      dropdownOpenedAutomatically = automatic;
+    }
     servicesDropdown.classList.toggle("dropdown-open", open);
     dropdownBtn.setAttribute("aria-expanded", String(open));
   }
@@ -148,13 +154,17 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       e.stopPropagation();
 
-      const open = !servicesDropdown.classList.contains("dropdown-open");
+      // Hover/focus can open the panel before the first click is delivered.
+      // Treat that first activation as an explicit open; a second closes it.
+      const open = !servicesDropdown.classList.contains("dropdown-open") ||
+        (isDesktop() && dropdownOpenedAutomatically);
       setDropdownOpen(open);
+      dropdownOpenedAutomatically = false;
     });
    
     // Desktop: åbn ved hover/fokus
     servicesDropdown.addEventListener("mouseenter", function () {
-      if (isDesktop()) setDropdownOpen(true);
+      if (isDesktop()) setDropdownOpen(true, true);
     });
 
     servicesDropdown.addEventListener("mouseleave", function () {
@@ -164,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     servicesDropdown.addEventListener("focusin", function () {
-      if (isDesktop()) setDropdownOpen(true);
+      if (isDesktop()) setDropdownOpen(true, true);
     });
 
     servicesDropdown.addEventListener("focusout", function () {

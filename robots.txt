@@ -1,4 +1,3 @@
+# Source/Preview: pages use noindex; allow crawlers to read that rule.
 User-agent: *
 Disallow:
-
-Sitemap: https://www.schier.dk/sitemap.xml

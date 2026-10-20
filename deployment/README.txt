@@ -248,3 +248,22 @@ the pinned TOFU ED25519 host key / StrictHostKeyChecking=yes are unchanged.
 No deletion was added. The owner removed hohoho and visit in the control panel.
 
 The job permits 60 minutes for initial full uploads and per-file verification.
+
+Indexing policy (supersedes the earlier robots.txt overlay description)
+---------------------------------------------------------------------
+Source HTML and Preview HTML use noindex. robots.txt allows crawling so crawlers
+can read the noindex rule; robots.txt itself cannot reliably prevent indexing.
+Preview also sends X-Robots-Tag: noindex, nofollow, noarchive.
+Production always receives deployment/production-robots.txt as public robots.txt
+(Allow: /, empty Disallow, production sitemap), regardless of source robots.txt.
+Production HTML is transformed to index,follow,max-image-preview:large; the 404
+page remains noindex. Production publication fails if the robots template differs
+from the exact allow policy, if a page lacks the expected robots meta, or if the
+production .htaccess contains noindex. Test receipts hash these final bytes.
+Only Preview was authorized for publication in this task. Production is untouched.
+
+Navigation fixes: desktop first activation keeps a hover/focus-opened submenu open;
+a second activation closes it. Mobile toggles are at least 44x44 CSS pixels.
+The mobile menu scrolls within the available screen height. Long headings wrap.
+All Contact calls lead to kontakt/#contact-overview-title; normal skip links,
+review placeholders and obfuscated email links are unchanged.

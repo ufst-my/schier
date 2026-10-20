@@ -306,7 +306,7 @@ class SafetyTests(unittest.TestCase):
                  patch.object(deploy, "assert_current_main"), \
                  patch.object(deploy.sys, "platform", "linux"), \
                  patch.object(deploy.subprocess, "run", return_value=SimpleNamespace(returncode=255)), \
-                 patch.object(deploy, "load_public_files", return_value=[public("index.html", b"site")]), \
+                 patch.object(deploy, "load_public_files", return_value=[public("index.html", b'<meta name="robots" content="noindex,nofollow" />site')]), \
                  patch.object(deploy, "connect") as connection:
                 code = deploy.run("Test", Path(folder), Path(folder) / "missing.json")
             self.assertEqual(code, 1)
@@ -385,9 +385,15 @@ class PreviewSafetyTests(unittest.TestCase):
 
     def test_overlays_do_not_change_production_sources(self):
         files = [public(".htaccess", b"production redirect"),
-                 public("robots.txt", b"production robots"), public("index.html", b"site")]
+                 public("robots.txt", b"User-agent: *\nDisallow: /\n"),
+                 public("index.html", b'<meta name="robots" content="noindex,nofollow" />site')]
         production = deploy.Config("example.test", "local-test", "local-test-only", "pin", "/site", True)
-        self.assertIs(deploy.publication_files(files, production), files)
+        prod = {f.path: f.content for f in deploy.publication_files(files, production)}
+        self.assertIn(b"Allow: /", prod["robots.txt"])
+        self.assertNotIn(b"Disallow: /", prod["robots.txt"])
+        self.assertIn(b"index,follow,max-image-preview:large", prod["index.html"])
+        self.assertNotIn(b"noindex", prod["index.html"])
+        self.assertIn(b"noindex", files[2].content)
         result = deploy.publication_files(files, self.config())
         self.assertEqual(len(files), len(result))
         self.assertEqual(files[0].content, b"production redirect")
@@ -395,8 +401,40 @@ class PreviewSafetyTests(unittest.TestCase):
         self.assertIn(b"https://test.schier.dk", result[0].content)
         self.assertNotIn(b"www.schier.dk", result[0].content)
         self.assertIn(b"noindex, nofollow, noarchive", result[0].content)
-        self.assertIn(b"Disallow: /", result[1].content)
+        self.assertNotIn(b"Disallow: /", result[1].content)
+        self.assertIn(b"noindex", result[2].content)
         self.assertNotEqual(deploy.manifest_digest(result), deploy.manifest_digest(files))
+
+    def test_production_policy_cannot_be_overridden_by_source_robots(self):
+        files = deploy.load_public_files()
+        production = deploy.Config("example.test", "local-test", "local-test-only", "pin", "/site", True)
+        result = {f.path: f.content for f in deploy.publication_files(files, production)}
+        self.assertIn(b"Allow: /", result["robots.txt"])
+        self.assertNotIn(b"Disallow: /", result["robots.txt"])
+        for path, content in result.items():
+            if path.endswith(".html") and path != "404.html":
+                self.assertIn(b'content="index,follow,max-image-preview:large"', content)
+                self.assertNotIn(b'content="noindex', content)
+        self.assertIn(b'content="noindex', result["404.html"])
+        self.assertNotIn(b"noindex", result[".htaccess"])
+        preview = {f.path: f.content for f in deploy.publication_files(files, self.config())}
+        for path, content in preview.items():
+            if path.endswith(".html"):
+                self.assertIn(b'content="noindex', content)
+
+    def test_invalid_production_policy_blocks_before_publication(self):
+        production = deploy.Config("example.test", "local-test", "local-test-only", "pin", "/site", True)
+        source = public("index.html", b'<meta name="robots" content="noindex,nofollow" />')
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "deployment").mkdir()
+            (root / "deployment" / "production-robots.txt").write_bytes(b"User-agent: *\nDisallow: /\n")
+            with patch.object(deploy, "REPO", root), self.assertRaises(deploy.SafeError):
+                deploy.publication_files([source], production)
+        with self.assertRaises(deploy.SafeError):
+            deploy.publication_files([public("index.html", b"missing robots meta")], production)
+        with self.assertRaises(deploy.SafeError):
+            deploy.publication_files([source, public(".htaccess", b"Header set X-Robots-Tag noindex")], production)
 
     def test_receipt_digest_separates_targets_even_for_same_files(self):
         from dataclasses import replace

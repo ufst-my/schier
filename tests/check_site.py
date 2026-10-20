@@ -30,7 +30,7 @@ class Document(HTMLParser):
         if tag == "a" and "email-link" in a.get("class", "").split():
             self.email_count += 1
             assert "hidden" in a
-            assert not a.get("href", "").startswith("mailto:")
+            assert a.get("href") == "#"
         if "email-fallback" in a.get("class", "").split():
             self.fallback_count += 1
         if tag == "a" and a.get("href"):
@@ -60,6 +60,11 @@ for path in sorted(ROOT.rglob("*.html")):
     text = path.read_text(encoding="utf-8")
     assert address not in text.lower(), name
     assert not re.search(r"document\.documentElement\.classList\.remove\(['\"]no-js", text), name
+    assert '<meta name="robots" content="noindex' in text, name
+    assert '<a class="skip-link" href="#main">' in text, name
+    assert 'href="#contact"' not in text, name
+    assert 'rel="manifest"' in text, name
+    assert 'rel="apple-touch-icon"' in text and 'images/icons/apple-touch-icon.png' in text, name
     doc = Document(name)
     doc.feed(text)
     assert doc.email_count == doc.fallback_count, name
@@ -96,6 +101,8 @@ for name, doc in documents.items():
             if (ROOT / local).is_dir():
                 local = posixpath.join(local, "index.html")
             assert local in manifest and (ROOT / local).is_file(), (name, prefix, href, local)
+            if local == "kontakt/index.html":
+                assert target.fragment == "contact-overview-title", (name, href)
             if target.fragment and local in documents:
                 assert target.fragment in documents[local].ids, (name, href)
 for request in ("/missing/page/", "/missing/page.html", "/ydelser/missing/"):

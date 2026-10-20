@@ -372,18 +372,33 @@ def validate_root(sftp, remote_dir):
 
 
 def publication_files(files, config):
-    """Preview-only overlays; production website sources remain unchanged."""
+    """Bind indexing policy to the target, never to the source robots.txt."""
     if config.target == "Production":
-        return files
-    if config.target != "Preview":
+        production_robots = (REPO / "deployment" / "production-robots.txt").read_bytes()
+        expected = (b"User-agent: *\nAllow: /\nDisallow:\n\n"
+                    b"Sitemap: https://www.schier.dk/sitemap.xml\n")
+        if production_robots != expected:
+            raise SafeError("Production robots policy changed or blocks indexing; publication is forbidden.")
+        if any(f.path == ".htaccess" and b"noindex" in f.content.lower() for f in files):
+            raise SafeError("Production .htaccess must never contain a noindex rule.")
+        replacements = {"robots.txt": production_robots}
+    elif config.target == "Preview":
+        replacements = {
+            ".htaccess": (REPO / "deployment" / "preview.htaccess").read_bytes(),
+            "robots.txt": b"# Source/Preview: pages use noindex; allow crawlers to read that rule.\nUser-agent: *\nDisallow:\n",
+        }
+    else:
         raise SafeError("Unknown deployment target.")
-    replacements = {
-        ".htaccess": (REPO / "deployment" / "preview.htaccess").read_bytes(),
-        "robots.txt": b"User-agent: *\nDisallow: /\n",
-    }
     result = []
     for file in files:
         content = replacements.get(file.path, file.content)
+        if config.target == "Production" and file.path.endswith(".html") and file.path != "404.html":
+            content, count = re.subn(
+                rb'(<meta name="robots" content=")noindex,nofollow("\s*/>)',
+                rb'\g<1>index,follow,max-image-preview:large\2', content,
+            )
+            if count != 1:
+                raise SafeError("Production HTML must receive exactly one verified index/follow rule.")
         result.append(PublicFile(file.path, content, hashlib.sha256(content).hexdigest()))
     return result
 

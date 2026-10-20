@@ -82,8 +82,9 @@ function page({ desktop = true, pathname = "/ydelser/kontorrengoring/" } = {}) {
   const submenu = element("submenu", "dropdown-menu"), serviceLink = element("service-link");
   nav.appendChild(dropdown); dropdown.appendChild(parentLink);
   dropdown.appendChild(dropdownBtn); dropdown.appendChild(submenu); submenu.appendChild(serviceLink);
-  parentLink.setAttribute("href", "../"); serviceLink.setAttribute("href", "./");
-  const contactLink = element("contact-link"); contactLink.setAttribute("href", "../../kontakt/");
+  parentLink.setAttribute("href", pathname.startsWith("/ydelser/") ? "../" : "../ydelser/");
+  serviceLink.setAttribute("href", pathname.startsWith("/ydelser/") ? "./" : "../ydelser/kontorrengoring/");
+  const contactLink = element("contact-link"); contactLink.setAttribute("href", "../../kontakt/#contact-overview-title");
   const section = element("reviews", "reviews");
   const reviews = Object.fromEntries(["card","avatar","name","stars","text","source","prev","next","dots"]
     .map(name => [name, element(name)]));
@@ -135,6 +136,30 @@ function page({ desktop = true, pathname = "/ydelser/kontorrengoring/" } = {}) {
     },
   };
 }
+
+test("first desktop click remains open after hover and focus, second click closes", () => {
+  const p = page();
+  p.dropdown.emit("mouseenter");
+  p.dropdownBtn.focus();
+  p.dropdownBtn.emit("click");
+  assert.equal(p.dropdownBtn.getAttribute("aria-expanded"), "true");
+  p.dropdownBtn.emit("click");
+  assert.equal(p.dropdownBtn.getAttribute("aria-expanded"), "false");
+});
+
+test("first keyboard activation remains open after automatic focus opening", () => {
+  const p = page();
+  p.dropdownBtn.focus();
+  p.dropdownBtn.emit("click");
+  assert.equal(p.dropdownBtn.getAttribute("aria-expanded"), "true");
+  p.event("keydown", { key: "Escape" });
+  assert.equal(p.dropdownBtn.getAttribute("aria-expanded"), "false");
+});
+
+test("contact anchor does not interfere with the active navigation marker", () => {
+  const p = page({ pathname: "/kontakt/" });
+  assert.equal(p.contactLink.getAttribute("aria-current"), "page");
+});
 
 test("desktop Escape closes the dropdown and returns focus to its button", () => {
   const p = page();
