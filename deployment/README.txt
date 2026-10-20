@@ -246,3 +246,5 @@ a Production Test cannot authorize a Preview Deploy, or the reverse.
 The shared concurrency group serializes both targets. Existing secrets and
 the pinned TOFU ED25519 host key / StrictHostKeyChecking=yes are unchanged.
 No deletion was added. The owner removed hohoho and visit in the control panel.
+
+The job permits 60 minutes for initial full uploads and per-file verification.
