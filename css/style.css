@@ -960,13 +960,21 @@ body a:hover {
 }
 
 /* Keep the anchor below the desktop sticky header. */
+#services,
 #contact-overview-title {
   scroll-margin-top: 9rem;
 }
 @media (max-width: 767px) {
+  #services,
   #contact-overview-title {
     scroll-margin-top: 1rem;
   }
+}
+
+/* Fragment destinations keep focus without a box around their content. */
+#services:focus,
+#contact-overview-title:focus {
+  outline: none;
 }
 
 /* Kontakt-side */
