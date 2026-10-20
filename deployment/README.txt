@@ -267,3 +267,11 @@ a second activation closes it. Mobile toggles are at least 44x44 CSS pixels.
 The mobile menu scrolls within the available screen height. Long headings wrap.
 All Contact calls lead to kontakt/#contact-overview-title; normal skip links,
 review placeholders and obfuscated email links are unchanged.
+
+Optional direct Preview deployment
+----------------------------------
+The explicit workflow_dispatch boolean preview_without_test=true permits only
+Preview + Deploy to omit the separate Test run and its receipt. Default is false.
+Production always requires its successful, current Test receipt. All host-key,
+main-commit, canonical-root, non-deletion, SHA-256 comparison and atomic upload
+verification checks remain active. The job still runs offline safety tests.

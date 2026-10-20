@@ -681,6 +681,14 @@ def write_report(directory, report):
           f"unchanged={counts['UNCHANGED']}, errors={counts['ERROR']}")
 
 
+def deployment_receipt(path, config, files):
+    if os.environ.get("SFTP_PREVIEW_WITHOUT_TEST", "false") == "true":
+        if config.target != "Preview":
+            raise SafeError("Skipping a prior Test is allowed only for Preview; Production requires Test.")
+        return None
+    return read_test_receipt(path, config, files)
+
+
 def run(mode, report_dir, test_receipt):
     logging.disable(logging.CRITICAL)
     report = {"mode": mode, "result": "FAILED", "files": []}
@@ -695,7 +703,8 @@ def run(mode, report_dir, test_receipt):
         if mode == "Deploy":
             if not config.remote_dir or not config.root_confirmed:
                 raise SafeError("Deploy blocked: confirm SFTP_REMOTE_DIR and set SFTP_ROOT_CONFIRMED=true.")
-            receipt = read_test_receipt(test_receipt, config, files)
+            receipt = deployment_receipt(test_receipt, config, files)
+            report["prior_test"] = "VERIFIED" if receipt else "SKIPPED_EXPLICIT_PREVIEW"
         openssh_preflight(config)
         report["host_key_trust"] = "TOFU_PINNED_ED25519"
         report["openssh_strict_host_key_checking"] = "yes"
@@ -712,7 +721,7 @@ def run(mode, report_dir, test_receipt):
         if not config.root_confirmed:
             raise SafeError("Comparison completed read-only; confirm this webroot before a passing Test.")
         if mode == "Deploy":
-            if root != receipt["canonical_root"]:
+            if receipt is not None and root != receipt["canonical_root"]:
                 raise SafeError("Canonical remote root differs from the earlier Test.")
             assert_current_main()
             deploy_files(sftp, root, files, report["files"], preview=config.target == "Preview")

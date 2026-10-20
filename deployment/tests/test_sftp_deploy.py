@@ -87,6 +87,23 @@ class MemorySFTP:
 
 
 class SafetyTests(unittest.TestCase):
+    def test_direct_preview_needs_explicit_flag_and_skips_only_receipt(self):
+        with patch.dict(os.environ, {"SFTP_PREVIEW_WITHOUT_TEST": "true"}), patch.object(deploy, "read_test_receipt") as read:
+            self.assertIsNone(deploy.deployment_receipt(Path("missing"), SimpleNamespace(target="Preview"), []))
+            read.assert_not_called()
+
+    def test_direct_preview_flag_cannot_bypass_production_test(self):
+        with patch.dict(os.environ, {"SFTP_PREVIEW_WITHOUT_TEST": "true"}), patch.object(deploy, "read_test_receipt") as read:
+            with self.assertRaises(deploy.SafeError):
+                deploy.deployment_receipt(Path("missing"), SimpleNamespace(target="Production"), [])
+            read.assert_not_called()
+
+    def test_default_deploy_still_requires_receipt_for_both_targets(self):
+        with patch.dict(os.environ, {"SFTP_PREVIEW_WITHOUT_TEST": "false"}), patch.object(deploy, "read_test_receipt", return_value={"verified": True}) as read:
+            for target in ("Production", "Preview"):
+                self.assertEqual(deploy.deployment_receipt(Path("receipt"), SimpleNamespace(target=target), []), {"verified": True})
+            self.assertEqual(read.call_count, 2)
+
     def test_equal_length_changes_are_hashed_and_test_does_not_write(self):
         remote = MemorySFTP({"/site/a.css": b"AAAA", "/site/b.css": b"same"})
         before = copy.deepcopy(remote.files)
